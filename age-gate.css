@@ -1,0 +1,24 @@
+/* Full screen Overlay Navigation - http://www.w3schools.com/howto/howto_js_fullscreen_overlay.asp */
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+}
+
+.overlay h1, .overlay h2 {
+    color: #f1f1f1;
+}
