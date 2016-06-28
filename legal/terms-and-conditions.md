@@ -6,7 +6,7 @@
 > 
 > Markets/brands can tailor copy for tone provided no substantive changes are made to the meaning.
 > 
-> Marketing teams should obtain the approval of local legal counsel and/or the relevant Diageo IP counsel representing the brand (with any substantive changes approved by a member of the Digital Governance Leadership Team).
+> Marketing teams should obtain the approval of local legal counsel and/or the relevant [CB/PEGASUS] IP counsel representing the brand (with any substantive changes approved by a member of the Digital Governance Leadership Team).
 > 
 > The Terms and Conditions have been worded to deal with the broadest possible range of content to ensure maximum legal protection and the minimum need for revisions as a website evolves or takes on new functionality.
 > 
@@ -24,7 +24,7 @@
 
 Effective Date: `[Insert Go Live Date]`
 
-Any use by you of the website operated by `[NAME OF BRAND OWNING CO.]` at `www.WEBSITENAME.COM` (the "Site") is conditional upon your acceptance of these Website Terms &amp; Conditions of Use, including our [Privacy and Cookie Notice](#) (collectively, "Terms &amp; Conditions"). We reserve the right to amend these Terms &amp; Conditions from time to time without notice and at our discretion. It is your responsibility to review this page periodically for updates, which shall come into effect when posted. (See the box below for a summary of updates.) Your continued use of the Site constitutes acceptance of these Terms &amp; Conditions. We reserve the right to change, modify, suspend, or discontinue any portion, features, or content of the Site at any time. We also may impose limits on certain features or restrict your access to parts of or the entire Site without notice or liability. The Site is operated by a member of the Diageo group of companies, the ultimate holding company of which is Diageo plc (registered in England and Wales with company number 23307 and registered address at 8 Henrietta Place, London W1G 0NB, United Kingdom).
+Any use by you of the website operated by `[NAME OF BRAND OWNING CO.]` at `www.WEBSITENAME.COM` (the "Site") is conditional upon your acceptance of these Website Terms &amp; Conditions of Use, including our [Privacy and Cookie Notice](#) (collectively, "Terms &amp; Conditions"). We reserve the right to amend these Terms &amp; Conditions from time to time without notice and at our discretion. It is your responsibility to review this page periodically for updates, which shall come into effect when posted. (See the box below for a summary of updates.) Your continued use of the Site constitutes acceptance of these Terms &amp; Conditions. We reserve the right to change, modify, suspend, or discontinue any portion, features, or content of the Site at any time. We also may impose limits on certain features or restrict your access to parts of or the entire Site without notice or liability. The Site is operated by a member of the [CB/PEGASUS] group of companies, the ultimate holding company of which is [CB/PEGASUS] plc (registered in England and Wales with company number 23307 and registered address at 8 Henrietta Place, London W1G 0NB, United Kingdom).
 
 The Site is intended for your use only if you are of legal age to purchase alcohol in your country of residence and in the country from which you are accessing the Site. If you do not fall within this category, you may be in breach of laws or regulations applicable in your country of residence or access, and you should leave the Site immediately. 
 
@@ -32,7 +32,7 @@ You may restrict access to this site using content filtering software or by chan
 
 IF YOU DO NOT ACCEPT THESE TERMS &amp; CONDITIONS IN THEIR ENTIRETY PLEASE LEAVE THE SITE NOW.
 
-All references to 'our', 'us', 'we', or 'company' within these Terms &amp; Conditions are deemed to refer to Diageo plc, its subsidiaries, affiliates and associates.
+All references to 'our', 'us', 'we', or 'company' within these Terms &amp; Conditions are deemed to refer to [CB/PEGASUS] plc, its subsidiaries, affiliates and associates.
 
 1. **Rights** - All rights in all material and content (including, but not limited to, text, images, web pages, sounds, software (including code, interface, and website structure), and video, and the look and feel, design, and compilation thereof) on the Site are owned or licensed by us. You agree that you are permitted to use this material and/or content only as set forth in and to the extent permitted by these Terms &amp; Conditions. 
 
@@ -124,7 +124,7 @@ A statement by you, made under penalty of perjury, that the above information in
 
 Copyright Agent:
 
-> Diageo North America, Inc., 801 Main Avenue, Norwalk, CT 06851. Attn: Copyright Agent, Telephone No: 01 203 2294264, Facsimile No: 203-229-8925, Email: copyright@diageo.com.
+> [CB/PEGASUS] North America, Inc., 801 Main Avenue, Norwalk, CT 06851. Attn: Copyright Agent, Telephone No: 01 203 2294264, Facsimile No: 203-229-8925, Email: copyright@[CB/PEGASUS].com.
 
 We may not be able to remove Linked Content that is hosted by Interfacing Sites. You may need to contact the appropriate Interfacing Site for removal of your work. 
 

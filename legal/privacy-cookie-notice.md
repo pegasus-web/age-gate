@@ -2,15 +2,15 @@
 
 > This Privacy and Cookie Notice has been approved by our legal teams.
 > 
-> Markets other than GB, Ireland and NA are required where appropriate to translate the wording into their national language and to make any essential changes to comply with local laws, provided that such changes reflect the actual practices of Diageo.
+> Markets other than GB, Ireland and NA are required where appropriate to translate the wording into their national language and to make any essential changes to comply with local laws, provided that such changes reflect the actual practices of [CB/PEGASUS].
 > 
 > Markets/brands can tailor copy for tone provided no substantive changes are made to the meaning.
 > 
-> Marketing teams should obtain the legal approval of local legal counsel and/or the relevant Diageo IP counsel representing the brand.
+> Marketing teams should obtain the legal approval of local legal counsel and/or the relevant [CB/PEGASUS] IP counsel representing the brand.
 > 
 > The Privacy and Cookie Notice has been worded to deal with the broadest possible range of content to ensure maximum legal protection, with minimum requirement to change. 
 > 
-> In local markets all consumer marketing communications MUST include an unsubscribe mechanism or process that makes it at least as easy for a consumer to unsubscribe as to subscribe - it should be consumer-friendly, monitored to ensure unsubscribe requests are promptly actioned and maintained for as long as the consumer's personal data is processed by Diageo or otherwise retained for use on our database.
+> In local markets all consumer marketing communications MUST include an unsubscribe mechanism or process that makes it at least as easy for a consumer to unsubscribe as to subscribe - it should be consumer-friendly, monitored to ensure unsubscribe requests are promptly actioned and maintained for as long as the consumer's personal data is processed by [CB/PEGASUS] or otherwise retained for use on our database.
 > 
 > There is an optional paragraph in Section 11 to be used for country specific sites where direct contact details exist for a brand.
 > 
@@ -20,13 +20,13 @@
 
 # PRIVACY AND COOKIE NOTICE
 
-This **Privacy and Cookie Notice** provides a high-level overview of our full **Privacy and Cookie Notice** (click here to access).  It summarises important information regarding how we collect, use, and share any personal information collected. This Privacy and Cookie Notice applies to personal information collected through this website `[identify website]`, which is operated by Diageo plc - the world's leading premium drinks business - or one of its group of companies. `[[insert brand(s) to which website relates] is one of Diageo's outstanding collection of beverage alcohol brands.]`
+This **Privacy and Cookie Notice** provides a high-level overview of our full **Privacy and Cookie Notice** (click here to access).  It summarises important information regarding how we collect, use, and share any personal information collected. This Privacy and Cookie Notice applies to personal information collected through this website `[identify website]`, which is operated by [CB/PEGASUS] plc - the world's leading premium drinks business - or one of its group of companies. `[[insert brand(s) to which website relates] is one of [CB/PEGASUS]'s outstanding collection of beverage alcohol brands.]`
 
 At relevant points  hyperlinks are provided that will take you directly to further information  in this document. **Links in this Privacy and Cookie Notice will not take you to any external website or content.**
 
 ## 1. Introduction
 
-* Click here for more information about **Diageo plc**
+* Click here for more information about **[CB/PEGASUS] plc**
 
 
 ## 2. Are you of legal purchase age?
@@ -39,10 +39,10 @@ At relevant points  hyperlinks are provided that will take you directly to furth
 
 * Personal information is information about an identifiable individual, as defined by applicable law.
 
-## 4. Diageo's collection and use of personal information
+## 4. [CB/PEGASUS]'s collection and use of personal information
 
 * We collect personal information that you choose to provide. This includes information provided when registering with our websites, contacting us, completing surveys or questionnaires, entering competitions, and posting information on public areas of our websites.
-* Through your use of this and other Diageo websites (including by browsing such sites) you may provide us with personal information such as your name, contact details, personal preferences, and details of your website use.
+* Through your use of this and other [CB/PEGASUS] websites (including by browsing such sites) you may provide us with personal information such as your name, contact details, personal preferences, and details of your website use.
 * By doing so, you are agreeing to our use of that information as set out in this Privacy and Cookie Notice and our full Privacy and Cookie Notice.
 * **If you do not agree to these conditions, please do not provide us with this information, or please let us know your objections using the contact details below.**
 
@@ -61,8 +61,8 @@ We also collect information using common Internet technologies such as "**cookie
 
 ## 7. Disclosure of personal Information
 
-* This may involve sharing your personal information with **non-Diageo companies** that provide services to Diageo companies and certain **other third parties**, but only where they offer adequate protection for your information and, in certain cases, only where you have provided your consent.
-* In some cases, this may involve **transferring your personal information to other countries** (including the U.K., the U.S., Canada and other countries inside and outside the European Economic Area) where Diageo or non-Diageo companies or other third parties operate and process your personal information.  
+* This may involve sharing your personal information with **non-[CB/PEGASUS] companies** that provide services to [CB/PEGASUS] companies and certain **other third parties**, but only where they offer adequate protection for your information and, in certain cases, only where you have provided your consent.
+* In some cases, this may involve **transferring your personal information to other countries** (including the U.K., the U.S., Canada and other countries inside and outside the European Economic Area) where [CB/PEGASUS] or non-[CB/PEGASUS] companies or other third parties operate and process your personal information.  
 * **By providing any personal information to us, you fully understand and clearly consent to such use and transfers as set out in this Privacy and Cookie Notice and our full Privacy and Cookie Notice.**
 
 
@@ -81,14 +81,14 @@ We also collect information using common Internet technologies such as "**cookie
 	
 * At your request, and where required by law, we will confirm, share, and/or update the personal information we hold about you.  However, to protect your privacy we may first have to verify your identity.
 * At any time you can choose to make an **unsubscribe request** to stop receiving marketing information.
-* If you would like to unsubscribe from communications from Diageo or about Diageo brands, please contact: `[insert relevant contact email/unsubscribe website]`
+* If you would like to unsubscribe from communications from [CB/PEGASUS] or about [CB/PEGASUS] brands, please contact: `[insert relevant contact email/unsubscribe website]`
 * Click here for more information on your choices.
 	
 ## Contact Us
 
 If you have any comments, queries, or complaints about our collection or use of personal information please contact us via:
 
-* **Post:** Data Privacy Officer, Corporate Centre Legal Team, Diageo plc, Lakeside Drive, Park Royal, London, NW10 7HQ
+* **Post:** Data Privacy Officer, Corporate Centre Legal Team, [CB/PEGASUS] plc, Lakeside Drive, Park Royal, London, NW10 7HQ
 
 
 ---
@@ -99,9 +99,9 @@ If you have any comments, queries, or complaints about our collection or use of 
 
 ## 1. Introduction
 
-This website is operated by a member of the Diageo group of companies, the ultimate holding company of which is Diageo plc (registered in England and Wales with company number 23307 and registered address at Lakeside Drive, London, NW10 7HQ, United Kingdom).
+This website is operated by a member of the [CB/PEGASUS] group of companies, the ultimate holding company of which is [CB/PEGASUS] plc (registered in England and Wales with company number 23307 and registered address at Lakeside Drive, London, NW10 7HQ, United Kingdom).
 
-All references to 'our', 'us', 'we', or 'company' within this policy and within the opt-in notice are deemed to refer to Diageo plc, its subsidiaries, affiliates, and/or associates, as appropriate.
+All references to 'our', 'us', 'we', or 'company' within this policy and within the opt-in notice are deemed to refer to [CB/PEGASUS] plc, its subsidiaries, affiliates, and/or associates, as appropriate.
 
 We endeavour to protect your personal privacy. We provide this Privacy and Cookie Notice to help you to understand what we may do with any personal information that we obtain from you. By providing your personal information to us, you signify your acceptance of our Privacy and Cookie Notice and agree that we may collect, use, and disclose your personal information as described in this Privacy and Cookie Notice. If you do not agree to this Notice, please do not provide your personal details to us. This Privacy and Cookie Notice is incorporated into, and part of, the Terms and Conditions `<< where possible this should be a hyperlink to the website terms and conditions>>`, that govern your use of the site in general. We will use your information only for the purposes set forth below. 
 
@@ -227,12 +227,12 @@ We may use personal information collected from you to provide specific services 
 
 We value your personal information and only share it with third parties that provide it with adequate protection.  From time to time we may disclose personal information to:
 
-a. third parties to whom you have provided your consent;
-b. our service providers and subcontractors, including our affiliates, retained to perform functions on our behalf, or to provide services to us (such as warehousing and delivery; marketing and advertising; credit card and data processing; age verification; software development; website hosting and management; information technology and office services; legal, accounting, audit and other professional service providers; and other services related to our business), provided such service providers and subcontractors do not collect, use, or disclose the personal information for any purpose other than to perform such functions on our behalf, to provide services to us, or as otherwise required by law; 
-c. third parties who, in our reasonable judgment, are providing or seeking the information as your authorized or appointed legal agent; or
-d. carefully selected third parties, including our affiliates, to send you third party marketing and promotional information that may be of interest. In such circumstances these organizations may be bound by confidentiality obligations and restrictions on the use of your personal information. We will obtain your express permission before we allow a third party that is not an affiliate to send you any such marketing and promotional information; 
-e. a person or entity, including our affiliates, in the event of a sale, merger, consolidation, change in control, transfer of substantial assets, financing, reorganization, or liquidation whereby we transfer, sell, or assign to such third party information concerning your relationship with us, including without limitation, personally identifiable information that you provide and other information concerning your relationship with us; and 
-f. law enforcement, governmental or regulatory agencies, or other third parties in order to comply with applicable law, or where we believe such action is necessary in order to comply with applicable law, or to detect, protect, or defend us and/or other third parties against error, negligence, breach of contract, theft, fraud, or other illegal or harmful activity, to comply with our audit and security requirements, or to audit compliance with our corporate policies, procedures, legal, or contractual obligations.
+- a. third parties to whom you have provided your consent;
+- b. our service providers and subcontractors, including our affiliates, retained to perform functions on our behalf, or to provide services to us (such as warehousing and delivery; marketing and advertising; credit card and data processing; age verification; software development; website hosting and management; information technology and office services; legal, accounting, audit and other professional service providers; and other services related to our business), provided such service providers and subcontractors do not collect, use, or disclose the personal information for any purpose other than to perform such functions on our behalf, to provide services to us, or as otherwise required by law; 
+- c. third parties who, in our reasonable judgment, are providing or seeking the information as your authorized or appointed legal agent; or
+- d. carefully selected third parties, including our affiliates, to send you third party marketing and promotional information that may be of interest. In such circumstances these organizations may be bound by confidentiality obligations and restrictions on the use of your personal information. We will obtain your express permission before we allow a third party that is not an affiliate to send you any such marketing and promotional information; 
+- e. a person or entity, including our affiliates, in the event of a sale, merger, consolidation, change in control, transfer of substantial assets, financing, reorganization, or liquidation whereby we transfer, sell, or assign to such third party information concerning your relationship with us, including without limitation, personally identifiable information that you provide and other information concerning your relationship with us; and 
+- f. law enforcement, governmental or regulatory agencies, or other third parties in order to comply with applicable law, or where we believe such action is necessary in order to comply with applicable law, or to detect, protect, or defend us and/or other third parties against error, negligence, breach of contract, theft, fraud, or other illegal or harmful activity, to comply with our audit and security requirements, or to audit compliance with our corporate policies, procedures, legal, or contractual obligations.
 
 
 ## 8. Public (or Interactive) areas of our websites
@@ -253,25 +253,25 @@ You are reminded that, in accordance with the Terms and Conditions for this webs
 
 At your request and where the law requires us to do so, if you contact us using the unsubscribe details provided below we will confirm what personal information we hold about you, update your information, remove your information, fulfil specific opt-out requests (including requests where you previously opted in with respect to the use of your personal information), and/or correct any inaccuracies in such personal information.
 
-If you would like to unsubscribe from `[brand]` communications, or from all communications about Diageo brands, please contact: `[BRAND]@[DOMAIN NAME]`
+If you would like to unsubscribe from `[brand]` communications, or from all communications about [CB/PEGASUS] brands, please contact: `[BRAND]@[DOMAIN NAME]`
 
 
 ## 11. Portfolio permissions
 
-If you have given permission to receive communications about Diageo brands generally (for example, by opting to receive news and special offers by email about Diageo's other great alcohol brands), you may from time to time receive communications about brands to which you have not opted in specifically. Information about many of Diageo's brands can be found at www.diageobrands.com. 
+If you have given permission to receive communications about [CB/PEGASUS] brands generally (for example, by opting to receive news and special offers by email about [CB/PEGASUS]'s other great alcohol brands), you may from time to time receive communications about brands to which you have not opted in specifically. Information about many of [CB/PEGASUS]'s brands can be found at www.[CB/PEGASUS]brands.com. 
 
-We occasionally may send you communications about brands not featured on www.diageobrands.com (e.g., new brands). We recommend that you refer to www.diageobrands.com from time to time as the list of featured brands will be updated periodically.
+We occasionally may send you communications about brands not featured on www.[CB/PEGASUS]brands.com (e.g., new brands). We recommend that you refer to www.[CB/PEGASUS]brands.com from time to time as the list of featured brands will be updated periodically.
 
-Providing general permission for us to communicate with you about our brands does not mean that you will receive communications about all of Diageo's brands. We will only communicate with you about those brands that we think may be of particular interest to you. Any such communications will provide you with an opportunity to unsubscribe from the brand in question and/or from all communications about Diageo brands.
+Providing general permission for us to communicate with you about our brands does not mean that you will receive communications about all of [CB/PEGASUS]'s brands. We will only communicate with you about those brands that we think may be of particular interest to you. Any such communications will provide you with an opportunity to unsubscribe from the brand in question and/or from all communications about [CB/PEGASUS] brands.
 
-If you have any privacy-related questions, concerns or complaints, please contact: Data Privacy Officer, Corporate Centre Legal Team, Diageo plc, Lakeside Drive, London, NW10 7HQ, United Kingdom.
+If you have any privacy-related questions, concerns or complaints, please contact: Data Privacy Officer, Corporate Centre Legal Team, [CB/PEGASUS] plc, Lakeside Drive, London, NW10 7HQ, United Kingdom.
 
 
 ## 12. Interfaces with Third-Party Websites
 
 The site may contain links, references, and content from other websites outside of our control. Please be aware that we have limited or no control over these websites and our Privacy and Cookie Notice does not apply to these sites. We encourage you to read the Privacy and Cookie Notices and terms and conditions of any linked, referenced, or interfacing websites you enter.
 
-This Privacy and Cookie Notice will be supplemented by additional legal requirements in jurisdictions where we conduct business as required. Nothing in this Privacy and Cookie Notice or otherwise will create, or add to, any right or claim (whether legal, equitable, or otherwise) that any individual or person may have at law or otherwise against the company or any third party, or any of their respective directors, officers, employees, agents, or representatives (collectively the "Diageo Group"), nor will the existence of this Privacy and Cookie Notice or its application impose or add to any obligations upon or create any liability for the Diageo Group that it does not already otherwise have under law.
+This Privacy and Cookie Notice will be supplemented by additional legal requirements in jurisdictions where we conduct business as required. Nothing in this Privacy and Cookie Notice or otherwise will create, or add to, any right or claim (whether legal, equitable, or otherwise) that any individual or person may have at law or otherwise against the company or any third party, or any of their respective directors, officers, employees, agents, or representatives (collectively the "[CB/PEGASUS] Group"), nor will the existence of this Privacy and Cookie Notice or its application impose or add to any obligations upon or create any liability for the [CB/PEGASUS] Group that it does not already otherwise have under law.
 
 &copy; `[INSERT YEAR]` `[NAME OF BRAND OWNING CO.]` `[REGISTERED ADDRESS]` (registered in `[JURISDICTION OF INCORPORATION]` `[with registered number [NUMBER]`) All rights reserved.  Version `0.1` dated `[28 June 2016]`
 
