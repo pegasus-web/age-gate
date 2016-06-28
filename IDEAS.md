@@ -56,7 +56,7 @@ Do we go with "Age Gate", as it can also be known as an "Adult Verification Syst
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
 	window.cookieconsent_options = {
-		message":"This website uses cookies to ensure you get the best experience on our website",
+		"message":"This website uses cookies to ensure you get the best experience on our website",
 		"dismiss":"Got it!",
 		"learnMore":"More info",
 		"link":null,
