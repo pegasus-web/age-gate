@@ -67,3 +67,27 @@ Do we go with "Age Gate", as it can also be known as an "Adult Verification Syst
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
 <!-- End Cookie Consent plugin -->
 ```
+
+
+### Example cookie value (as set by Diageo's Age Gate)
+
+The cookie name is set as "diageo-gateway", this applies across all their brand sites.
+
+> For a list of all the Diageo brand sites, see here: <http://sso.diageoagegate.com/>
+
+```json
+{
+	"pass" : true,
+	"country" : "GB",
+	"language" : "en",
+	"day" : "1",
+	"domain" : ".captainmorgan.com",
+	"month" : "1",
+	"year" : "1970",
+	"from_sso" : false,
+	"remembered" : true
+}
+```
+
+Note: The "domain" is set with `.` dot-prefix, meaning that applies as a wildcard for any subdomains.
+
