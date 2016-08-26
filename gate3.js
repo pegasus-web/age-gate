@@ -7,6 +7,7 @@ var pwagHelpers = (function () {
 	var classListSupport = !!document.body.classList;
     var s = '(\\s|^)';		// Space or start
     var e = '(\\s|$)';		// Space or end
+	var enableLogging = true;
 
 	// 'Private' methods
     var getRegex = function(className){
@@ -17,7 +18,6 @@ var pwagHelpers = (function () {
 	return {
 		addClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
-
 			if(classListSupport){
 				elements.forEach(x => x.classList.add(className));
 			}else{
@@ -46,7 +46,12 @@ var pwagHelpers = (function () {
 			element.className = element.className.replace(rclass, '');
 		},
 		nodeListToArray: function(nodeList){
-			return Array.prototype.slice.call(nodeList,0);;
+			// Only convert to array if object is a nodeList (otherwise assumed to be array)
+			var rtn = nodeList;
+			if(NodeList.prototype.isPrototypeOf(nodeList)){
+				rtn = Array.prototype.slice.call(nodeList,0);
+			}
+			return rtn;
 		},
 		text: function(elements, text){
 			elements.forEach(function(element) {
@@ -55,8 +60,12 @@ var pwagHelpers = (function () {
 		},
 		index: function(element){
 			return [].slice.call(element.parentNode.children).indexOf(element);
+		},
+		consoleLog: function(text){
+			if(enableLogging){
+				console.log(text);
+			}
 		}
-
 	}
 
 })();
@@ -95,13 +104,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function setBoxFocus() {
+		pwagHelpers.consoleLog('setBoxFocus()');
 		var newGroupIndex = getGroupIndexFromInputIndex(editIndex);
 
 		groupInvalidReset();
 		hideErrors();
 		clearBoxValues();
 		removeBoxFocus();
-		pwagHelpers.addClass(boxes[editIndex], 'pwag-date-box--focus');
+		pwagHelpers.addClassToElement(boxes[editIndex], 'pwag-date-box--focus');
 
 		if (groupIndex > newGroupIndex) {								// Go back to a previous group
 			groupIndex--;
@@ -116,17 +126,19 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function removeInputFocus() {
-		inputs.blur();
+		inputs.forEach(function(input) {
+			input.blur();
+		});
 	}
 
 	function clearBoxValues() {
 		var boxesToClear = pwagHelpers.nodeListToArray(values).slice(editIndex, values.length);
 		pwagHelpers.text(boxesToClear, '');
-		//pwagHelpers.removeClass(boxes.slice(editIndex, boxes.length), 'pwag-date-box--valid');
+		pwagHelpers.removeClass(pwagHelpers.nodeListToArray(boxes).slice(editIndex, boxes.length), 'pwag-date-box--valid');
 	}
 
 	function setBoxValid() {
-		pwagHelpers.addClass(boxes[editIndex], 'pwag-date-box--valid');
+		pwagHelpers.addClassToElement(boxes[editIndex], 'pwag-date-box--valid');
 	}
 
 	function setGroupFocus(groupIndex) {
@@ -165,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				var groupValid = isGroupValid(groupIndex);
 				switch (groupValid) {
 					case 1: 							// Not old enough
-						showError('error.notLegal');
+						showError('notLegal');
 						removeBoxFocus();
 						removeInputFocus();
 						groupInvalid(groupIndex);
@@ -182,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				}
 			} else {
 				groupInvalid(groupIndex);
-				showError('error.invalid.' + groupKeys[groupIndex]);
+				showError(groupKeys[groupIndex]);
 			}
 		} else {
 			editIndex++;
@@ -294,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function groupInvalid(groupIndex) {
-		inputGroups.eq(groupIndex).addClass('pwag-invalid');
+		pwagHelpers.addClassToElement(inputGroups[groupIndex], 'pwag-invalid');
 	}
 
 	function groupInvalidReset() {
@@ -309,11 +321,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function showError(messageId) {
-		pwagHelpers.addClass(document.querySelector('pwag-feedback__message--' + messageId), 'pwag-show');
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
 	}
 
 	function hideErrors() {
-		pwagHelpers.addClass(document.querySelectorAll('pwag-feedback__message'), 'pwag-show');
+		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
 	}
 
 	function initOpenGate() {
