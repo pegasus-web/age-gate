@@ -87,7 +87,11 @@ var pwagHelpers = (function () {
 var pwagCore = (function () {
 
 	// Render CSS to page
-	pwagHelpers.appendCSS('pwag.css');
+	/*
+		To do: See if there's a way to dynamically add CSS via JS which is as reliable as loading in HTML.
+		The problem currently is that if CSS is loaded via JS, positionings of UI elements are wrong.
+	*/
+	//pwagHelpers.appendCSS('pwag.css');
 
 	// 'Private' variables
 	var templateBirthday = '\
