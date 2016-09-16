@@ -16,6 +16,20 @@ var pwagHelpers = (function () {
 
 	// 'Public' methods
 	return {
+		appendHTML: function(element, string) {
+			var div = document.createElement('div');
+			div.innerHTML = string;
+			while (div.children.length > 0) {
+				element.appendChild(div.children[0]);
+			}
+		},
+		appendCSS: function(href) {
+			var link = document.createElement('link');
+			link.href = href;
+			link.type = 'text/css';
+			link.rel = 'stylesheet';
+			document.getElementsByTagName('head')[0].appendChild(link);
+		},
 		addClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
 			if(classListSupport){
@@ -72,7 +86,91 @@ var pwagHelpers = (function () {
 
 var pwagCore = (function () {
 
+	// Render CSS to page
+	pwagHelpers.appendCSS('pwag.css');
+
 	// 'Private' variables
+	var templateBirthday = '\
+		<section class="pwag-clearfix pwag-birthday-groups">\
+			<div class="pwag-clearfix pwag-birthday-groups__inner">\
+				<div class="pwag-birthday-group">\
+					<p class="pwag-birthday-group__instruction">Enter the year of your birth</p>\
+					<div class="pwag-date-box pwag-date-box--valid pwag-date-box--0">\
+						<span class="pwag-date-box__value">1</span>\
+						<span class="pwag-date-box__placeholder">Y</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+					<div class="pwag-date-box pwag-date-box--valid pwag-date-box--1">\
+						<span class="pwag-date-box__value">9</span>\
+						<span class="pwag-date-box__placeholder">Y</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+					<div class="pwag-date-box pwag-date-box--2">\
+						<span class="pwag-date-box__value"></span>\
+						<span class="pwag-date-box__placeholder">Y</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+					<div class="pwag-date-box pwag-date-box--3">\
+						<span class="pwag-date-box__value"></span>\
+						<span class="pwag-date-box__placeholder">Y</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+				</div>\
+				<div class="pwag-birthday-group">\
+					<p class="pwag-birthday-group__instruction">Enter the month of your birth</p>\
+					<div class="pwag-date-box pwag-date-box--4">\
+						<span class="pwag-date-box__value"></span>\
+						<span class="pwag-date-box__placeholder">M</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+					<div class="pwag-date-box pwag-date-box--5">\
+						<span class="pwag-date-box__value"></span>\
+						<span class="pwag-date-box__placeholder">M</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+				</div>\
+				<div class="pwag-birthday-group">\
+					<p class="pwag-birthday-group__instruction">Enter the day of your birth</p>\
+					<div class="pwag-date-box pwag-date-box--6">\
+						<span class="pwag-date-box__value"></span>\
+						<span class="pwag-date-box__placeholder">D</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+					<div class="pwag-date-box pwag-date-box--7">\
+						<span class="pwag-date-box__value"></span>\
+						<span class="pwag-date-box__placeholder">D</span>\
+						<input type="number" class="pwag-date-box__input" />\
+					</div>\
+				</div>\
+			</div>\
+			<div class="pwag-clearfix pwag-feedback">\
+				<span class="pwag-feedback__message pwag-feedback__message--year">The year you entered is invalid</span>\
+				<span class="pwag-feedback__message pwag-feedback__message--month">The month you entered is invalid</span>\
+				<span class="pwag-feedback__message pwag-feedback__message--day">The day you entered is invalid</span>\
+				<span class="pwag-feedback__message pwag-feedback__message--notLegal">You are not old enough to enter this site</span>\
+			</div>\
+		</section>\
+	'
+
+	var templateMaster = '\
+		<div class="pwag-gate">\
+			<div class="pwag-gate__inner">\
+				<div class="pwag-gate__content">\
+					<div class="pwag-logo">\
+						<img src="http://placehold.it/100x80">\
+					</div>\
+					' + templateBirthday + '\
+					<div class="pwag-clearfix pwag-terms">\
+						<p>By submitting this form, you agree to the Cookie and Privacy policy. To learn more, please read our <a href="#" data-toggle="modal" data-target="#modalCookie">cookie</a> and <a href="#" data-toggle="modal" data-target="#modalPrivacyPolicy">privacy policy</a>.</p>\
+					</div>\
+				</div>\
+			</div>\
+		</div>\
+	'
+
+	// Render HTML to page before any selectors are instantiated
+	pwagHelpers.appendHTML(document.body, templateMaster);
+
 	//var config = window.vars.config; 													// Config data from global variable
 	var ageMin = 18; 																	// Minimum age (in years) from config TODO: Get age from config
 	var inputs = document.querySelectorAll('.pwag-date-box__input'); 					// NodeList of hidden date inputs
@@ -95,7 +193,6 @@ var pwagCore = (function () {
 
 	// 'Private' methods
 	var _initGate = function() {
-		console.log('initGate');
 		bindDateBoxClick();
 		bindKeyUp();
 		setGroupFocus(groupIndex, 0);
@@ -119,7 +216,6 @@ var pwagCore = (function () {
 
 		if (groupIndex > newGroupIndex) {	// Go back to a previous group
 			groupIndex--;
-			console.log('setBoxFocus() inner');
 			pwagHelpers.removeClass([].slice.call(inputGroups,newGroupIndex), 'pwag-birthday-group--visible');
 			setGroupFocus(groupIndex);
 		}
@@ -146,6 +242,7 @@ var pwagCore = (function () {
 	}
 
 	function setGroupFocus(groupIndex) {
+		pwagHelpers.consoleLog('setGroupFocus(' + groupIndex + ')');
 		var groupObject = inputGroups[groupIndex];
 		pwagHelpers.removeClass(inputGroups, 'pwag-current');
 		pwagHelpers.addClassToElement(groupObject, 'pwag-birthday-group--visible');
@@ -154,6 +251,9 @@ var pwagCore = (function () {
 		pwagContent = document.querySelector('.pwag-gate__content');
 		pwagContentWidth = parseInt(getComputedStyle(pwagContent).width);
 
+		pwagHelpers.consoleLog('pwagContentWidth / 2 = ' + pwagContentWidth / 2);
+		pwagHelpers.consoleLog('groupObject.offsetWidth = ' + groupObject.offsetWidth);
+		pwagHelpers.consoleLog('groupObject.offsetLeft = ' + groupObject.offsetLeft);
 		var newLeft = pwagContentWidth / 2 - groupObject.offsetWidth / 2 - groupObject.offsetLeft + 'px';
 
 		birthdayGroupsInner.style.left = newLeft;
