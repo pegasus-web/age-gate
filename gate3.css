@@ -130,7 +130,7 @@ body.pwag-gate-enabled {
 	z-index: 3;
 	background: transparent !important;
 	color: transparent !important;
-	cursor: none;
+	/*cursor: none; TODO: Figure out why this was in here and if it was important */
 	text-align: left;
 	font-size: 1px;
 	height: 180px;

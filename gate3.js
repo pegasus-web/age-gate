@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		removeBoxFocus();
 		pwagHelpers.addClassToElement(boxes[editIndex], 'pwag-date-box--focus');
 
-		if (groupIndex > newGroupIndex) {								// Go back to a previous group
+		if (groupIndex > newGroupIndex) {	// Go back to a previous group
 			groupIndex--;
 			console.log('setBoxFocus()');
 			pwagHelpers.removeClass([].slice.call(inputGroups,newGroupIndex), 'pwag-birthday-group--visible');
@@ -176,19 +176,19 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (validateDatePartRange()) {
 				var groupValid = isGroupValid(groupIndex);
 				switch (groupValid) {
-					case 1: 							// Not old enough
+					case 1: // Not old enough
 						showError('notLegal');
 						removeBoxFocus();
 						removeInputFocus();
 						groupInvalid(groupIndex);
 						break;
-					case 2: 							// May be old enough
+					case 2: // May be old enough
 						editIndex++;
 						groupIndex++;
 						setBoxFocus();
 						setGroupFocus(groupIndex);
 						break;
-					case 3: 							// Old enough
+					case 3: // Old enough
 						initOpenGate();
 						break;
 				}
@@ -205,7 +205,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	function evalKey(e) {
 		var key = e.keyCode || e.which;
 
-		if (key == 0 || key == 229) { 	// Android/Chrome keycode fix
+		// Android/Chrome keycode fix
+		if (key == 0 || key == 229) {
 			var focusedElement = document.activeElement;
 			if (focusedElement.length) {
 				key = getKeyCode(focusedElement.value);
@@ -213,12 +214,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 
 		switch (key) {
-			case 8: 					// Backspace
-			case 37: 					// Left arrow
+			case 8: 	// Backspace
+			case 37: 	// Left arrow
 				back();
 				e.preventDefault();
 				break;
-			default: 					// Other - check if key is number (either on main keyboard or number-pad)
+			default: 	// Other - check if key is number (either on main keyboard or number-pad)
 				if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
 					var number = key >= 96 ? key - 96 : key - 48;
 					hideErrors();
@@ -280,14 +281,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		var groupValues = getGroupValues();
 		var datePart = parseInt(validDateAsString.slice(startIndex, endIndex + 1)); 	// Gets part of valid date to compare against
 
-		if (groupValues < datePart) {					// Old enough, so open gate
+		if (groupValues < datePart) {			// Old enough, so open gate
 			valid = 3;
-		} else if (groupValues > datePart) {			// Not old enough, so error
+		} else if (groupValues > datePart) {	// Not old enough, so error
 			valid = 1;
-		} else {										// May be old enough
-			if (groupIndex == 2) {						// Exactly old enough
+		} else {								// May be old enough
+			if (groupIndex == 2) {				// Exactly old enough
 				valid = 3;
-			} else {									// May be old enough but need to check next group
+			} else {							// May be old enough but need to check next group
 				valid = 2;
 			}
 		}
