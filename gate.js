@@ -70,9 +70,9 @@ var pwagHelpers = (function () {
 
 })();
 
-// TODO: encapsulate all logic into function (module pattern)
-document.addEventListener("DOMContentLoaded", function() {
+var pwagCore = (function () {
 
+	// 'Private' variables
 	//var config = window.vars.config; 													// Config data from global variable
 	var ageMin = 18; 																	// Minimum age (in years) from config TODO: Get age from config
 	var inputs = document.querySelectorAll('.pwag-date-box__input'); 					// NodeList of hidden date inputs
@@ -93,7 +93,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	var dateRanges = [[yyyy - 150, yyyy], [1, 12], [1, 31]]; 							// Array of valid ranges for year/month/day values
 	var delayBeforeOpenGate = 750; 														// Delay between validation and gate opening
 
-	function initGate() {
+	// 'Private' methods
+	var _initGate = function() {
+		console.log('initGate');
+		bindDateBoxClick();
+		bindKeyUp();
 		setGroupFocus(groupIndex, 0);
 		setBoxFocus();
 		setInputFocus();
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		if (groupIndex > newGroupIndex) {	// Go back to a previous group
 			groupIndex--;
-			console.log('setBoxFocus()');
+			console.log('setBoxFocus() inner');
 			pwagHelpers.removeClass([].slice.call(inputGroups,newGroupIndex), 'pwag-birthday-group--visible');
 			setGroupFocus(groupIndex);
 		}
@@ -155,16 +159,21 @@ document.addEventListener("DOMContentLoaded", function() {
 		birthdayGroupsInner.style.left = newLeft;
 	}
 
-	[].forEach.call( document.querySelectorAll('.pwag-date-box'), function (e) {
-	    e.addEventListener( 'click', function () {
-	        exitIndex = pwagHelpers.index(this) - 1;
-			setBoxFocus();
-			setInputFocus();
-	    }, false );
-	});
+	function bindDateBoxClick(){
+		[].forEach.call(document.querySelectorAll('.pwag-date-box'), function(e) {
+			e.addEventListener('click', function() {
+				pwagHelpers.consoleLog('.pwag-date-box clicked');
+				editIndex = pwagHelpers.index(this) - 1;
+				setBoxFocus();
+				setInputFocus();
+			}, false);
+		});
+	}
 
-	document.onkeyup = function(e){
-		evalKey(e);
+	function bindKeyUp(){
+		document.onkeyup = function(e){
+			evalKey(e);
+		}
 	}
 
 	function updateBox(number) {
@@ -365,5 +374,16 @@ document.addEventListener("DOMContentLoaded", function() {
 		return input < 10 ? '0' + input : input;
 	}
 
-	initGate();
+	// 'Public' methods
+	var initGate = function () {
+		_initGate();
+	};
+
+	return {
+		initGate: initGate
+	}
+})();
+
+document.addEventListener("DOMContentLoaded", function() {
+	pwagCore.initGate();
 });
