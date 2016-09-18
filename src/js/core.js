@@ -1,209 +1,8 @@
-﻿var pwagHelpers = (function () {
-	
-	// 'Private' variables
-	var classListSupport = !!document.body.classList;
-    var s = '(\\s|^)';		// Space or start
-    var e = '(\\s|$)';		// Space or end
-	var enableLogging = true;
-
-	// 'Private' methods
-    var getRegex = function(className){
-        return new RegExp(s + className + e, 'g');
-    }
-
-	// 'Public' methods
-	return {
-		appendHTML: function(element, string) {
-			var div = document.createElement('div');
-			div.innerHTML = string;
-			while (div.children.length > 0) {
-				element.appendChild(div.children[0]);
-			}
-		},
-		appendCSS: function(href) {
-			var link = document.createElement('link');
-			link.href = href;
-			link.type = 'text/css';
-			link.rel = 'stylesheet';
-			document.getElementsByTagName('head')[0].appendChild(link);
-		},
-		extendConfig: function(original, override){ // Note this is not recursive, so will only cope with a single level of config data
-			for(var key in override)
-			if(override.hasOwnProperty(key)){
-				original[key] = override[key];
-			}
-			return original;
-		},
-		addClass: function(elements, className){
-			elements = this.nodeListToArray(elements);
-			if(classListSupport){
-				elements.forEach(x => x.classList.add(className));
-			}else{
-				elements.forEach(function(element) {
-					element.className += ' ' + className;
-				});
-			}
-		},
-		addClassToElement: function(element, className){ // TODO: remove this function and refactor 'addClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
-			element.className += ' ' + className;
-		},
-		removeClass: function(elements, className){
-			elements = this.nodeListToArray(elements);
-
-			if(classListSupport){
-				elements.forEach(x => x.classList.remove(className));
-			}else{
-				var rclass = getRegex(className);
-				elements.forEach(function(element) {
-					element.className = element.className.replace(rclass, '');
-				});
-			}
-		},
-		removeClassFromElement: function(element, className){ // TODO: remove this function and refactor 'removeClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
-			var rclass = getRegex(className);
-			element.className = element.className.replace(rclass, '');
-		},
-		nodeListToArray: function(nodeList){
-			// Only convert to array if object is a nodeList (otherwise assumed to be array)
-			var rtn = nodeList;
-			if(NodeList.prototype.isPrototypeOf(nodeList)){
-				rtn = Array.prototype.slice.call(nodeList,0);
-			}
-			return rtn;
-		},
-		text: function(elements, text){
-			elements.forEach(function(element) {
-				element.textContent = text;
-			});
-		},
-		index: function(element){
-			return [].slice.call(element.parentNode.children).indexOf(element);
-		},
-		consoleLog: function(text){
-			if(enableLogging){
-				console.log(text);
-			}
-		}
-	}
-
-})();
-
-var pwagCore = (function () {
-
-	var config = {
-		type: "birthday",
-		age: 18,
-		placeholderYear: "Y",
-		placeholderMonth: "M",
-		placeholderDay: "D",
-		enterTextYear: "Enter the year of your birth",
-		enterTextMonth: "Enter the month of your birth",
-		enterTextDay: "Enter the day of your birth",
-		errorInvalidYear: "The year you entered is invalid",
-		errorInvalidMonth: "The month you entered is invalid",
-		errorInvalidDay: "The day you entered is invalid",
-		errorNotOldEnough: "You are not old enough to enter this site"
-	};
-
-	var configOverride = {
-		placeholderYear: "Z",
-		enterTextMonth: "Custom month text"
-	}
-
-	// 'Merge' custom config values into core
-	config = pwagHelpers.extendConfig(config, configOverride);
-
-	// Render CSS to page
-	/*
-		To do: See if there's a way to dynamically add CSS via JS which is as reliable as loading in HTML.
-		The problem currently is that if CSS is loaded via JS, positionings of UI elements are wrong.
-	*/
-	//pwagHelpers.appendCSS('pwag.css');
-
-	// 'Private' variables
-	var templateBirthday = '\
-		<section class="pwag-clearfix pwag-birthday-groups">\
-			<div class="pwag-clearfix pwag-birthday-groups__inner">\
-				<div class="pwag-birthday-group">\
-					<p class="pwag-birthday-group__instruction">' + config.enterTextYear + '</p>\
-					<div class="pwag-date-box pwag-date-box--valid pwag-date-box--0">\
-						<span class="pwag-date-box__value">1</span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderYear + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-					<div class="pwag-date-box pwag-date-box--valid pwag-date-box--1">\
-						<span class="pwag-date-box__value">9</span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderYear + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-					<div class="pwag-date-box pwag-date-box--2">\
-						<span class="pwag-date-box__value"></span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderYear + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-					<div class="pwag-date-box pwag-date-box--3">\
-						<span class="pwag-date-box__value"></span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderYear + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-				</div>\
-				<div class="pwag-birthday-group">\
-					<p class="pwag-birthday-group__instruction">' + config.enterTextMonth + '</p>\
-					<div class="pwag-date-box pwag-date-box--4">\
-						<span class="pwag-date-box__value"></span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderMonth + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-					<div class="pwag-date-box pwag-date-box--5">\
-						<span class="pwag-date-box__value"></span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderMonth + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-				</div>\
-				<div class="pwag-birthday-group">\
-					<p class="pwag-birthday-group__instruction">' + config.enterTextDay + '</p>\
-					<div class="pwag-date-box pwag-date-box--6">\
-						<span class="pwag-date-box__value"></span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderDay + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-					<div class="pwag-date-box pwag-date-box--7">\
-						<span class="pwag-date-box__value"></span>\
-						<span class="pwag-date-box__placeholder">' + config.placeholderDay + '</span>\
-						<input type="number" class="pwag-date-box__input" />\
-					</div>\
-				</div>\
-			</div>\
-			<div class="pwag-clearfix pwag-feedback">\
-				<span class="pwag-feedback__message pwag-feedback__message--year">' + config.errorInvalidYear + '</span>\
-				<span class="pwag-feedback__message pwag-feedback__message--month">' + config.errorInvalidMonth + '</span>\
-				<span class="pwag-feedback__message pwag-feedback__message--day">' + config.errorInvalidDay + '</span>\
-				<span class="pwag-feedback__message pwag-feedback__message--notLegal">' + config.errorNotOldEnough + '</span>\
-			</div>\
-		</section>\
-	'
-
-	var templateMaster = '\
-		<div class="pwag-gate">\
-			<div class="pwag-gate__inner">\
-				<div class="pwag-gate__content">\
-					<div class="pwag-logo">\
-						<img src="http://placehold.it/100x80">\
-					</div>\
-					' + templateBirthday + '\
-					<div class="pwag-clearfix pwag-terms">\
-						<p>By submitting this form, you agree to the Cookie and Privacy policy. To learn more, please read our <a href="#" data-toggle="modal" data-target="#modalCookie">cookie</a> and <a href="#" data-toggle="modal" data-target="#modalPrivacyPolicy">privacy policy</a>.</p>\
-					</div>\
-				</div>\
-			</div>\
-		</div>\
-	'
-
-	// Render HTML to page before any selectors are instantiated
-	pwagHelpers.appendHTML(document.body, templateMaster);
+var pwagCore = (function(){
+	pwagHelpers.consoleLog('pwagCore');
 
 	//var config = window.vars.config; 													// Config data from global variable
-	var ageMin = config.age; 															// Minimum age (in years) from config TODO: Get age from config
+	var ageMin = 18; 																	// Minimum age (in years) from config TODO: Get age from config
 	var inputs = document.querySelectorAll('.pwag-date-box__input'); 					// NodeList of hidden date inputs
 	var boxes = document.querySelectorAll('.pwag-date-box'); 							// NodeList of date boxes
 	var values = document.querySelectorAll('.pwag-date-box__value'); 					// NodeList of date value holder elements
@@ -229,7 +28,7 @@ var pwagCore = (function () {
 		setGroupFocus(groupIndex, 0);
 		setBoxFocus();
 		setInputFocus();
-	}
+	};
 
 	function setInputFocus() {
 		inputs[editIndex].focus();
@@ -304,7 +103,7 @@ var pwagCore = (function () {
 	function bindKeyUp(){
 		document.onkeyup = function(e){
 			evalKey(e);
-		}
+		};
 	}
 
 	function updateBox(number) {
@@ -346,7 +145,7 @@ var pwagCore = (function () {
 		var key = e.keyCode || e.which;
 
 		// Android/Chrome keycode fix
-		if (key == 0 || key == 229) {
+		if (key === 0 || key === 229) {
 			var focusedElement = document.activeElement;
 			if (focusedElement.length) {
 				key = getKeyCode(focusedElement.value);
@@ -485,7 +284,7 @@ var pwagCore = (function () {
 		document.querySelector('.pwag-gate').style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
 
 		setTimeout(function () {
-			pwagHelpers.removeClass(document.querySelector('body'), 'pwag-gate-enabled');
+			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			this.remove;
 			this.innerHTML = '';
 		}, 450);
@@ -512,9 +311,5 @@ var pwagCore = (function () {
 
 	return {
 		initGate: initGate
-	}
+	};
 })();
-
-document.addEventListener("DOMContentLoaded", function() {
-	pwagCore.initGate();
-});
