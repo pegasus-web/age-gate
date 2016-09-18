@@ -2,18 +2,19 @@
 var pwagTemplate = (function(){
 	pwagHelpers.consoleLog('pwagTemplate');
 	var config = {
-		type: "birthday",
+		logoURL: '',
+		type: 'birthday',
 		age: 18,
-		placeholderYear: "Y",
-		placeholderMonth: "M",
-		placeholderDay: "D",
-		enterTextYear: "Enter the year of your birth",
-		enterTextMonth: "Enter the month of your birth",
-		enterTextDay: "Enter the day of your birth",
-		errorInvalidYear: "The year you entered is invalid",
-		errorInvalidMonth: "The month you entered is invalid",
-		errorInvalidDay: "The day you entered is invalid",
-		errorNotOldEnough: "You are not old enough to enter this site"
+		placeholderYear: 'Y',
+		placeholderMonth: 'M',
+		placeholderDay: 'D',
+		enterTextYear: 'Enter the year of your birth',
+		enterTextMonth: 'Enter the month of your birth',
+		enterTextDay: 'Enter the day of your birth',
+		errorInvalidYear: 'The year you entered is invalid',
+		errorInvalidMonth: 'The month you entered is invalid',
+		errorInvalidDay: 'The day you entered is invalid',
+		errorNotOldEnough: 'You are not old enough to enter this site'
 	};
 
 	var configOverride = window.pwagConfig;
@@ -91,13 +92,25 @@ var pwagTemplate = (function(){
 		</section>\
 	';
 
+	var templateLogo = function(){
+		console.log('templateLogo');
+		var rtn = '';
+		logoURL = configOverride.logoURL;
+		if(logoURL){
+			rtn = '\
+				<div class="pwag-logo">\
+					<img src="' + logoURL + '">\
+				</div>\
+			';
+		}
+		return rtn;
+	};
+
 	var templateMaster = '\
 		<div class="pwag-gate">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
-					<div class="pwag-logo">\
-						<img src="http://placehold.it/100x80">\
-					</div>\
+					' + templateLogo() + '\
 					' + templateBirthday + '\
 					<div class="pwag-clearfix pwag-terms">\
 						<p>By submitting this form, you agree to the Cookie and Privacy policy. To learn more, please read our <a href="#" data-toggle="modal" data-target="#modalCookie">cookie</a> and <a href="#" data-toggle="modal" data-target="#modalPrivacyPolicy">privacy policy</a>.</p>\
