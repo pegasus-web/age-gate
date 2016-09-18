@@ -1,4 +1,4 @@
-var pwagInit = (function(){
+var pwagInit = (function(exports, d){
 
 	function domReady(fn, ctx) {
 
@@ -22,4 +22,4 @@ var pwagInit = (function(){
 		pwagCore.initGate();
 	});
 
-})();
+})(window, document);
