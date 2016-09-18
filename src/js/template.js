@@ -1,6 +1,7 @@
 /*jshint multistr: true */
 var pwagTemplate = (function(){
-	pwagHelpers.consoleLog('pwagTemplate');
+
+	// 'Private' variables
 	var config = {
 		logoURL: '',
 		type: 'birthday',
@@ -29,9 +30,8 @@ var pwagTemplate = (function(){
 	*/
 	//pwagHelpers.appendCSS('pwag.css');
 
-	// 'Private' variables
 	var templateBirthday = '\
-		<section class="pwag-clearfix pwag-birthday-groups">\
+		<div class="pwag-clearfix pwag-birthday-groups">\
 			<div class="pwag-clearfix pwag-birthday-groups__inner">\
 				<div class="pwag-birthday-group">\
 					<p class="pwag-birthday-group__instruction">' + config.enterTextYear + '</p>\
@@ -89,11 +89,10 @@ var pwagTemplate = (function(){
 				<span class="pwag-feedback__message pwag-feedback__message--day">' + config.errorInvalidDay + '</span>\
 				<span class="pwag-feedback__message pwag-feedback__message--notLegal">' + config.errorNotOldEnough + '</span>\
 			</div>\
-		</section>\
+		</div>\
 	';
 
 	var templateLogo = function(){
-		console.log('templateLogo');
 		var rtn = '';
 		logoURL = configOverride.logoURL;
 		if(logoURL){
@@ -122,4 +121,9 @@ var pwagTemplate = (function(){
 
 	// Render HTML to page before any selectors are instantiated
 	pwagHelpers.appendHTML(document.body, templateMaster);
+
+	// 'Public' methods
+	return {
+		config: config
+	};
 })();

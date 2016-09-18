@@ -1,8 +1,8 @@
 var pwagCore = (function(){
-	pwagHelpers.consoleLog('pwagCore');
 
-	//var config = window.vars.config; 													// Config data from global variable
-	var ageMin = 18; 																	// Minimum age (in years) from config TODO: Get age from config
+	// 'Private' variables
+	var config = pwagTemplate.config;													// Config data from global variable
+	var ageMin = config.age;			 												// Minimum age (in years) from config
 	var inputs = document.querySelectorAll('.pwag-date-box__input'); 					// NodeList of hidden date inputs
 	var boxes = document.querySelectorAll('.pwag-date-box'); 							// NodeList of date boxes
 	var values = document.querySelectorAll('.pwag-date-box__value'); 					// NodeList of date value holder elements
@@ -20,6 +20,7 @@ var pwagCore = (function(){
 	var groupKeys = ['year', 'month', 'day']; 											// Keys for date groups, used for showing specific error messages
 	var dateRanges = [[yyyy - 150, yyyy], [1, 12], [1, 31]]; 							// Array of valid ranges for year/month/day values
 	var delayBeforeOpenGate = 750; 														// Delay between validation and gate opening
+	var windowResizeThreshold = 50;													// Debounce threshold for window resize event
 
 	// 'Private' methods
 	var _initGate = function() {
@@ -35,7 +36,6 @@ var pwagCore = (function(){
 	}
 
 	function setBoxFocus() {
-		pwagHelpers.consoleLog('setBoxFocus()');
 		var newGroupIndex = getGroupIndexFromInputIndex(editIndex);
 
 		groupInvalidReset();
@@ -72,7 +72,6 @@ var pwagCore = (function(){
 	}
 
 	function setGroupFocus(groupIndex) {
-		pwagHelpers.consoleLog('setGroupFocus(' + groupIndex + ')');
 		var groupObject = inputGroups[groupIndex];
 		pwagHelpers.removeClass(inputGroups, 'pwag-current');
 		pwagHelpers.addClassToElement(groupObject, 'pwag-birthday-group--visible');
@@ -81,9 +80,6 @@ var pwagCore = (function(){
 		pwagContent = document.querySelector('.pwag-gate__content');
 		pwagContentWidth = parseInt(getComputedStyle(pwagContent).width);
 
-		pwagHelpers.consoleLog('pwagContentWidth / 2 = ' + pwagContentWidth / 2);
-		pwagHelpers.consoleLog('groupObject.offsetWidth = ' + groupObject.offsetWidth);
-		pwagHelpers.consoleLog('groupObject.offsetLeft = ' + groupObject.offsetLeft);
 		var newLeft = pwagContentWidth / 2 - groupObject.offsetWidth / 2 - groupObject.offsetLeft + 'px';
 
 		birthdayGroupsInner.style.left = newLeft;
@@ -92,7 +88,6 @@ var pwagCore = (function(){
 	function bindDateBoxClick(){
 		[].forEach.call(document.querySelectorAll('.pwag-date-box'), function(e) {
 			e.addEventListener('click', function() {
-				pwagHelpers.consoleLog('.pwag-date-box clicked');
 				editIndex = pwagHelpers.index(this) - 1;
 				setBoxFocus();
 				setInputFocus();
@@ -304,12 +299,18 @@ var pwagCore = (function(){
 		return input < 10 ? '0' + input : input;
 	}
 
-	// 'Public' methods
 	var initGate = function () {
 		_initGate();
 	};
 
+	var windowResize = pwagHelpers.debounce(function() {
+		pwagHelpers.consoleLog('resized');
+		setGroupFocus(groupIndex)
+	}, windowResizeThreshold);
+
+	// 'Public' methods
 	return {
-		initGate: initGate
+		initGate: initGate,
+		windowResize: windowResize
 	};
 })();

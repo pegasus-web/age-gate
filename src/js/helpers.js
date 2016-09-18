@@ -15,7 +15,6 @@ var pwagHelpers = (function(){
 		return ' ' + string + ' ';
 	};
 
-
 	// 'Public' methods
 	return {
 		appendHTML: function(element, string) {
@@ -88,6 +87,18 @@ var pwagHelpers = (function(){
 			if(enableLogging){
 				console.log(text);
 			}
+		},
+		debounce: function(func, wait, immediate) {
+			var timeout;
+			return function() {
+				var context = this, args = arguments;
+				clearTimeout(timeout);
+				timeout = setTimeout(function() {
+					timeout = null;
+					if (!immediate) func.apply(context, args);
+				}, wait);
+				if (immediate && !timeout) func.apply(context, args);
+			};
 		}
 	};
 

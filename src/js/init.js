@@ -22,4 +22,6 @@ var pwagInit = (function(exports, d){
 		pwagCore.initGate();
 	});
 
+	window.addEventListener('resize', pwagCore.windowResize);
+
 })(window, document);

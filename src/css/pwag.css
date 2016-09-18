@@ -131,11 +131,12 @@ body.pwag-gate-enabled {
 	z-index: 3;
 	background: transparent !important;
 	color: transparent !important;
-	/*cursor: none; TODO: Figure out why this was in here and if it was important */
+	cursor: none;
 	text-align: left;
-	font-size: 1px;
+	font-size: 0;
 	height: 180px;
-	line-height: 180px;
+	line-height: 0 !important;
+	transform: scale(0);
 	outline: none;
 }
 .pwag-date-box__placeholder {
