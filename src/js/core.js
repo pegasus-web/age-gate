@@ -307,7 +307,7 @@ var pwagCore = (function(){
 
 	var windowResize = pwagHelpers.debounce(function() {
 		pwagHelpers.consoleLog('resized');
-		setGroupFocus(groupIndex)
+		setGroupFocus(groupIndex);
 	}, windowResizeThreshold);
 
 	// 'Public' methods

@@ -23,10 +23,23 @@ gulp.task('scripts', function(){
 		'./src/js/init.js'
 	])
 		.pipe(concat('pwag.min.js'))
-		.pipe(jshint())
-		.pipe(jshint.reporter(stylish))
 		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest('./dist/js/'));
 });
 
+gulp.task('scripts-dev', function(){
+	// Define files explicitly (rather than /*.js) because sort order is critical
+	return gulp.src([
+		'./src/js/helpers.js',
+		'./src/js/template.js',
+		'./src/js/core.js',
+		'./src/js/init.js'
+	])
+		.pipe(concat('pwag.js'))
+		.pipe(jshint())
+		.pipe(jshint.reporter(stylish))
+		.pipe(gulp.dest('./dist/js/'));
+});
+
 gulp.task('default', ['scripts', 'styles']);
+gulp.task('dev', ['scripts-dev', 'styles']);
