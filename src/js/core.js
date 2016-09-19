@@ -89,6 +89,8 @@ var pwagCore = (function(){
 		[].forEach.call(document.querySelectorAll('.pwag-date-box'), function(e) {
 			e.addEventListener('click', function() {
 				editIndex = pwagHelpers.index(this) - 1;
+				var newGroupIndex = getGroupIndexFromInputIndex(editIndex);
+				setGroupFocus(newGroupIndex, 0);
 				setBoxFocus();
 				setInputFocus();
 			}, false);

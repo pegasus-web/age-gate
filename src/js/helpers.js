@@ -59,13 +59,13 @@ var pwagHelpers = (function(){
 			//}else{
 				var rclass = getRegex(className);
 				elements.forEach(function(element) {
-					element.className = element.className.replace(rclass, '');
+					element.className = element.className.replace(rclass, ' ');
 				});
 			//}
 		},
 		removeClassFromElement: function(element, className){ // TODO: remove this function and refactor 'removeClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
 			var rclass = getRegex(className);
-			element.className = element.className.replace(rclass, '');
+			element.className = element.className.replace(rclass, ' ');
 		},
 		nodeListToArray: function(nodeList){
 			// Only convert to array if object is a nodeList (otherwise assumed to be array)
