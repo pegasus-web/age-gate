@@ -15,7 +15,14 @@ var pwagTemplate = (function(){
 		errorInvalidYear: 'The year you entered is invalid',
 		errorInvalidMonth: 'The month you entered is invalid',
 		errorInvalidDay: 'The day you entered is invalid',
-		errorNotOldEnough: 'You are not old enough to enter this site'
+		errorNotOldEnough: 'You are not old enough to enter this site',
+		yesNoQuestion: 'Are you old enough to enter this site?',
+		yes: 'Yes',
+		no: 'No',
+		errorYesNo: 'Please confirm that you are old enough to enter this site',
+		termsText: '',
+		termsLinkText: '',
+		termsLinkURL: ''
 	};
 
 	var configOverride = window.pwagConfig;
@@ -23,12 +30,18 @@ var pwagTemplate = (function(){
 	// 'Merge' custom config values into core
 	config = pwagHelpers.extendConfig(config, configOverride);
 
-	// Render CSS to page
-	/*
-		To do: See if there's a way to dynamically add CSS via JS which is as reliable as loading in HTML.
-		The problem currently is that if CSS is loaded via JS, positionings of UI elements are wrong.
-	*/
-	//pwagHelpers.appendCSS('pwag.css');
+	var templateYesNo = '\
+		<div class="pwag-clearfix pwag-yes-no">\
+			<div class="pwag-yes-no__title"><p>' + config.yesNoQuestion + '</p></div>\
+			<div class="pwag-yes-no__options">\
+				<button class="pwag-yes-no__option pwag-yes-no__option--yes">' + config.yes + '</button>\
+				<button class="pwag-yes-no__option pwag-yes-no__option--no">' + config.no + '</button>\
+			</div>\
+			<div class="pwag-clearfix pwag-feedback">\
+				<span class="pwag-feedback__message pwag-feedback__message--no">' + config.errorYesNo + '</span>\
+			</div>\
+		</div>\
+	';
 
 	var templateBirthday = '\
 		<div class="pwag-clearfix pwag-birthday-groups">\
@@ -105,15 +118,54 @@ var pwagTemplate = (function(){
 		return rtn;
 	};
 
+	var templateTerms = function(){
+		var termsText = config.termsText;
+		var termsLinkText = config.termsLinkText;
+		var termsLinkURL = config.termsLinkURL;
+		var rtn = '';
+
+		if(termsText){
+			rtn = termsText;
+		}
+
+		if(termsText && termsLinkText && termsLinkURL){
+			rtn = parseLinks(termsText, termsLinkText, termsLinkURL);
+		}
+
+		if(rtn){
+			rtn = '\
+				<div class="pwag-clearfix pwag-terms">\
+					<p>' + rtn + '</p>\
+				</div>\
+			';
+		}
+		return rtn;
+	}
+
+	function parseLinks(orig, linkText, linkURLs){
+
+		var linkTextArr = linkText.split(',');
+		var linkURLArr = linkURLs.split(',');
+
+		if(linkTextArr.length !== linkURLArr.length){
+			return;
+		}
+
+		for (i = 0; i < linkTextArr.length; i++) {
+			orig = orig.replace(linkTextArr[i], '<a href="' + linkURLArr[i] + '">' + linkTextArr[i] + '</a>');
+		}
+		return orig;
+	}
+
+	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
+
 	var templateMaster = '\
 		<div class="pwag-gate">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
 					' + templateLogo() + '\
-					' + templateBirthday + '\
-					<div class="pwag-clearfix pwag-terms">\
-						<p>By submitting this form, you agree to the Cookie and Privacy policy. To learn more, please read our <a href="#" data-toggle="modal" data-target="#modalCookie">cookie</a> and <a href="#" data-toggle="modal" data-target="#modalPrivacyPolicy">privacy policy</a>.</p>\
-					</div>\
+					' + templateType + '\
+					' + templateTerms() + '\
 				</div>\
 			</div>\
 		</div>\

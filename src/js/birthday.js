@@ -1,4 +1,4 @@
-var pwagCore = (function(){
+var pwagBirthday = (function(){
 
 	// 'Private' variables
 	var config = pwagTemplate.config;													// Config data from global variable
@@ -20,10 +20,10 @@ var pwagCore = (function(){
 	var groupKeys = ['year', 'month', 'day']; 											// Keys for date groups, used for showing specific error messages
 	var dateRanges = [[yyyy - 150, yyyy], [1, 12], [1, 31]]; 							// Array of valid ranges for year/month/day values
 	var delayBeforeOpenGate = 750; 														// Delay between validation and gate opening
-	var windowResizeThreshold = 50;													// Debounce threshold for window resize event
+	var windowResizeThreshold = 100;													// Debounce threshold for window resize event
 
 	// 'Private' methods
-	var _initGate = function() {
+	var _initGateBirthday = function() {
 		bindDateBoxClick();
 		bindKeyUp();
 		setGroupFocus(groupIndex, 0);
@@ -302,11 +302,14 @@ var pwagCore = (function(){
 	}
 
 	var initGate = function () {
-		_initGate();
+		if(config.type == 'birthday'){
+			_initGateBirthday();
+		}else{
+			_initGateYesNo();
+		}
 	};
 
 	var windowResize = pwagHelpers.debounce(function() {
-		pwagHelpers.consoleLog('resized');
 		setGroupFocus(groupIndex);
 	}, windowResizeThreshold);
 

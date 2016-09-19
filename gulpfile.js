@@ -19,6 +19,8 @@ gulp.task('scripts', function(){
 	return gulp.src([
 		'./src/js/helpers.js',
 		'./src/js/template.js',
+		'./src/js/birthday.js',
+		'./src/js/yes-no.js',
 		'./src/js/core.js',
 		'./src/js/init.js'
 	])
@@ -32,7 +34,8 @@ gulp.task('scripts-dev', function(){
 	return gulp.src([
 		'./src/js/helpers.js',
 		'./src/js/template.js',
-		'./src/js/core.js',
+		'./src/js/birthday.js',
+		'./src/js/yes-no.js',
 		'./src/js/init.js'
 	])
 		.pipe(concat('pwag.js'))
