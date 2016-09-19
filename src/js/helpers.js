@@ -1,7 +1,6 @@
 var pwagHelpers = (function(){
 
 	// 'Private' variables
-	//var classListSupport = !!document.body.classList;
     var s = '(\\s|^)';		// Space or start
     var e = '(\\s|$)';		// Space or end
 	var enableLogging = true;
@@ -40,28 +39,19 @@ var pwagHelpers = (function(){
 		},
 		addClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
-			//if(classListSupport){
-			//	elements.forEach(x => x.classList.add(className));
-			//}else{
-				elements.forEach(function(element) {
-					element.className += padString(className);
-				});
-			//}
+			elements.forEach(function(element) {
+				element.className += padString(className);
+			});
 		},
 		addClassToElement: function(element, className){ // TODO: remove this function and refactor 'addClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
 			element.className += padString(className);
 		},
 		removeClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
-
-			//if(classListSupport){
-			//	elements.forEach(x => x.classList.remove(className));
-			//}else{
-				var rclass = getRegex(className);
-				elements.forEach(function(element) {
-					element.className = element.className.replace(rclass, ' ');
-				});
-			//}
+			var rclass = getRegex(className);
+			elements.forEach(function(element) {
+				element.className = element.className.replace(rclass, ' ');
+			});
 		},
 		removeClassFromElement: function(element, className){ // TODO: remove this function and refactor 'removeClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
 			var rclass = getRegex(className);
