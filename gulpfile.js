@@ -38,8 +38,8 @@ gulp.task('scripts-dev', function(){
 		'./src/js/yes-no.js',
 		'./src/js/init.js'
 	])
-		.pipe(concat('pwag.js'))
 		.pipe(jshint())
+		.pipe(concat('pwag.js'))
 		.pipe(jshint.reporter(stylish))
 		.pipe(gulp.dest('./dist/js/'));
 });

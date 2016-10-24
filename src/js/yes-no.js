@@ -6,6 +6,7 @@ var pwagYesNo = (function(){
 
 	// 'Private' variables
 	var config = pwagTemplate.config;										// Config data from global variable
+	var gateElem = document.querySelector('.pwag-gate');					// Gate element
 	var options = document.querySelectorAll('.pwag-yes-no__option');		// NodeList of groups of date inputs
 	var optionYes = document.querySelector('.pwag-yes-no__option--yes');	// NodeList of groups of date inputs
 	var optionNo = document.querySelector('.pwag-yes-no__option--no');		// NodeList of groups of date inputs
@@ -47,12 +48,12 @@ var pwagYesNo = (function(){
 			g = d.getElementsByTagName('body')[0],
 			windowHeight = w.innerHeight || e.clientHeight || g.clientHeight;
 
-		document.querySelector('.pwag-gate').style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
+		gateElem.style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
 
 		setTimeout(function () {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
-			this.remove;
-			this.innerHTML = '';
+			gateElem.innerHTML = '';
+			gateElem.remove();
 		}, 450);
 	}
 

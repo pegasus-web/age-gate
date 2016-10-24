@@ -3,6 +3,7 @@ var pwagBirthday = (function(){
 	// 'Private' variables
 	var config = pwagTemplate.config;													// Config data from global variable
 	var ageMin = config.age;			 												// Minimum age (in years) from config
+	var gateElem = document.querySelector('.pwag-gate');								// Gate element
 	var inputs = document.querySelectorAll('.pwag-date-box__input'); 					// NodeList of hidden date inputs
 	var boxes = document.querySelectorAll('.pwag-date-box'); 							// NodeList of date boxes
 	var values = document.querySelectorAll('.pwag-date-box__value'); 					// NodeList of date value holder elements
@@ -278,12 +279,13 @@ var pwagBirthday = (function(){
 			g = d.getElementsByTagName('body')[0],
 			windowHeight = w.innerHeight || e.clientHeight || g.clientHeight;
 
-		document.querySelector('.pwag-gate').style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
+		gateElem.style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
 
 		setTimeout(function () {
+			console.log('timeout after gate close');
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
-			this.remove;
-			this.innerHTML = '';
+			gateElem.innerHTML = '';
+			gateElem.remove();
 		}, 450);
 	}
 
@@ -293,8 +295,7 @@ var pwagBirthday = (function(){
 		var dd = preceedingZero(today.getDate());
 		var mm = preceedingZero(today.getMonth() + 1);
 		var yearMin = Number(yyyy) - Number(ageMin);
-
-		return yearMin + mm + dd;
+		return '' + yearMin + mm + dd;
 	}
 
 	function preceedingZero(input) {

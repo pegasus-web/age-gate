@@ -20,6 +20,7 @@
 	<p>Vestibulum et est elit. Nam id eleifend tellus. Praesent sagittis efficitur nibh, vel molestie leo luctus eu. In sit amet leo lorem. Quisque pellentesque metus non mauris consequat, quis venenatis nisi mollis. In dolor mi, semper in tortor quis, sollicitudin eleifend metus. Nulla sagittis interdum lectus, condimentum sodales diam porta eu. Integer fermentum nec erat pretium tempus. Phasellus molestie imperdiet metus, a mollis lacus mollis pharetra. Nullam sagittis luctus turpis imperdiet congue.</p>
 
 	<script>
+		/* Example Yes/No config */
 		window.pwagConfig = {
 			type: 'yes-no',
 			logoURL: 'http://www.carlsberg.com/media/1054/logo-light.png?width=160',
@@ -27,8 +28,19 @@
 			termsLinkText: 'Cookie,Privacy Policy',
 			termsLinkURL: 'http://www.example.com,http://www.bbc.co.uk'
 		};
+
+		/* Example birthday config */
+		/*
+		window.pwagConfig = {
+			type: 'birthday',
+			ageMin: 18,
+			logoURL: 'http://www.carlsberg.com/media/1054/logo-light.png?width=160',
+			termsText: 'By submitting this form, you agree to the Cookie and Privacy Policy',
+			termsLinkText: 'Cookie,Privacy Policy',
+			termsLinkURL: 'http://www.example.com,http://www.bbc.co.uk'
+		};*/
 	</script>
-	<script src="/dist/js/pwag.min.js"></script>
+	<script src="/dist/js/pwag.js"></script>
 
 </body>
 </html>
