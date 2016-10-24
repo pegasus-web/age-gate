@@ -1,6 +1,7 @@
 var pwagLinks = (function(){
 
 	// 'Private' variables
+	var config = pwagTemplate.config;									// Config data from global variable
 	var links = document.querySelectorAll('.pwag-terms__link');			// NodeList of links
 	var modal = document.querySelector('.pwag-modal');					// Modal element
 	var modalContent = document.querySelector('.pwag-modal__content');	// Element within modal which contains content
@@ -59,6 +60,14 @@ var pwagLinks = (function(){
 	function closeModal(){
 		pwagHelpers.removeClassFromElement(modal, 'pwag-modal--visible');
 	}
+
+	function resizeModal(){
+		console.log('Modal resized - update it');
+	}
+
+	var windowResize = pwagHelpers.debounce(function() {
+		resizeModal();
+	}, config.windowResizeThreshold);
 
 
 	// 'Public' methods

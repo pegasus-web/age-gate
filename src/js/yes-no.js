@@ -10,8 +10,6 @@ var pwagYesNo = (function(){
 	var options = document.querySelectorAll('.pwag-yes-no__option');		// NodeList of groups of date inputs
 	var optionYes = document.querySelector('.pwag-yes-no__option--yes');	// NodeList of groups of date inputs
 	var optionNo = document.querySelector('.pwag-yes-no__option--no');		// NodeList of groups of date inputs
-	var delayBeforeOpenGate = 250; 											// Delay between validation and gate opening
-	var windowResizeThreshold = 100;										// Debounce threshold for window resize event
 
 	// 'Private' methods
 	var _initGateYesNo = function() {
@@ -46,9 +44,9 @@ var pwagYesNo = (function(){
 
 
 	function initOpenGate() {
-		// TODO: set cookie
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
 		pwagHelpers.addClass(options, 'pwag-yes-no--success');
-		setTimeout(openGate, delayBeforeOpenGate);
+		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
 
 	function openGate() {
@@ -70,10 +68,6 @@ var pwagYesNo = (function(){
 	var initGate = function () {
 		_initGateYesNo();
 	};
-
-	var windowResize = pwagHelpers.debounce(function() {
-		//console.log('windowResize');
-	}, windowResizeThreshold);
 
 	// 'Public' methods
 	return {

@@ -20,8 +20,6 @@ var pwagBirthday = (function(){
 	var dateGroup = [[0, 3], [4, 5], [6, 7]]; 											// Array to group year/month/day inputs
 	var groupKeys = ['year', 'month', 'day']; 											// Keys for date groups, used for showing specific error messages
 	var dateRanges = [[yyyy - 150, yyyy], [1, 12], [1, 31]]; 							// Array of valid ranges for year/month/day values
-	var delayBeforeOpenGate = 750; 														// Delay between validation and gate opening
-	var windowResizeThreshold = 100;													// Debounce threshold for window resize event
 
 	// 'Private' methods
 	var _initGateBirthday = function() {
@@ -267,9 +265,9 @@ var pwagBirthday = (function(){
 	}
 
 	function initOpenGate() {
-		// TODO: set cookie
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
 		pwagHelpers.addClass(inputGroups, 'pwag-success');
-		setTimeout(openGate, delayBeforeOpenGate);
+		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
 
 	function openGate() {
@@ -282,7 +280,6 @@ var pwagBirthday = (function(){
 		gateElem.style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
 
 		setTimeout(function () {
-			console.log('timeout after gate close');
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			gateElem.innerHTML = '';
 			gateElem.remove();
@@ -312,7 +309,7 @@ var pwagBirthday = (function(){
 
 	var windowResize = pwagHelpers.debounce(function() {
 		setGroupFocus(groupIndex);
-	}, windowResizeThreshold);
+	}, config.windowResizeThreshold);
 
 	// 'Public' methods
 	return {

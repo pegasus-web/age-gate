@@ -14,20 +14,29 @@ var pwagInit = (function(exports, d){
 			}
 		}
 
-		d.addEventListener && d.addEventListener('DOMContentLoaded', onReady) ||
-		d.attachEvent && d.attachEvent('onreadystatechange', onReadyIe);
+		d.addEventListener && d.addEventListener('DOMContentLoaded', onReady) || d.attachEvent && d.attachEvent('onreadystatechange', onReadyIe);
     }
 
 	domReady(function(){
-		if(pwagTemplate.config.type == 'birthday'){
-			pwagBirthday.initGate();
-			window.addEventListener('resize', pwagBirthday.windowResize);
-		}else{
-			pwagYesNo.initGate();
-			window.addEventListener('resize', pwagYesNo.windowResize);
-		}
-		pwagLinks.initLinks();
+		activateGate();
 	});
 
+	function activateGate(){
+		if(pwagHelpers.getCookie('pwag')){
+			return;
+		}else{
+			// Set body class to show age gate in UI
+			pwagHelpers.addClassToElement(document.body, 'pwag-gate-enabled');
+
+			if(pwagTemplate.config.type == 'birthday'){
+				pwagBirthday.initGate();
+				window.addEventListener('resize', pwagBirthday.windowResize);
+			}else{
+				pwagYesNo.initGate();
+				window.addEventListener('resize', pwagYesNo.windowResize);
+			}
+			pwagLinks.initLinks();
+		}
+	}
 
 })(window, document);

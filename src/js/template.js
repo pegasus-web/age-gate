@@ -22,7 +22,11 @@ var pwagTemplate = (function(){
 		errorYesNo: 'Please confirm that you are old enough to enter this site',
 		termsText: '',
 		termsLinkText: '',
-		termsLinkURL: ''
+		termsLinkURL: '',
+		cookieName: 'pwag',
+		cookieExpiry: 365,
+		windowResizeThreshold: 100,
+		delayBeforeOpenGate: 750
 	};
 
 	var configOverride = window.pwagConfig;
