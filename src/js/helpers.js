@@ -95,9 +95,21 @@ var pwagHelpers = (function(){
 			return v ? v[2] : null;
 		},
 		setCookie: function(name, value, days) {
-			var d = new Date;
+			var d = new Date();
 			d.setTime(d.getTime() + 24*60*60*1000*days);
 			document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+		},
+		getWindowDims: function(){
+			var w = window,
+				d = document,
+				e = d.documentElement,
+				g = d.getElementsByTagName('body')[0],
+				x = w.innerWidth || e.clientWidth || g.clientWidth,
+				y = w.innerHeight || e.clientHeight || g.clientHeight;
+			var winDims = {};
+			winDims.x = x;
+			winDims.y = y;
+			return winDims;
 		}
 	};
 

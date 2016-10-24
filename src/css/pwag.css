@@ -206,19 +206,23 @@ body.pwag-gate-enabled {
 .pwag-modal__outer {
 	vertical-align: middle;
     display: table-cell;
+	padding: 0 15px;
 }
 .pwag-modal__inner {
 	position: relative;
-	width: 600px;
+	max-width: 600px;
 	padding: 30px;
 	background-color: #fff;
 	margin: 0 auto;
 	text-align: left;
 }
+.pwag-modal__content {
+	overflow-y: auto;
+}
 .pwag-modal__close {
 	position: absolute;
-	top: 15px;
-	right: 15px;
+	top: 10px;
+	right: 10px;
 }
 
 

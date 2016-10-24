@@ -4,8 +4,9 @@ var pwagLinks = (function(){
 	var config = pwagTemplate.config;									// Config data from global variable
 	var links = document.querySelectorAll('.pwag-terms__link');			// NodeList of links
 	var modal = document.querySelector('.pwag-modal');					// Modal element
+	var modalInner = document.querySelector('.pwag-modal__inner');		// Element within modal which contains content
 	var modalContent = document.querySelector('.pwag-modal__content');	// Element within modal which contains content
-	var closeModalBtn = document.querySelector('.pwag-modal__close');		// Close modal button
+	var closeModalBtn = document.querySelector('.pwag-modal__close');	// Close modal button
 
 	// 'Private' methods
 	var initLinks = function() {
@@ -38,6 +39,7 @@ var pwagLinks = (function(){
 	function openModal(content){
 		modalContent.innerHTML = content;
 		pwagHelpers.addClassToElement(modal, 'pwag-modal--visible');
+		window.addEventListener('resize', windowResize);
 	}
 
 	function bindCloseModal(){
@@ -62,7 +64,16 @@ var pwagLinks = (function(){
 	}
 
 	function resizeModal(){
-		console.log('Modal resized - update it');
+		modalContent.style.height = 'auto';		
+		var winDims = pwagHelpers.getWindowDims();
+		var winHeight = winDims.y;
+		var modalInnerHeight = modalInner.offsetHeight;
+		var modalContentHeight = modalContent.offsetHeight;
+		var vPad = modalInnerHeight - modalContentHeight;
+
+		if(winHeight < modalInnerHeight){
+			modalContent.style.height = (winHeight - vPad) + 'px';
+		}
 	}
 
 	var windowResize = pwagHelpers.debounce(function() {
