@@ -21,7 +21,7 @@ gulp.task('scripts', function(){
 		'./src/js/template.js',
 		'./src/js/birthday.js',
 		'./src/js/yes-no.js',
-		'./src/js/core.js',
+		'./src/js/links.js',
 		'./src/js/init.js'
 	])
 		.pipe(concat('pwag.min.js'))
@@ -36,6 +36,7 @@ gulp.task('scripts-dev', function(){
 		'./src/js/template.js',
 		'./src/js/birthday.js',
 		'./src/js/yes-no.js',
+		'./src/js/links.js',
 		'./src/js/init.js'
 	])
 		.pipe(jshint())

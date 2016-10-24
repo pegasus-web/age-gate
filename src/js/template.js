@@ -27,7 +27,7 @@ var pwagTemplate = (function(){
 
 	var configOverride = window.pwagConfig;
 
-	// 'Merge' custom config values into core
+	// 'Merge' custom config values into defaults
 	config = pwagHelpers.extendConfig(config, configOverride);
 
 	var templateYesNo = '\
@@ -37,7 +37,7 @@ var pwagTemplate = (function(){
 				<button class="pwag-yes-no__option pwag-yes-no__option--yes">' + config.yes + '</button>\
 				<button class="pwag-yes-no__option pwag-yes-no__option--no">' + config.no + '</button>\
 			</div>\
-			<div class="pwag-clearfix pwag-feedback">\
+			<div class="pwag-clearfix pwag-feedback pwag-feedback--relative">\
 				<span class="pwag-feedback__message pwag-feedback__message--no">' + config.errorYesNo + '</span>\
 			</div>\
 		</div>\
@@ -140,7 +140,7 @@ var pwagTemplate = (function(){
 			';
 		}
 		return rtn;
-	}
+	};
 
 	function parseLinks(orig, linkText, linkURLs){
 
@@ -152,7 +152,7 @@ var pwagTemplate = (function(){
 		}
 
 		for (i = 0; i < linkTextArr.length; i++) {
-			orig = orig.replace(linkTextArr[i], '<a href="' + linkURLArr[i] + '">' + linkTextArr[i] + '</a>');
+			orig = orig.replace(linkTextArr[i], '<a href="' + linkURLArr[i] + '" class="pwag-terms__link">' + linkTextArr[i] + '</a>');
 		}
 		return orig;
 	}

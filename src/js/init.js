@@ -26,6 +26,7 @@ var pwagInit = (function(exports, d){
 			pwagYesNo.initGate();
 			window.addEventListener('resize', pwagYesNo.windowResize);
 		}
+		pwagLinks.initLinks();
 	});
 
 

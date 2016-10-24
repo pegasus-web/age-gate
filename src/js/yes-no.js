@@ -25,15 +25,25 @@ var pwagYesNo = (function(){
 
 	function bindClickYes(){
 		optionYes.addEventListener('click', function() { 
+			hideErrors();
 			initOpenGate();
 		}, false);
 	}
 
 	function bindClickNo(){
 		optionNo.addEventListener('click', function() { 
-			console.log('No');
+			showError('no');
 		}, false);
 	}
+
+	function showError(messageId) {
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
+	}
+
+	function hideErrors() {
+		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
+	}
+
 
 	function initOpenGate() {
 		// TODO: set cookie
@@ -62,7 +72,7 @@ var pwagYesNo = (function(){
 	};
 
 	var windowResize = pwagHelpers.debounce(function() {
-		console.log('windowResize');
+		//console.log('windowResize');
 	}, windowResizeThreshold);
 
 	// 'Public' methods
