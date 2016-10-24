@@ -142,6 +142,20 @@ var pwagTemplate = (function(){
 		return rtn;
 	};
 
+	var templateModal = function(){
+		var rtn = '\
+			<div class="pwag-modal">\
+				<div class="pwag-modal__outer">\
+					<div class="pwag-modal__inner">\
+						<button class="pwag-modal__close">Close</button>\
+						<div class="pwag-modal__content"></div>\
+					</div>\
+				</div>\
+			</div>\
+		';
+		return rtn;
+	};
+
 	function parseLinks(orig, linkText, linkURLs){
 
 		var linkTextArr = linkText.split(',');
@@ -169,6 +183,7 @@ var pwagTemplate = (function(){
 				</div>\
 			</div>\
 		</div>\
+		' + templateModal() + '\
 	';
 
 	// Render HTML to page before any selectors are instantiated

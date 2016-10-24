@@ -153,9 +153,9 @@ body.pwag-gate-enabled {
 .pwag-feedback__message {
 	opacity: 0;
 	-webkit-transition: opacity 0.15s ease-in-out;
-	-moz-transition: opacity 0.15s ease-in-out;
-	-o-transition : opacity 0.15s ease-in-out;
-	transition: opacity 0.15s ease-in-out;
+	-moz-transition: 	opacity 0.15s ease-in-out;
+	-o-transition : 	opacity 0.15s ease-in-out;
+	transition: 		opacity 0.15s ease-in-out;
 }
 .pwag-feedback__message.pwag-show {
 	opacity: 1;
@@ -179,6 +179,46 @@ body.pwag-gate-enabled {
 	font-size: 16px;
 	padding: 15px 30px;
 	cursor: pointer;
+}
+
+.pwag-modal {
+	opacity: 0;
+	display: table;
+	position: fixed;
+	background: rgb(0,0,0);
+	background: rgba(0,0,0,0.9);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1034; /* Needs to be lower than .pwag-gate */	
+	-webkit-transition: opacity 0.15s ease-in-out;
+	-moz-transition: 	opacity 0.15s ease-in-out;
+	-o-transition : 	opacity 0.15s ease-in-out;
+	transition: 		opacity 0.15s ease-in-out;
+}
+.pwag-modal--visible {
+	opacity: 1;
+	z-index: 1036; /* Needs to be higher than .pwag-gate */	
+}
+.pwag-modal__outer {
+	vertical-align: middle;
+    display: table-cell;
+}
+.pwag-modal__inner {
+	position: relative;
+	width: 600px;
+	padding: 30px;
+	background-color: #fff;
+	margin: 0 auto;
+	text-align: left;
+}
+.pwag-modal__close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
 }
 
 

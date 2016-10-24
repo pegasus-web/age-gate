@@ -89,19 +89,6 @@ var pwagHelpers = (function(){
 				}, wait);
 				if (immediate && !timeout) func.apply(context, args);
 			};
-		},
-		ajaxRequest: function(url){
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', url);
-			xhr.onload = function() {
-				if (xhr.status === 200) {
-					alert('Cookie policy text returned: ' + xhr.responseText);
-				}
-				else {
-					alert('Request failed.  Returned status of ' + xhr.status);
-				}
-			};
-			xhr.send();
 		}
 	};
 
