@@ -39,9 +39,9 @@ var pwagHelpers = (function(){
 		},
 		addClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
-			elements.forEach(function(element) {
-				element.className += padString(className);
-			});
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].className += padString(className);				
+			}
 		},
 		addClassToElement: function(element, className){ // TODO: remove this function and refactor 'addClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
 			element.className += padString(className);
@@ -49,9 +49,9 @@ var pwagHelpers = (function(){
 		removeClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
 			var rclass = getRegex(className);
-			elements.forEach(function(element) {
-				element.className = element.className.replace(rclass, ' ');
-			});
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].className = elements[i].className.replace(rclass, ' ');
+			}
 		},
 		removeClassFromElement: function(element, className){ // TODO: remove this function and refactor 'removeClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
 			var rclass = getRegex(className);
@@ -110,6 +110,13 @@ var pwagHelpers = (function(){
 			winDims.x = x;
 			winDims.y = y;
 			return winDims;
+		},
+		getWidth: function (el) {
+			if (typeof getComputedStyle !== 'undefined') {
+				return getComputedStyle(el, null).getPropertyValue('width');
+			} else {
+				return el.offsetWidth;
+			}
 		}
 	};
 

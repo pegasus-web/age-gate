@@ -5,7 +5,9 @@ var pwagBirthday = (function(){
 	var ageMin = config.age;			 												// Minimum age (in years) from config
 	var gateElem = document.querySelector('.pwag-gate');								// Gate element
 	var inputs = document.querySelectorAll('.pwag-date-box__input'); 					// NodeList of hidden date inputs
+	var inputsArray = pwagHelpers.nodeListToArray(inputs); 								// NodeList of hidden date inputs
 	var boxes = document.querySelectorAll('.pwag-date-box'); 							// NodeList of date boxes
+	var boxesArray = pwagHelpers.nodeListToArray(boxes);								// Array of date boxes
 	var values = document.querySelectorAll('.pwag-date-box__value'); 					// NodeList of date value holder elements
 	var valuesArray = pwagHelpers.nodeListToArray(values); 								// Array of date value holder elements
 	var inputGroups = document.querySelectorAll('.pwag-birthday-group');				// NodeList of groups of date inputs
@@ -65,15 +67,15 @@ var pwagBirthday = (function(){
 	}
 
 	function removeInputFocus() {
-		inputs.forEach(function(input) {
-			input.blur();
-		});
+		for (var i = 0; i < inputsArray.length; i++) {
+			inputsArray[i].blur();
+		}
 	}
 
 	function clearBoxValues() {
-		var boxesToClear = pwagHelpers.nodeListToArray(values).slice(editIndex, values.length);
+		var boxesToClear = valuesArray.slice(editIndex, values.length);
 		pwagHelpers.text(boxesToClear, '');
-		pwagHelpers.removeClass(pwagHelpers.nodeListToArray(boxes).slice(editIndex, boxes.length), 'pwag-date-box--valid');
+		pwagHelpers.removeClass(boxesArray.slice(editIndex, boxes.length), 'pwag-date-box--valid');
 	}
 
 	function setBoxValid() {
@@ -85,28 +87,34 @@ var pwagBirthday = (function(){
 		pwagHelpers.removeClass(inputGroups, 'pwag-current');
 		pwagHelpers.addClassToElement(groupObject, 'pwag-birthday-group--visible');
 		pwagHelpers.addClassToElement(groupObject, 'pwag-current');
-
 		pwagContent = document.querySelector('.pwag-gate__content');
-		pwagContentWidth = parseInt(getComputedStyle(pwagContent).width);
-
+		pwagContentWidth = parseInt(pwagHelpers.getWidth(pwagContent));
 		var newLeft = pwagContentWidth / 2 - groupObject.offsetWidth / 2 - groupObject.offsetLeft + 'px';
-
 		birthdayGroupsInner.style.left = newLeft;
 	}
 
 	function bindDateBoxClick(){
-		[].forEach.call(document.querySelectorAll('.pwag-date-box'), function(e) {
-			e.addEventListener('click', function() {
-				var newGroupIndex = pwagHelpers.index(this.parentNode);
-				groupIndex = newGroupIndex;
-				editIndex = pwagHelpers.index(this) - 1;
-				var absBoxIndex = getAbsBoxIndex(newGroupIndex, pwagHelpers.index(this) - 1);
-				editIndex = absBoxIndex;
-				setGroupFocus(newGroupIndex);
-				setBoxFocus(true);
-				setInputFocus();
-			}, false);
-		});
+		for (var i = 0; i < boxesArray.length; i++) {
+			_thisItem = boxesArray[i];
+			if (_thisItem.addEventListener) {
+				_thisItem.addEventListener('click', onDateBoxClick, false);
+			}
+			else {
+				_thisItem.attachEvent('onclick', onDateBoxClick);
+			}
+		}
+	}
+	
+	function onDateBoxClick(e){
+		element = e.target.parentNode;
+		var newGroupIndex = pwagHelpers.index(element.parentNode);
+		groupIndex = newGroupIndex;
+		editIndex = pwagHelpers.index(element) - 1;
+		var absBoxIndex = getAbsBoxIndex(newGroupIndex, pwagHelpers.index(element) - 1);
+		editIndex = absBoxIndex;
+		setGroupFocus(newGroupIndex);
+		setBoxFocus(true);
+		setInputFocus();
 	}
 
 	function bindKeyUp(){

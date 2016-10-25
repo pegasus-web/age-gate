@@ -3,6 +3,7 @@ var pwagLinks = (function(){
 	// 'Private' variables
 	var config = pwagTemplate.config;									// Config data from global variable
 	var links = document.querySelectorAll('.pwag-terms__link');			// NodeList of links
+	var linksArray = pwagHelpers.nodeListToArray(links);				// Array of links
 	var modal = document.querySelector('.pwag-modal');					// Modal element
 	var modalInner = document.querySelector('.pwag-modal__inner');		// Element within modal which contains content
 	var modalContent = document.querySelector('.pwag-modal__content');	// Element within modal which contains content
@@ -15,12 +16,27 @@ var pwagLinks = (function(){
 	};
 
 	function bindLinkClick(){
+		for (var i = 0; i < linksArray.length; i++) {
+			_thisItem = linksArray[i];
+			if (_thisItem.addEventListener) {
+				_thisItem.addEventListener('click', onLinkClick, false);
+			}
+			else {
+				_thisItem.attachEvent('onclick', onLinkClick);
+			}
+		}
+/*
 		[].forEach.call(links, function(_this){
 			_this.addEventListener('click', function(e) { 
 				e.preventDefault();
 				ajaxRequest(_this.href);
 			}, false);
-		});
+		});*/
+	}
+
+	function onLinkClick(e){
+		e.preventDefault();
+		ajaxRequest(e.target.href);
 	}
 
 	function ajaxRequest(url){
@@ -40,6 +56,7 @@ var pwagLinks = (function(){
 		modalContent.innerHTML = content;
 		pwagHelpers.addClassToElement(modal, 'pwag-modal--visible');
 		window.addEventListener('resize', windowResize);
+		resizeModal();
 	}
 
 	function bindCloseModal(){
