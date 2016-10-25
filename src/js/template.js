@@ -21,8 +21,7 @@ var pwagTemplate = (function(){
 		no: 'No',
 		errorYesNo: 'Please confirm that you are old enough to enter this site',
 		termsText: '',
-		termsLinkText: '',
-		termsLinkURL: '',
+		termsLinks: [],
 		cookieName: 'pwag',
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
@@ -124,16 +123,15 @@ var pwagTemplate = (function(){
 
 	var templateTerms = function(){
 		var termsText = config.termsText;
-		var termsLinkText = config.termsLinkText;
-		var termsLinkURL = config.termsLinkURL;
+		var termsLinks = config.termsLinks;
 		var rtn = '';
 
 		if(termsText){
 			rtn = termsText;
 		}
 
-		if(termsText && termsLinkText && termsLinkURL){
-			rtn = parseLinks(termsText, termsLinkText, termsLinkURL);
+		if(termsText){
+			rtn = parseLinks(termsText, termsLinks);
 		}
 
 		if(rtn){
@@ -160,17 +158,9 @@ var pwagTemplate = (function(){
 		return rtn;
 	};
 
-	function parseLinks(orig, linkText, linkURLs){
-
-		var linkTextArr = linkText.split(',');
-		var linkURLArr = linkURLs.split(',');
-
-		if(linkTextArr.length !== linkURLArr.length){
-			return;
-		}
-
-		for (i = 0; i < linkTextArr.length; i++) {
-			orig = orig.replace(linkTextArr[i], '<a href="' + linkURLArr[i] + '" class="pwag-terms__link">' + linkTextArr[i] + '</a>');
+	function parseLinks(orig, termsLinks){
+		for (i = 0; i < termsLinks.length; i++) {
+			orig = orig.replace(termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
 		}
 		return orig;
 	}
