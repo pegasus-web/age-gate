@@ -74,6 +74,7 @@ body.pwag-gate-enabled {
 	visibility: visible;
 }
 .pwag-birthday-group__instruction {
+	margin: 15px 0;
 	opacity: 0;
 	-webkit-transition: opacity 0.15s ease-in-out;
 	-moz-transition: opacity 0.15s ease-in-out;
@@ -121,9 +122,14 @@ body.pwag-gate-enabled {
 	bottom: 0;
 	left: 0;
 	z-index: 1;
-	width: 127px;
-	height: 180px;
-	line-height: 180px;
+	width: 117px;			/* Width of .pwag-date-box minus border */
+	height: 170px;			/* Height of .pwag-date-box minus border */
+	line-height: 170px;		/* Height of .pwag-date-box minus border */
+}
+.pwag-date-box__value,
+.pwag-date-box__placeholder {
+	font-size: 100px;
+	font-weight: bold;
 }
 .pwag-date-box__input {
 	opacity: 0;
@@ -135,7 +141,7 @@ body.pwag-gate-enabled {
 	cursor: none;
 	text-align: left;
 	font-size: 0;
-	height: 180px;
+	height: 170px;			/* Height of .pwag-date-box minus border */
 	line-height: 0 !important;
 	transform: scale(0);
 	outline: none;
@@ -230,19 +236,26 @@ body.pwag-gate-enabled {
 
 	.pwag-date-box {
 		border-width: 5px;
+		width: 57px;
+		height: 81px;
 	}
-	.pwag-date-box,
+	.pwag-date-box__input,
 	.pwag-date-box__value,
 	.pwag-date-box__placeholder {
-		width: 50px;
-		height: 60px;
-		line-height: 60px;
+		width: 47px;
+		height: 71px;
+		line-height: 71px;
 	}
 	.pwag-date-box__input {
-		width: 50px;
-		height: 60px;
-		line-height: 60px;
 		font-size: 1px;
+	}
+	.pwag-date-box__value,
+	.pwag-date-box__placeholder {
+		font-size: 30px;
+		font-weight: bold;
+	}
+	.pwag-birthday-groups {
+		height: 180px;
 	}
 
 }
