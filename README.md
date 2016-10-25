@@ -12,17 +12,17 @@ alcoholic nature of the Carlsberg Group websites.
 
 ### Potential Features
 
-- [ ] Validate any age
-- [ ] Custom Logo
-- [ ] Custom Background
-- [ ] Choose Age Gate prompt method
-  - [ ] Date of Birth input
-  - [ ] Yes/No
-- [ ] Choose cookie expiry length
+- [x] Validate any age
+- [x] Custom Logo
+- [x] Custom Background
+- [x] Choose Age Gate prompt method
+  - [x] Date of Birth input
+  - [x] Yes/No
+- [x] Choose cookie expiry length
 - [ ] Choose location of underage redirect
-- [ ] Custom text
-- [ ] Links to T&amp;Cs (overlay)
-- [ ] Skinned or unstyled
+- [x] Custom text
+- [x] Links to T&amp;Cs (overlay)
+- [x] Skinned or unstyled
 - [ ] Social Identity Verification
   - [ ] Facebook
   - [ ] Google+
@@ -32,18 +32,56 @@ alcoholic nature of the Carlsberg Group websites.
 
 ## Installation
 
+Place CSS file in html head:
+
+```
+<head>
+  ...
+  <link href="//path/to/pwag.min.css" rel="stylesheet">
+</head>
+```
+
+Place JS config and file before end of </body>.
+
 ```html
 <!-- Begin Pegasus Web Age Gate -->
 <script>
-    window.agegate_options = {
-		// config options go here
+  var config = {
+		logoURL: '',
+		type: 'birthday',
+		age: 18,
+		placeholderYear: 'Y',
+		placeholderMonth: 'M',
+		placeholderDay: 'D',
+		enterTextYear: 'Enter the year of your birth',
+		enterTextMonth: 'Enter the month of your birth',
+		enterTextDay: 'Enter the day of your birth',
+		errorInvalidYear: 'The year you entered is invalid',
+		errorInvalidMonth: 'The month you entered is invalid',
+		errorInvalidDay: 'The day you entered is invalid',
+		errorNotOldEnough: 'You are not old enough to enter this site',
+		yesNoQuestion: 'Are you old enough to enter this site?',
+		yes: 'Yes',
+		no: 'No',
+		errorYesNo: 'Please confirm that you are old enough to enter this site',
+		termsText: '',
+		termsLinks: [],
+		cookieName: 'pwag',
+		cookieExpiry: 365,
+		windowResizeThreshold: 100,
+		delayBeforeOpenGate: 750
 	};
 </script>
 
-<script src="//path/to/age-gate.js"></script>
+<script src="//path/to/pwag.min.js"></script>
 <!-- End Pegasus Web Age Gate -->
+...
+</body>
 ```
 
+Note: All config values are optional.
+
+TODO: Provide details of default values and formatting of termsLinks option.
 
 ## License
 
