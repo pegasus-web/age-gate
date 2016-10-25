@@ -25,8 +25,8 @@ var pwagBirthday = (function(){
 	var _initGateBirthday = function() {
 		bindDateBoxClick();
 		bindKeyUp();
-		setGroupFocus(groupIndex, 0);
-		setBoxFocus();
+		setGroupFocus(groupIndex);
+		setBoxFocus(false);
 		setInputFocus();
 	};
 
@@ -34,9 +34,8 @@ var pwagBirthday = (function(){
 		inputs[editIndex].focus();
 	}
 
-	function setBoxFocus() {
-		var newGroupIndex = getGroupIndexFromInputIndex(editIndex);
-
+	function setBoxFocus(skipGroupReIndex) {
+		var newGroupIndex = !skipGroupReIndex ? getGroupIndexFromInputIndex(editIndex) : groupIndex;
 		groupInvalidReset();
 		hideErrors();
 		clearBoxValues();
@@ -47,6 +46,17 @@ var pwagBirthday = (function(){
 			groupIndex--;
 			pwagHelpers.removeClass([].slice.call(inputGroups,newGroupIndex), 'pwag-birthday-group--visible');
 			setGroupFocus(groupIndex);
+		}
+	}
+
+	function getAbsBoxIndex(_groupIndex, _boxIndex){
+		var groupArr = dateGroup[_groupIndex];
+		var counter = 0;
+		for (var i = groupArr[0]; i <= groupArr[1]; i++) {
+			if(counter == _boxIndex){
+				return i;
+			}
+			counter++;
 		}
 	}
 
@@ -87,10 +97,13 @@ var pwagBirthday = (function(){
 	function bindDateBoxClick(){
 		[].forEach.call(document.querySelectorAll('.pwag-date-box'), function(e) {
 			e.addEventListener('click', function() {
+				var newGroupIndex = pwagHelpers.index(this.parentNode);
+				groupIndex = newGroupIndex;
 				editIndex = pwagHelpers.index(this) - 1;
-				var newGroupIndex = getGroupIndexFromInputIndex(editIndex);
-				setGroupFocus(newGroupIndex, 0);
-				setBoxFocus();
+				var absBoxIndex = getAbsBoxIndex(newGroupIndex, pwagHelpers.index(this) - 1);
+				editIndex = absBoxIndex;
+				setGroupFocus(newGroupIndex);
+				setBoxFocus(true);
 				setInputFocus();
 			}, false);
 		});
@@ -120,7 +133,7 @@ var pwagBirthday = (function(){
 					case 2: // May be old enough
 						editIndex++;
 						groupIndex++;
-						setBoxFocus();
+						setBoxFocus(false);
 						setGroupFocus(groupIndex);
 						break;
 					case 3: // Old enough
@@ -133,7 +146,7 @@ var pwagBirthday = (function(){
 			}
 		} else {
 			editIndex++;
-			setBoxFocus();
+			setBoxFocus(false);
 		}
 	}
 
@@ -252,7 +265,7 @@ var pwagBirthday = (function(){
 	function back() {
 		if (editIndex > 0) {
 			editIndex--;
-			setBoxFocus();
+			setBoxFocus(false);
 		}
 	}
 
