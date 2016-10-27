@@ -35,7 +35,7 @@ var pwagTemplate = (function(){
 
 	var templateYesNo = '\
 		<div class="pwag-clearfix pwag-yes-no">\
-			<div class="pwag-yes-no__title"><p>' + config.yesNoQuestion + '</p></div>\
+			<div class="pwag-yes-no__title pwag-instruction"><p>' + config.yesNoQuestion + '</p></div>\
 			<div class="pwag-yes-no__options">\
 				<button class="pwag-yes-no__option pwag-yes-no__option--yes">' + config.yes + '</button>\
 				<button class="pwag-yes-no__option pwag-yes-no__option--no">' + config.no + '</button>\
@@ -50,7 +50,7 @@ var pwagTemplate = (function(){
 		<div class="pwag-clearfix pwag-birthday-groups">\
 			<div class="pwag-clearfix pwag-birthday-groups__inner">\
 				<div class="pwag-birthday-group">\
-					<p class="pwag-birthday-group__instruction">' + config.enterTextYear + '</p>\
+					<p class="pwag-birthday-group__instruction pwag-instruction">' + config.enterTextYear + '</p>\
 					<div class="pwag-date-box pwag-date-box--valid pwag-date-box--0">\
 						<span class="pwag-date-box__value">1</span>\
 						<span class="pwag-date-box__placeholder">' + config.placeholderYear + '</span>\
@@ -73,7 +73,7 @@ var pwagTemplate = (function(){
 					</div>\
 				</div>\
 				<div class="pwag-birthday-group">\
-					<p class="pwag-birthday-group__instruction">' + config.enterTextMonth + '</p>\
+					<p class="pwag-birthday-group__instruction pwag-instruction">' + config.enterTextMonth + '</p>\
 					<div class="pwag-date-box pwag-date-box--4">\
 						<span class="pwag-date-box__value"></span>\
 						<span class="pwag-date-box__placeholder">' + config.placeholderMonth + '</span>\
@@ -86,7 +86,7 @@ var pwagTemplate = (function(){
 					</div>\
 				</div>\
 				<div class="pwag-birthday-group">\
-					<p class="pwag-birthday-group__instruction">' + config.enterTextDay + '</p>\
+					<p class="pwag-birthday-group__instruction pwag-instruction">' + config.enterTextDay + '</p>\
 					<div class="pwag-date-box pwag-date-box--6">\
 						<span class="pwag-date-box__value"></span>\
 						<span class="pwag-date-box__placeholder">' + config.placeholderDay + '</span>\
@@ -114,7 +114,7 @@ var pwagTemplate = (function(){
 		if(logoURL){
 			rtn = '\
 				<div class="pwag-logo">\
-					<img src="' + logoURL + '">\
+					<img src="' + logoURL + '" class="pwag-logo__image">\
 				</div>\
 			';
 		}
