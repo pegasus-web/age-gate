@@ -71,7 +71,6 @@ var pwagYesNo = (function(){
 
 	// 'Public' methods
 	return {
-		initGate: initGate,
-		windowResize: windowResize
+		initGate: initGate
 	};
 })();
