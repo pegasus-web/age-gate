@@ -180,8 +180,10 @@ var pwagTemplate = (function(){
 		' + templateModal() + '\
 	';
 
-	// Render HTML to page before any selectors are instantiated
-	pwagHelpers.appendHTML(document.body, templateMaster);
+	if(!pwagHelpers.getCookie('pwag')){
+		// Render HTML to page before any selectors are instantiated
+		pwagHelpers.appendHTML(document.body, templateMaster);
+	}
 
 	// 'Public' methods
 	return {
