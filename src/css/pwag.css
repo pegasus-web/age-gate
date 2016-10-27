@@ -52,6 +52,9 @@ body.pwag-gate-enabled {
 	padding: 50px 20px 20px 20px;
 	text-align: center;
 }
+.pwag-logo img {
+	width: 150px;
+}
 .pwag-birthday-groups {
 	position: relative;
 	height: 280px;
