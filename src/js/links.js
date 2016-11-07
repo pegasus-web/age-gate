@@ -22,7 +22,9 @@ var pwagLinks = (function(){
 				_thisItem.addEventListener('click', onLinkClick, false);
 			}
 			else {
-				_thisItem.attachEvent('onclick', onLinkClick);
+				_thisItem.attachEvent('onclick', function(){
+					onLinkClick;
+				});
 			}
 		}
 /*
@@ -55,25 +57,47 @@ var pwagLinks = (function(){
 	function openModal(content){
 		modalContent.innerHTML = content;
 		pwagHelpers.addClassToElement(modal, 'pwag-modal--visible');
-		window.addEventListener('resize', windowResize);
+		if(window.addEventListener){
+			window.addEventListener('resize', windowResize);
+		}else{
+			window.attachEvent('resize', function(){
+				windowResize;
+			});
+		}
 		resizeModal();
 	}
 
 	function bindCloseModal(){
 		
 		// Close on background click
-		modal.addEventListener('click', function(event) {
-			var isClickInside = modalContent.contains(event.target);
-			if (!isClickInside) {
-				closeModal();
-			}
-		});
+		if(modal.addEventListener){
+			modal.addEventListener('click', function(event) {
+				var isClickInside = modalContent.contains(event.target);
+				if (!isClickInside) {
+					closeModal();
+				}
+			});
+		}else{
+			modal.attachEvent('click', function(event) {
+				var isClickInside = modalContent.contains(event.target);
+				if (!isClickInside) {
+					closeModal();
+				}
+			});
+		}
 
 		// Close on btn click
-		closeModalBtn.addEventListener('click', function(e) { 
-			e.preventDefault();
-			closeModal();
-		}, false);
+		if(closeModalBtn.addEventListener){
+			closeModalBtn.addEventListener('click', function(e) { 
+				e.preventDefault();
+				closeModal();
+			}, false);
+		}else{
+			closeModalBtn.attachEvent('click', function(e) { 
+				e.preventDefault();
+				closeModal();
+			}, false);
+		}
 	}
 
 	function closeModal(){

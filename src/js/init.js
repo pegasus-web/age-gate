@@ -30,10 +30,22 @@ var pwagInit = (function(exports, d){
 
 			if(pwagTemplate.config.type == 'birthday'){
 				pwagBirthday.initGate();
-				window.addEventListener('resize', pwagBirthday.windowResize);
+				if(window.addEventListener){
+					window.addEventListener('resize', pwagBirthday.windowResize);
+				}else{
+					window.attachEvent('resize', function(){
+						pwagBirthday.windowResize;
+					});
+				}
 			}else{
 				pwagYesNo.initGate();
-				window.addEventListener('resize', pwagYesNo.windowResize);
+				if(window.addEventListener){
+					window.addEventListener('resize', pwagYesNo.windowResize);
+				}else{
+					window.attachEvent('resize', function(){
+						pwagYesNo.windowResize;
+					});
+				}
 			}
 			pwagLinks.initLinks();
 		}

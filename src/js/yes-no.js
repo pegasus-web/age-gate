@@ -22,16 +22,29 @@ var pwagYesNo = (function(){
 	}
 
 	function bindClickYes(){
-		optionYes.addEventListener('click', function() { 
-			hideErrors();
-			initOpenGate();
-		}, false);
+		if(optionYes.addEventListener){
+			optionYes.addEventListener('click', function() { 
+				hideErrors();
+				initOpenGate();
+			}, false);
+		}else{
+			optionYes.attachEvent('click', function() { 
+				hideErrors();
+				initOpenGate();
+			}, false);
+		}
 	}
 
 	function bindClickNo(){
-		optionNo.addEventListener('click', function() { 
-			showError('no');
-		}, false);
+		if(optionNo.addEventListener){
+			optionNo.addEventListener('click', function() { 
+				showError('no');
+			}, false);
+		}else{
+			optionNo.attachEvent('click', function() { 
+				showError('no');
+			}, false);
+		}
 	}
 
 	function showError(messageId) {
