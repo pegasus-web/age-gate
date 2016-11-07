@@ -100,7 +100,9 @@ var pwagBirthday = (function(){
 				_thisItem.addEventListener('click', onDateBoxClick, false);
 			}
 			else {
-				_thisItem.attachEvent('onclick', onDateBoxClick);
+				_thisItem.onclick = function(){
+					onDateBoxClick;
+				}
 			}
 		}
 	}
@@ -303,7 +305,7 @@ var pwagBirthday = (function(){
 		setTimeout(function () {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			gateElem.innerHTML = '';
-			gateElem.remove();
+			//gateElem.remove();
 		}, 450);
 	}
 

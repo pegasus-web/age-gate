@@ -28,10 +28,10 @@ var pwagYesNo = (function(){
 				initOpenGate();
 			}, false);
 		}else{
-			optionYes.attachEvent('click', function() { 
+			optionYes.onclick = function() { 
 				hideErrors();
 				initOpenGate();
-			}, false);
+			};
 		}
 	}
 
@@ -41,9 +41,9 @@ var pwagYesNo = (function(){
 				showError('no');
 			}, false);
 		}else{
-			optionNo.attachEvent('click', function() { 
+			optionNo.onclick = function() { 
 				showError('no');
-			}, false);
+			};
 		}
 	}
 
@@ -74,7 +74,7 @@ var pwagYesNo = (function(){
 		setTimeout(function () {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			gateElem.innerHTML = '';
-			gateElem.remove();
+			//gateElem.remove();
 		}, 450);
 	}
 

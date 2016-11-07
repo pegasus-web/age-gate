@@ -22,18 +22,11 @@ var pwagLinks = (function(){
 				_thisItem.addEventListener('click', onLinkClick, false);
 			}
 			else {
-				_thisItem.attachEvent('onclick', function(){
+				_thisItem.onclick = function(){
 					onLinkClick;
-				});
+				};
 			}
 		}
-/*
-		[].forEach.call(links, function(_this){
-			_this.addEventListener('click', function(e) { 
-				e.preventDefault();
-				ajaxRequest(_this.href);
-			}, false);
-		});*/
 	}
 
 	function onLinkClick(e){
@@ -78,12 +71,12 @@ var pwagLinks = (function(){
 				}
 			});
 		}else{
-			modal.attachEvent('click', function(event) {
+			modal.onclick = function(event) {
 				var isClickInside = modalContent.contains(event.target);
 				if (!isClickInside) {
 					closeModal();
 				}
-			});
+			};
 		}
 
 		// Close on btn click
@@ -93,10 +86,10 @@ var pwagLinks = (function(){
 				closeModal();
 			}, false);
 		}else{
-			closeModalBtn.attachEvent('click', function(e) { 
+			closeModalBtn.onclick = function(e) { 
 				e.preventDefault();
 				closeModal();
-			}, false);
+			};
 		}
 	}
 
