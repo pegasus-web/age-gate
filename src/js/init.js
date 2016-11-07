@@ -25,8 +25,8 @@ var pwagInit = (function(exports, d){
 		if(pwagHelpers.getCookie('pwag')){
 			return;
 		}else{
-			// Set body class to show age gate in UI
-			pwagHelpers.addClassToElement(document.body, 'pwag-gate-enabled');
+			// Set body class to show age gate in UI and add IE8 class if necessary
+			pwagHelpers.addClassToElement(document.body, 'pwag-gate-enabled pwag-ie8-' + pwagHelpers.isIE8());
 
 			if(pwagTemplate.config.type == 'birthday'){
 				pwagBirthday.initGate();

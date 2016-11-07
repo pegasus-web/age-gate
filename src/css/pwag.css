@@ -173,6 +173,12 @@ body.pwag-gate-enabled {
 .pwag-feedback__message.pwag-show {
 	opacity: 1;
 }
+.pwag-ie8-true .pwag-feedback__message {
+	visibility: hidden;
+}
+.pwag-ie8-true .pwag-feedback__message.pwag-show {
+	visibility: visible;
+}
 .pwag-feedback--relative {
 	position: relative;
 	margin: 20px 0 0 0;

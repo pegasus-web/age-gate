@@ -15,6 +15,35 @@ var pwagHelpers = (function(){
 	};
 
 	// 'Public' methods
+
+	// Extend array prototype to support 'forEach' (for IE8)
+	if (!Array.prototype.forEach) {
+		Array.prototype.forEach = function(callback, thisArg) {
+			var T, k;
+			if (this == null) {
+				throw new TypeError(' this is null or not defined');
+			}
+			var O = Object(this);
+			var len = O.length >>> 0;
+			if (typeof callback !== "function") {
+				throw new TypeError(callback + ' is not a function');
+			}
+			if (arguments.length > 1) {
+				T = thisArg;
+			}
+			k = 0;
+			while (k < len) {
+				var kValue;
+				if (k in O) {
+					kValue = O[k];
+					callback.call(T, kValue, k, O);
+				}
+				k++;
+			}
+		};
+	}
+
+
 	return {
 		appendHTML: function(element, string) {
 			var div = document.createElement('div');
@@ -62,12 +91,22 @@ var pwagHelpers = (function(){
 			var rtn = nodeList;
 			if(NodeList.prototype.isPrototypeOf(nodeList)){
 				rtn = Array.prototype.slice.call(nodeList,0);
+			}else{
+				var tempArr = [];
+				for (var i = 0; i < nodeList.length; i++) {
+					tempArr.push(nodeList[i]);
+				}
+				rtn = tempArr;
 			}
 			return rtn;
 		},
 		text: function(elements, text){
 			elements.forEach(function(element) {
-				element.textContent = text;
+				if (pwagHelpers.isIE8) {
+					element.textContent = text;
+				}else{
+					element.innerText = text;
+				}
 			});
 		},
 		index: function(element){
@@ -116,6 +155,13 @@ var pwagHelpers = (function(){
 				return getComputedStyle(el, null).getPropertyValue('width');
 			} else {
 				return el.offsetWidth;
+			}
+		},
+		isIE8: function(){
+			if (window.attachEvent && !window.addEventListener) {
+				return true;
+			}else{
+				return false;
 			}
 		}
 	};
