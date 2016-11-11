@@ -273,5 +273,8 @@ body.pwag-gate-enabled {
 	.pwag-birthday-groups {
 		height: 180px;
 	}
-
+	.pwag-instruction {
+		font-size: 20px;
+		margin: 20px 0;
+	}
 }

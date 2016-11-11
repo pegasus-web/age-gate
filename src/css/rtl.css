@@ -1,0 +1,7 @@
+.pwag-gate--rtl .pwag-birthday-group {
+	float: right;
+}
+.pwag-gate--rtl .pwag-modal__close {
+	right: auto;
+	left: 10px;
+}

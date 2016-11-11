@@ -25,13 +25,15 @@ var pwagTemplate = (function(){
 		cookieName: 'pwag',
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
-		delayBeforeOpenGate: 750
+		delayBeforeOpenGate: 750,
+		direction: 'ltr'
 	};
 
 	var configOverride = window.pwagConfig;
 
 	// 'Merge' custom config values into defaults
 	config = pwagHelpers.extendConfig(config, configOverride);
+	var direction = config.direction.toLowerCase();
 
 	var templateYesNo = '\
 		<div class="pwag-clearfix pwag-yes-no">\
@@ -146,7 +148,7 @@ var pwagTemplate = (function(){
 
 	var templateModal = function(){
 		var rtn = '\
-			<div class="pwag-modal">\
+			<div class="pwag-modal pwag-modal--' + direction + '" dir="' + direction + '">\
 				<div class="pwag-modal__outer">\
 					<div class="pwag-modal__inner">\
 						<button class="pwag-modal__close">Close</button>\
@@ -168,7 +170,7 @@ var pwagTemplate = (function(){
 	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
 
 	var templateMaster = '\
-		<div class="pwag-gate">\
+		<div class="pwag-gate pwag-gate--' + direction + '" dir="' + direction + '">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
 					' + templateLogo() + '\

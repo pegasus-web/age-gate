@@ -8,9 +8,13 @@ var gulp = require('gulp'),
 	stylish = require('jshint-stylish');
 
 gulp.task('styles', function() {
-	return gulp.src('./src/css/pwag.css')
+	return gulp.src([
+		'./src/css/pwag.css',
+		'./src/css/rtl.css'
+		])
+		.pipe(concat('pwag.min.css'))
 		.pipe(cssnano())
-		.pipe(rename('pwag.min.css'))
+		//.pipe(rename('pwag.min.css'))
 		.pipe(gulp.dest('./dist/css/'));
 });
 
@@ -38,7 +42,7 @@ gulp.task('scripts-dev', function(){
 		'./src/js/yes-no.js',
 		'./src/js/links.js',
 		'./src/js/init.js'
-	])
+		])
 		.pipe(jshint())
 		.pipe(concat('pwag.js'))
 		.pipe(jshint.reporter(stylish))
