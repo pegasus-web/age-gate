@@ -26,7 +26,7 @@ var pwagTemplate = (function(){
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
-		direction: 'ltr'
+		direction: ''
 	};
 
 	var configOverride = window.pwagConfig;
