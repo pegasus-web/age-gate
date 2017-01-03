@@ -101,8 +101,8 @@ var pwagBirthday = (function(){
 			}
 			else {
 				_thisItem.onclick = function(){
-					onDateBoxClick;
-				}
+					onDateBoxClick();
+				};
 			}
 		}
 	}
@@ -127,7 +127,7 @@ var pwagBirthday = (function(){
 
 	function updateBox(number) {
 		setBoxValid();
-		if (pwagHelpers.isIE8) {
+		if (pwagHelpers.isIE8()) {
 			document.querySelector('.pwag-date-box--' + editIndex + ' .pwag-date-box__value').innerText = number;
 		}else{
 			document.querySelector('.pwag-date-box--' + editIndex + ' .pwag-date-box__value').textContent = number;			
@@ -167,7 +167,7 @@ var pwagBirthday = (function(){
 	function evalKey(e) {
 		var key;
 		// If IE8 get key from window event, otherwise get it properly
-		if (pwagHelpers.isIE8) {
+		if (pwagHelpers.isIE8()) {
 			key = window.event.keyCode;
 		}else{
 			key = e.keyCode || e.which;
@@ -230,7 +230,7 @@ var pwagBirthday = (function(){
 		var endIndex = dateGroup[groupIndex][1];
 
 		for (i = startIndex; i <= endIndex; i++) {
-			if(pwagHelpers.isIE8){
+			if(pwagHelpers.isIE8()){
 				if (numberReg.test(valuesArray[i].innerText) !== true) {
 					complete = false;
 				}
@@ -275,7 +275,7 @@ var pwagBirthday = (function(){
 		var endIndex = dateGroup[groupIndex][1];
 
 		for (i = startIndex; i <= endIndex; i++) {
-			if(pwagHelpers.isIE8){
+			if(pwagHelpers.isIE8()){
 				groupValues += values[i].innerText;
 			}else{
 				groupValues += values[i].textContent;

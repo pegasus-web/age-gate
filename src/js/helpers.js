@@ -102,7 +102,7 @@ var pwagHelpers = (function(){
 		},
 		text: function(elements, text){
 			elements.forEach(function(element) {
-				if (pwagHelpers.isIE8) {
+				if (pwagHelpers.isIE8()) {
 					element.textContent = text;
 				}else{
 					element.innerText = text;
