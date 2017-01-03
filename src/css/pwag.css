@@ -39,6 +39,7 @@ body.pwag-gate-enabled {
 	z-index: 1035; /* Bootstrap nav has z-index of 1030, modal has z-index of 1040, so this value needs to fall between! */
 	-webkit-transition: all 450ms cubic-bezier(0.77, 0, 0.175, 1);
 	transition:         all 450ms cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
 }
 .pwag-gate p {
 	color: #fff;
@@ -70,6 +71,7 @@ body.pwag-gate-enabled {
 	width: 2000px; /* Set large width to prevent wrapping on some mobiles */
 	-webkit-transition: left 450ms cubic-bezier(0.77, 0, 0.175, 1);
 	transition:         left 450ms cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
 }
 .pwag-birthday-group  {
 	float: left;
@@ -132,6 +134,7 @@ body.pwag-gate-enabled {
 	width: 117px;			/* Width of .pwag-date-box minus border */
 	height: 170px;			/* Height of .pwag-date-box minus border */
 	line-height: 170px;		/* Height of .pwag-date-box minus border */
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
 }
 .pwag-date-box__value,
 .pwag-date-box__placeholder {
@@ -245,6 +248,7 @@ body.pwag-gate-enabled {
 	position: absolute;
 	top: 10px;
 	right: 10px;
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
 }
 
 
