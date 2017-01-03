@@ -4,6 +4,8 @@
   "description": "Age Gate As A Service for Pegasus Web",
   "main": "example.htm",
   "scripts": {
+    "start": "gulp",
+    "dev": "gulp dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
