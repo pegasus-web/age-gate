@@ -4,7 +4,6 @@ var pwagTemplate = (function(){
 	// 'Private' variables
 	var config = {
 		logoURL: '',
-		backgroundImage: '',
 		type: 'birthday',
 		age: 18,
 		placeholderYear: 'Y',
@@ -110,17 +109,6 @@ var pwagTemplate = (function(){
 			</div>\
 		</div>\
 	';
-	
-	var templateBackground = function(){
-		
-		var rtn = '';
-		backgroundImage = configOverride.backgroundImage;
-		
-		if(backgroundImage){
-			rtn = 'style="background-image:url('+ backgroundImage +');"';
-		}
-		return rtn;
-	};
 
 	var templateLogo = function(){
 		var rtn = '';
@@ -182,7 +170,7 @@ var pwagTemplate = (function(){
 	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
 
 	var templateMaster = '\
-		<div class="pwag-gate pwag-gate--' + direction + '" dir="' + direction + '" '+ templateBackground() +'>\
+		<div class="pwag-gate pwag-gate--' + direction + '" dir="' + direction + '">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
 					' + templateLogo() + '\
