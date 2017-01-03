@@ -176,7 +176,7 @@ var pwagBirthday = (function(){
 		// Android/Chrome keycode fix
 		if (key === 0 || key === 229) {
 			var focusedElement = document.activeElement;
-			if (focusedElement.length) {
+			if (focusedElement) {
 				key = getKeyCode(focusedElement.value);
 			}
 		}
