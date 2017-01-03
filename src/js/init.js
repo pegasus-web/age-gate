@@ -1,5 +1,6 @@
 var pwagInit = (function(exports, d){
-
+	var config = pwagTemplate.config;
+	
 	function domReady(fn, ctx) {
 
 		function onReady(event) {
@@ -15,14 +16,14 @@ var pwagInit = (function(exports, d){
 		}
 
 		d.addEventListener && d.addEventListener('DOMContentLoaded', onReady) || d.attachEvent && d.attachEvent('onreadystatechange', onReadyIe);
-    }
+	}
 
 	domReady(function(){
 		activateGate();
 	});
 
 	function activateGate(){
-		if(pwagHelpers.getCookie('pwag')){
+		if(pwagHelpers.getCookie(config.cookieName)){
 			return;
 		}else{
 			// Set body class to show age gate in UI and add IE8 class if necessary
