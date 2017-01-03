@@ -181,8 +181,8 @@ var pwagTemplate = (function(){
 		</div>\
 		' + templateModal() + '\
 	';
-
-	if(!pwagHelpers.getCookie('pwag')){
+	
+	if(!pwagHelpers.getCookie(config.cookieName)){
 		// Render HTML to page before any selectors are instantiated
 		pwagHelpers.appendHTML(document.body, templateMaster);
 	}
