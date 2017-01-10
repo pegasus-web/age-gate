@@ -160,11 +160,13 @@ var pwagTemplate = (function(){
 		return rtn;
 	};
 
-	function parseLinks(orig, termsLinks){
-		for (i = 0; i < termsLinks.length; i++) {
-			orig = orig.replace(termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
+	function parseLinks(origin, termsLinks){
+		
+		for (var i = 0; i< termsLinks.length; i++) {
+			origin = pwagHelpers.replaceAll(origin, termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
 		}
-		return orig;
+		
+		return origin;
 	}
 
 	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
