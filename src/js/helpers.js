@@ -20,7 +20,7 @@ var pwagHelpers = (function(){
 	if (!Array.prototype.forEach) {
 		Array.prototype.forEach = function(callback, thisArg) {
 			var T, k;
-			if (this == null) {
+			if (this === null) {
 				throw new TypeError(' this is null or not defined');
 			}
 			var O = Object(this);
@@ -163,6 +163,9 @@ var pwagHelpers = (function(){
 			}else{
 				return false;
 			}
+		},
+		replaceAll: function(str, find, replace){
+			return str.replace(new RegExp(find, 'g'), replace);
 		}
 	};
 
