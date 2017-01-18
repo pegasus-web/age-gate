@@ -23,7 +23,7 @@ var pwagLinks = (function(){
 			}
 			else {
 				_thisItem.onclick = function(){
-					onLinkClick();
+					onLinkClick;
 				};
 			}
 		}
