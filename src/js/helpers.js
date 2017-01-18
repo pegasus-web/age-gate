@@ -166,6 +166,15 @@ var pwagHelpers = (function(){
 		},
 		replaceAll: function(str, find, replace){
 			return str.replace(new RegExp(find, 'g'), replace);
+		},
+		dispose: function(){
+			var gateElem = document.querySelector('.pwag-gate');	// Gate element
+			var modalElem = document.querySelector('.pwag-modal');	// Modal element
+			var gateParent = gateElem.parentNode;
+			if(gateParent){
+				gateParent.removeChild(gateElem);
+				gateParent.removeChild(modalElem);
+			}
 		}
 	};
 

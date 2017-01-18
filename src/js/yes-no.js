@@ -73,8 +73,7 @@ var pwagYesNo = (function(){
 
 		setTimeout(function () {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
-			gateElem.innerHTML = '';
-			//gateElem.remove();
+			pwagHelpers.dispose();
 		}, 450);
 	}
 
