@@ -1,10 +1,10 @@
-var gulp = require('gulp'),
-	concat = require('gulp-concat'),
+var gulp 	= require('gulp'),
+	concat 	= require('gulp-concat'),
 	cssnano = require('gulp-cssnano'),
-	jshint = require('gulp-jshint'),
-	rename = require('gulp-rename'),
-	uglify = require('gulp-uglify'),
-	gutil = require('gulp-util'),
+	jshint 	= require('gulp-jshint'),
+	rename 	= require('gulp-rename'),
+	uglify 	= require('gulp-uglify'),
+	gutil 	= require('gulp-util'),
 	stylish = require('jshint-stylish');
 
 var config = {

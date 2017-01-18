@@ -162,7 +162,7 @@ var pwagTemplate = (function(){
 
 	function parseLinks(orig, termsLinks){
 		for (i = 0; i < termsLinks.length; i++) {
-			orig = orig.replace(termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
+			orig = pwagHelpers.replaceAll(orig, termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
 		}
 		return orig;
 	}
