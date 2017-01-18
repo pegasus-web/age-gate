@@ -14,6 +14,43 @@ var pwagHelpers = (function(){
 		return ' ' + string + ' ';
 	};
 
+	function removeDOMElements(){
+		var gateElem = document.querySelector('.pwag-gate');	// Gate element
+		var modalElem = document.querySelector('.pwag-modal');	// Modal element
+		var gateParent = gateElem.parentNode;
+		if(gateParent){
+			gateParent.removeChild(gateElem);
+			gateParent.removeChild(modalElem);
+		}
+	}
+
+	function removeListeners(){
+		if(window.removeEventListener){
+
+			window.removeEventListener('resize', pwagLinks.windowResize);
+
+			if(pwagTemplate.config.type == 'birthday'){
+				window.removeEventListener('resize', pwagBirthday.windowResize);
+			}else{
+				window.removeEventListener('resize', pwagYesNo.windowResize);
+			}
+		}else{
+			window.detachEvent('resize', function(){
+				pwagLinks.windowResize;
+			});
+
+			if(pwagTemplate.config.type == 'birthday'){
+				window.detachEvent('resize', function(){
+					pwagBirthday.windowResize;
+				});
+			}else{
+				window.detachEvent('resize', function(){
+					pwagYesNo.windowResize;
+				});
+			}
+		}
+	}
+
 	// 'Public' methods
 
 	// Extend array prototype to support 'forEach' (for IE8)
@@ -42,7 +79,6 @@ var pwagHelpers = (function(){
 			}
 		};
 	}
-
 
 	return {
 		appendHTML: function(element, string) {
@@ -168,13 +204,8 @@ var pwagHelpers = (function(){
 			return str.replace(new RegExp(find, 'g'), replace);
 		},
 		dispose: function(){
-			var gateElem = document.querySelector('.pwag-gate');	// Gate element
-			var modalElem = document.querySelector('.pwag-modal');	// Modal element
-			var gateParent = gateElem.parentNode;
-			if(gateParent){
-				gateParent.removeChild(gateElem);
-				gateParent.removeChild(modalElem);
-			}
+			removeDOMElements();
+			removeListeners();
 		}
 	};
 

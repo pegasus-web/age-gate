@@ -111,12 +111,14 @@ var pwagLinks = (function(){
 	}
 
 	var windowResize = pwagHelpers.debounce(function() {
+		console.log('pwagLinks.windowResize');
 		resizeModal();
 	}, config.windowResizeThreshold);
 
 
 	// 'Public' methods
 	return {
-		initLinks: initLinks
+		initLinks: initLinks,
+		windowResize: windowResize
 	};
 })();
