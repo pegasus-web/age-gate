@@ -23,7 +23,7 @@ var pwagLinks = (function(){
 			}
 			else {
 				_thisItem.onclick = function(){
-					onLinkClick;
+					onLinkClick();
 				};
 			}
 		}
@@ -111,10 +111,8 @@ var pwagLinks = (function(){
 	}
 
 	var windowResize = pwagHelpers.debounce(function() {
-		console.log('pwagLinks.windowResize');
 		resizeModal();
 	}, config.windowResizeThreshold);
-
 
 	// 'Public' methods
 	return {
