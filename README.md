@@ -23,9 +23,9 @@ alcoholic nature of the Carlsberg Group websites.
 - [x] Custom text
 - [x] Links to T&amp;Cs (overlay)
 - [x] Skinned or unstyled
-- [ ] Social Identity Verification
-  - [ ] Facebook
-  - [ ] Google+
+- [ ] Social Identity Verification (via [Hello.js](https://adodson.com/hello.js/))
+  - [x] Facebook
+  - [x] Google+
   - [ ] Twitter (new - if added DoB to profile)
 - [ ] HTTPS/SSL Connection
 
@@ -60,6 +60,7 @@ Place JS config and file before end of </body>.
 		errorInvalidMonth: 'The month you entered is invalid',
 		errorInvalidDay: 'The day you entered is invalid',
 		errorNotOldEnough: 'You are not old enough to enter this site',
+		unableToGetSocialData: ''
 		yesNoQuestion: 'Are you old enough to enter this site?',
 		yes: 'Yes',
 		no: 'No',
@@ -69,7 +70,14 @@ Place JS config and file before end of </body>.
 		cookieName: 'pwag',
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
-		delayBeforeOpenGate: 750
+		delayBeforeOpenGate: 750,
+		// Only used in Birthday AgeGate
+		soclalNetworks : {
+			networks: {
+				nameOfSocialNetworkInHelloJs: 'clientIdFromSocialNetwork'
+			},
+			redirect_url: '/url/of/a/page'
+		}
 	};
 </script>
 
