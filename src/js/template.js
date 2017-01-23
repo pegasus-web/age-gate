@@ -124,7 +124,7 @@ var pwagTemplate = (function () {
 	                <ul>';
 
             for (var network in socialNetworks.networks) {
-                rtn += '<li><a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social-networks__button--' + network + '">' + network + '</a></li>';
+                rtn += '<li><a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social-networks__button pwag-social-networks__button--' + network + '">' + network + '</a></li>';
             }
 
             rtn += '</ul>\
