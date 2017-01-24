@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	
+	<button onclick="deleteCookie()">Delete cookie</button>
 	<h1>Pegasus Web Age Gate example page.</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit, nisi et aliquam gravida, ante lectus euismod libero, eget condimentum purus nulla quis nisl. Curabitur placerat odio interdum, fringilla lacus ut, ultricies eros. In sit amet eros ac odio fermentum aliquet sit amet vel nunc. Quisque cursus vel arcu non rutrum. In eu tincidunt tortor, eget sodales tortor. Proin blandit dignissim tortor id tempus. Suspendisse potenti. Nam fermentum in justo vitae sollicitudin. In hac habitasse platea dictumst. Pellentesque in auctor lectus.</p>
 	<p>Aenean vel consequat metus, ut hendrerit ex. Phasellus eleifend fermentum elit vitae vehicula. Curabitur a justo urna. Cras fringilla magna sit amet est malesuada, in feugiat nisl tempus. Proin consectetur non nunc ut commodo. Mauris interdum fringilla fermentum. Suspendisse euismod augue nunc, non tristique velit fringilla vitae. Aenean venenatis nisi ut nibh interdum mattis. Phasellus fringilla viverra dapibus. Quisque tristique elit sed enim porttitor, ac mattis nulla elementum. Phasellus laoreet, arcu sed commodo euismod, elit lectus tristique mauris, vel elementum mauris ipsum nec metus. Nullam velit mi, venenatis at consequat eget, lacinia ac nisl. Sed quis euismod tellus, sed venenatis nulla.</p>
@@ -49,6 +49,13 @@
 				{ text: "Privacy Policy", url: "example-privacy-policy.htm" }
 			]
 		};
+
+		/* Delete cookie - not required in production */
+		function deleteCookie() {
+			var config = pwagTemplate.config;
+			var cookieName = config.cookieName || 'pwag';
+			document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		}
 	</script>
 	<script src="/dist/js/pwag.js"></script>
 
