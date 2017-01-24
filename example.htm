@@ -39,15 +39,23 @@
 		
 		
 		/* Example birthday config */
-		window.pwagConfig = {
-			type: 'birthday',
-			ageMin: 18,
-			logoURL: 'http://www.carlsberg.com/media/1054/logo-light.png?width=160',
-			termsText: 'By submitting this form, you agree to the Cookie and Privacy Policy',
-			termsLinks: [
+        window.pwagConfig = {
+            type: 'birthday',
+            ageMin: 18,
+            logoURL: 'http://www.carlsberg.com/media/1054/logo-light.png?width=160',
+            termsText: 'By submitting this form, you agree to the Cookie and Privacy Policy',
+            termsLinks: [
 				{ text: "Cookie", url: "example-cookie-policy.htm" },
 				{ text: "Privacy Policy", url: "example-privacy-policy.htm" }
-			]
+            ],
+            //see https://adodson.com/hello.js/#quick-start
+            socialNetworks: {
+                networks: {
+                    facebook: '', //Facebook Client ID: (eg. '1157988834314837'),
+                    google: '' //Google Client ID: (eg. '694219347278-m3ojcgevg0g43ffu7i3bk7e49v5p13m4.apps.googleusercontent.com')
+                },
+                redirect_uri: 'example.htm'
+            }
 		};
 
 		/* Delete cookie - not required in production */

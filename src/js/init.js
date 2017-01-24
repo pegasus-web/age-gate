@@ -38,6 +38,10 @@ var pwagInit = (function(exports, d){
 						pwagBirthday.windowResize;
 					});
 				}
+
+				if (pwagTemplate.config.socialNetworks) {
+				    pwagSocialNetworks.init();
+				}
 			}else{
 				pwagYesNo.initGate();
 				if(window.addEventListener){

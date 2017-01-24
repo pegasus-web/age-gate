@@ -250,7 +250,29 @@ body.pwag-gate-enabled {
 	right: 10px;
 	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
 }
-
+.pwag-social-networks {
+    width: 100%;
+    text-align: center;
+}
+.pwag-social-networks ul {
+    margin: 0;
+    padding: 0;
+}
+.pwag-social-networks .pwag-social-networks__button {
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+.pwag-social-networks .pwag-social-networks__button--facebook {
+    background-color: #3b5998;
+}
+.pwag-social-networks .pwag-social-networks__button--google {
+    background-color: #d34836;
+}
+.pwag-social-networks .pwag-social-networks__button--windows {
+    background-color: #0078D7;
+}
 
 @media (max-width: 767px) {
 

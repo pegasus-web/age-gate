@@ -21,6 +21,8 @@ var config = {
 			'./src/js/birthday.js',
 			'./src/js/yes-no.js',
 			'./src/js/links.js',
+			'./src/js/lib/hello.all.min.js',
+			'./src/js/social-networks.js',
 			'./src/js/init.js'
 		],
 		dest : './dist/js',
