@@ -1,17 +1,23 @@
 ﻿var pwagSocialNetworks = (function () {
     // 'Private' variables
     var config = pwagTemplate.config;													// Config data from global variable
-    var redirectPage = "example.htm";
+    var redirectPage = window.location.href;
     var gateElem = document.querySelector('.pwag-gate');
 
     var init = function () {
-        hello.init(config.socialNetworks.networks, { redirect_uri: config.socialNetworks.redirectPage });
+        hello.init(config.socialNetworks, { redirect_uri: redirectPage });
     };
+
     var login = function(network) {
         hello(network).login();
     };
+    
     var logout = function (network) {
         hello(network).logout();
+    };
+
+    var isLoggedIn = function(network){
+        return hello.getAuthResponse(network);
     };
 
     hello.on('auth.login', function (auth) {
@@ -28,33 +34,29 @@
     var authentication = {
         viaFacebook: function() {
             // Call user information, for the given network
-            hello("facebook").api("me", { fields: "id,name,age_range" }).then(function (r) {
+            hello('facebook').api('me', { fields: 'id,name,age_range' }).then(function (r) {
                 var ageRange = r.age_range;
-
                 if (!ageRange || !ageRange.min) {
-                    validateAge(-1, "facebook");
+                    validateAge(-1, 'facebook');
                 } else {
-                    validateAge(ageRange.min, "facebook");
+                    validateAge(ageRange.min, 'facebook');
                 }
-                logout("facebook");
+                logout('facebook');
             });
         },
         viaGoogle: function () {
-            hello("google").api("me").then(function (r) {
+            hello('google').api('me').then(function (r) {
                 if (!r.birthday) {
-                    validateAge(-1, "google");
+                    validateAge(-1, 'google');
                 } else {
                     var birthday = new Date(r.birthday);
-
-                    //Source: http://stackoverflow.com/questions/4060004/calculate-age-in-javascript
                     var ageDifMs = Date.now() - birthday.getTime();
-                    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-
+                    var ageDate = new Date(ageDifMs); // Milliseconds from epoch
                     var age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
-                    validateAge(age, "google");
+                    validateAge(age, 'google');
                 }
-                logout("facebook");
+                logout('facebook');
             });
         }
     };
@@ -63,14 +65,14 @@
         if (age >= config.age) {
             initOpenGate();
         } else if (age == -1) {
-            showError("unableToGetSocialData");
-        } else{
-            showError("notLegal");
+            showError('unableToGetSocialData');
+        } else {
+            showError('notLegal');
         }
-    }
+    };
 
     function showError(messageId) {
-        pwagHelpers.addClassToElement(document.querySelector(".pwag-feedback__message--" + messageId), "pwag-show");
+        pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
     }
 
     function initOpenGate() {
@@ -82,19 +84,20 @@
         var w = window,
 			d = document,
 			e = d.documentElement,
-			g = d.getElementsByTagName("body")[0],
+			g = d.getElementsByTagName('body')[0],
 			windowHeight = w.innerHeight || e.clientHeight || g.clientHeight;
 
-        gateElem.style.transform = "translate(0px, " + (-windowHeight) + "px)";
+        gateElem.style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
 
         setTimeout(function () {
-            pwagHelpers.removeClassFromElement(document.querySelector("body"), "pwag-gate-enabled");
+            pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
             pwagHelpers.dispose();
         }, 450);
     }
 
     return {
         init: init,
-        login: login
+        login: login,
+        isLoggedIn: isLoggedIn
     };
 })();

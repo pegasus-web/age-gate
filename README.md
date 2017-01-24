@@ -60,6 +60,7 @@ Place JS config and file before end of </body>.
 		errorInvalidMonth: 'The month you entered is invalid',
 		errorInvalidDay: 'The day you entered is invalid',
 		errorNotOldEnough: 'You are not old enough to enter this site',
+		loginViaSocialMedia: 'Log in with'
 		unableToGetSocialData: ''
 		yesNoQuestion: 'Are you old enough to enter this site?',
 		yes: 'Yes',
@@ -71,12 +72,9 @@ Place JS config and file before end of </body>.
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
-		// Only used in Birthday AgeGate
-		soclalNetworks : {
-			networks: {
-				nameOfSocialNetworkInHelloJs: 'clientIdFromSocialNetwork'
-			},
-			redirect_url: '/url/of/a/page'
+		// Only used in Birthday Age Gate
+		socialNetworks: {
+			nameOfSocialNetworkInHelloJs: 'clientIdFromSocialNetwork'
 		}
 	};
 </script>
@@ -93,7 +91,7 @@ TODO: Provide details of default values and formatting of termsLinks option.
 
 ## License
 
-Copyright &copy; 2016 Umbrella Inc Ltd
+Copyright &copy; 2017 Umbrella Inc Ltd
 
 This project is licensed under [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 

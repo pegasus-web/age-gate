@@ -1,43 +1,44 @@
 /*jshint multistr: true */
 var pwagTemplate = (function () {
 
-    // 'Private' variables
-    var config = {
-        logoURL: '',
-        type: 'birthday',
-        age: 18,
-        placeholderYear: 'Y',
-        placeholderMonth: 'M',
-        placeholderDay: 'D',
-        enterTextYear: 'Enter the year of your birth',
-        enterTextMonth: 'Enter the month of your birth',
-        enterTextDay: 'Enter the day of your birth',
-        errorInvalidYear: 'The year you entered is invalid',
-        errorInvalidMonth: 'The month you entered is invalid',
-        errorInvalidDay: 'The day you entered is invalid',
-        errorNotOldEnough: 'You are not old enough to enter this site',
-        errorUnableToGetSocialData: 'Unable to get your age from the provided social network',
-        loginViaSocialMedia: 'Login via Social Media',
-        yesNoQuestion: 'Are you old enough to enter this site?',
-        yes: 'Yes',
-        no: 'No',
-        errorYesNo: 'Please confirm that you are old enough to enter this site',
-        termsText: '',
-        termsLinks: [],
-        cookieName: 'pwag',
-        cookieExpiry: 365,
-        windowResizeThreshold: 100,
-        delayBeforeOpenGate: 750,
-        direction: ''
-    };
+	// 'Private' variables
+	var config = {
+		logoURL: '',
+		type: 'birthday',
+		age: 18,
+		placeholderYear: 'Y',
+		placeholderMonth: 'M',
+		placeholderDay: 'D',
+		enterTextYear: 'Enter the year of your birth',
+		enterTextMonth: 'Enter the month of your birth',
+		enterTextDay: 'Enter the day of your birth',
+		errorInvalidYear: 'The year you entered is invalid',
+		errorInvalidMonth: 'The month you entered is invalid',
+		errorInvalidDay: 'The day you entered is invalid',
+		errorNotOldEnough: 'You are not old enough to enter this site',
+		errorUnableToGetSocialData: 'Unable to get your age from the provided social network',
+		loginViaSocialMedia: 'or log in with:',
+		yesNoQuestion: 'Are you old enough to enter this site?',
+		yes: 'Yes',
+		no: 'No',
+		errorYesNo: 'Please confirm that you are old enough to enter this site',
+		termsText: '',
+		termsLinks: [],
+		cookieName: 'pwag',
+		cookieExpiry: 365,
+		windowResizeThreshold: 100,
+		delayBeforeOpenGate: 750,
+		direction: ''
+	};
 
     var configOverride = window.pwagConfig;
 
-    // 'Merge' custom config values into defaults
-    config = pwagHelpers.extendConfig(config, configOverride);
-    var direction = config.direction.toLowerCase();
+	// 'Merge' custom config values into defaults
+	config = pwagHelpers.extendConfig(config, configOverride);
+	var direction = config.direction.toLowerCase();
+	var socialNetworks = config.socialNetworks;
 
-    var templateYesNo = '\
+	var templateYesNo = '\
 		<div class="pwag-clearfix pwag-yes-no">\
 			<div class="pwag-yes-no__title pwag-instruction"><p>' + config.yesNoQuestion + '</p></div>\
 			<div class="pwag-yes-no__options">\
@@ -50,7 +51,7 @@ var pwagTemplate = (function () {
 		</div>\
 	';
 
-    var templateBirthday = '\
+	var templateBirthday = '\
 		<div class="pwag-clearfix pwag-birthday-groups">\
 			<div class="pwag-clearfix pwag-birthday-groups__inner">\
 				<div class="pwag-birthday-group">\
@@ -113,66 +114,67 @@ var pwagTemplate = (function () {
 		</div>\
 	';
 
+	var socialButtons = function() {
+		var networkMarkUp = '';
+		for (var network in socialNetworks) {
+			networkMarkUp += '<a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</a>';
+			//console.log('Is ' + network + ' logged in? = ' + pwagSocialNetworks.isLoggedIn(network));
+		}
+		return networkMarkUp;
+	};
 
-    var templateSocialNetworks = function () {
-        var rtn = '';
-        socialNetworks = configOverride.socialNetworks;
+	var templateSocialNetworks = function () {
+		var rtn = '';
 
-        if (socialNetworks) {
-            rtn = '<div class="pwag-clearfix pwag-social-networks">\
-	               	<p>' + config.loginViaSocialMedia + '</p>\
-	                <ul>';
+		if (socialNetworks) {
+			rtn = '\
+				<div class="pwag-clearfix pwag-social">\
+					<p class="pwag-social__message">' + config.loginViaSocialMedia + '</p>' +
+					socialButtons() +
+				'</div>\
+			';
+		}
+		return rtn;
+	};
 
-            for (var network in socialNetworks.networks) {
-                rtn += '<li><a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social-networks__button pwag-social-networks__button--' + network + '">' + network + '</a></li>';
-            }
-
-            rtn += '</ul>\
-	            </div>\
-            ';
-        }
-
-        return rtn;
-    }
-
-    var templateLogo = function () {
-        var rtn = '';
-        logoURL = configOverride.logoURL;
-        if (logoURL) {
-            rtn = '\
+	var templateLogo = function () {
+		var rtn = '';
+		logoURL = configOverride.logoURL;
+		if (logoURL) {
+			rtn = '\
 				<div class="pwag-logo">\
 					<img src="' + logoURL + '" class="pwag-logo__image">\
 				</div>\
 			';
-        }
-        return rtn;
-    };
+		}
+		return rtn;
+	};
 
-    var templateTerms = function () {
-        var termsText = config.termsText;
-        var termsLinks = config.termsLinks;
-        var rtn = '';
+	var templateTerms = function () {
+		var termsText = config.termsText;
+		var termsLinks = config.termsLinks;
+		var rtn = '';
 
-        if (termsText) {
-            rtn = termsText;
-        }
+		if (termsText) {
+			rtn = termsText;
+		}
 
-        if (termsText) {
-            rtn = parseLinks(termsText, termsLinks);
-        }
+		if (termsText) {
+			rtn = parseLinks(termsText, termsLinks);
+		}
 
-        if (rtn) {
-            rtn = '\
+		if (rtn) {
+			rtn = '\
 				<div class="pwag-clearfix pwag-terms">\
 					<p>' + rtn + '</p>\
 				</div>\
 			';
-        }
-        return rtn;
-    };
+		}
+		return rtn;
+	};
 
-    var templateModal = function () {
-        var rtn = '\
+	var templateModal = function () {
+		var rtn = '\
 			<div class="pwag-modal pwag-modal--' + direction + '" dir="' + direction + '">\
 				<div class="pwag-modal__outer">\
 					<div class="pwag-modal__inner">\
@@ -182,25 +184,25 @@ var pwagTemplate = (function () {
 				</div>\
 			</div>\
 		';
-        return rtn;
-    };
+		return rtn;
+	};
 
-    function parseLinks(orig, termsLinks) {
-        for (i = 0; i < termsLinks.length; i++) {
-            orig = pwagHelpers.replaceAll(orig, termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
-        }
-        return orig;
-    }
+	function parseLinks(orig, termsLinks) {
+		for (i = 0; i < termsLinks.length; i++) {
+			orig = pwagHelpers.replaceAll(orig, termsLinks[i].text, '<a href="' + termsLinks[i].url + '" class="pwag-terms__link">' + termsLinks[i].text + '</a>');
+		}
+		return orig;
+	}
 
-    var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
+	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
 
-    var templateMaster = '\
+	var templateMaster = '\
 		<div class="pwag-gate pwag-gate--' + direction + '" dir="' + direction + '">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
 					' + templateLogo() + '\
 					' + templateType + '\
-                    ' + templateSocialNetworks() + '\
+					' + templateSocialNetworks() + '\
 					' + templateTerms() + '\
 				</div>\
 			</div>\
@@ -208,13 +210,13 @@ var pwagTemplate = (function () {
 		' + templateModal() + '\
 	';
 
-    if (!pwagHelpers.getCookie(config.cookieName)) {
-        // Render HTML to page before any selectors are instantiated
-        pwagHelpers.appendHTML(document.body, templateMaster);
-    }
+	if (!pwagHelpers.getCookie(config.cookieName)) {
+		// Render HTML to page before any selectors are instantiated
+		pwagHelpers.appendHTML(document.body, templateMaster);
+	}
 
-    // 'Public' methods
-    return {
-        config: config
-    };
+	// 'Public' methods
+	return {
+		config: config
+	};
 })();
