@@ -1,26 +1,23 @@
 var pwagInit = (function(exports, d){
 	var config = pwagTemplate.config;
 	
-	function domReady(fn, ctx) {
-
-		function onReady(event) {
-			d.removeEventListener('DOMContentLoaded', onReady);
-			fn.call(ctx || exports, event);
-		}
-
-		function onReadyIe(event) {
-			if (d.readyState === 'complete') {
-				d.detachEvent('onreadystatechange', onReadyIe);
-				fn.call(ctx || exports, event);
+	if (document.addEventListener) {
+		document.addEventListener('DOMContentLoaded', function(){
+			document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+			domReady();
+		}, false);
+	} else if (document.attachEvent) {
+		document.attachEvent('onreadystatechange', function(){
+			if (document.readyState === 'complete') {
+				document.detachEvent('onreadystatechange', arguments.callee);
+				domReady();
 			}
-		}
+		});
+	}	
 
-		d.addEventListener && d.addEventListener('DOMContentLoaded', onReady) || d.attachEvent && d.attachEvent('onreadystatechange', onReadyIe);
-	}
-
-	domReady(function(){
+	function domReady(){
 		activateGate();
-	});
+	}
 
 	function activateGate(){
 		if(pwagHelpers.getCookie(config.cookieName)){
