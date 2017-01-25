@@ -259,6 +259,8 @@ body.pwag-gate-enabled {
 	margin: 0 5px;
 	color: #fff;
 	text-decoration: none;
+	background: none;
+	border: none;
 }
 .pwag-social__button--facebook {
 	background-color: #3b5998;

@@ -71,7 +71,7 @@
     var socialButtons = function() {
 		var networkMarkUp = '';
 		for (var network in config.socialNetworks) {
-			networkMarkUp += '<a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</a>';
+			networkMarkUp += '<button onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</button>';
 		}
 		return networkMarkUp;
 	};
