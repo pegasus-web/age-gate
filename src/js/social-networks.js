@@ -1,11 +1,19 @@
 ﻿var pwagSocialNetworks = (function () {
+
     // 'Private' variables
     var config = pwagTemplate.config;													// Config data from global variable
     var redirectPage = window.location.href;
     var gateElem = document.querySelector('.pwag-gate');
+    var socialContainer = document.querySelector('.pwag-social-container');
 
     var init = function () {
         hello.init(config.socialNetworks, { redirect_uri: redirectPage });
+
+        // Inject mark-up is here (rather than in the 'template.js' file)
+        // to allow future updates to pull back user profile information
+        // e.g. name/avatar for already-logged-in users. This info is not
+        // available without deeper/server-side auth processes.
+        injectMarkUp();
     };
 
     var login = function(network) {
@@ -33,7 +41,6 @@
 
     var authentication = {
         viaFacebook: function() {
-            // Call user information, for the given network
             hello('facebook').api('me', { fields: 'id,name,age_range' }).then(function (r) {
                 var ageRange = r.age_range;
                 if (!ageRange || !ageRange.min) {
@@ -45,7 +52,7 @@
             });
         },
         viaGoogle: function () {
-            hello('google').api('me').then(function (r) {
+           hello('google').api('me').then(function (r) {
                 if (!r.birthday) {
                     validateAge(-1, 'google');
                 } else {
@@ -56,10 +63,26 @@
 
                     validateAge(age, 'google');
                 }
-                logout('facebook');
+                logout('google');
             });
         }
     };
+
+    var socialButtons = function() {
+		var networkMarkUp = '';
+		for (var network in config.socialNetworks) {
+			networkMarkUp += '<a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</a>';
+		}
+		return networkMarkUp;
+	};
+
+	var templateSocialNetworks = function () {
+		return '<div class="pwag-clearfix pwag-social"><p class="pwag-social__message">' + config.loginViaSocialMedia + '</p>' + socialButtons() + '</div>';
+	};
+
+    function injectMarkUp(){
+        pwagHelpers.appendHTML(socialContainer, templateSocialNetworks());
+    }
 
     var validateAge = function (age, network) {
         if (age >= config.age) {
@@ -97,7 +120,6 @@
 
     return {
         init: init,
-        login: login,
-        isLoggedIn: isLoggedIn
+        login: login
     };
 })();

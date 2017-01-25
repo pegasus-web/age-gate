@@ -114,29 +114,6 @@ var pwagTemplate = (function () {
 		</div>\
 	';
 
-	var socialButtons = function() {
-		var networkMarkUp = '';
-		for (var network in socialNetworks) {
-			networkMarkUp += '<a href="#" onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</a>';
-			//console.log('Is ' + network + ' logged in? = ' + pwagSocialNetworks.isLoggedIn(network));
-		}
-		return networkMarkUp;
-	};
-
-	var templateSocialNetworks = function () {
-		var rtn = '';
-
-		if (socialNetworks) {
-			rtn = '\
-				<div class="pwag-clearfix pwag-social">\
-					<p class="pwag-social__message">' + config.loginViaSocialMedia + '</p>' +
-					socialButtons() +
-				'</div>\
-			';
-		}
-		return rtn;
-	};
-
 	var templateLogo = function () {
 		var rtn = '';
 		logoURL = configOverride.logoURL;
@@ -148,6 +125,10 @@ var pwagTemplate = (function () {
 			';
 		}
 		return rtn;
+	};
+
+	var templateSocial = function(){
+		return '<div class="pwag-social-container"></div>';
 	};
 
 	var templateTerms = function () {
@@ -202,7 +183,7 @@ var pwagTemplate = (function () {
 				<div class="pwag-gate__content">\
 					' + templateLogo() + '\
 					' + templateType + '\
-					' + templateSocialNetworks() + '\
+					' + templateSocial() + '\
 					' + templateTerms() + '\
 				</div>\
 			</div>\
