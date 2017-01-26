@@ -16,17 +16,28 @@
         injectMarkUp();
     };
 
-    var login = function(network) {
-        hello(network).login();
+    var login = function (network) {
+        var options = getLoginOptionsByNetwork(network);
+
+        hello(network).login(options);
     };
-    
+
     var logout = function (network) {
         hello(network).logout();
     };
 
-    var isLoggedIn = function(network){
+    var isLoggedIn = function (network) {
         return hello.getAuthResponse(network);
     };
+
+    var getLoginOptionsByNetwork = function (network) {
+        switch (network) {
+            case "windows":
+                return { scope: 'wl.birthday' };
+            default:
+                return {};
+        }
+    }
 
     hello.on('auth.login', function (auth) {
         switch (auth.network) {
@@ -36,11 +47,14 @@
             case 'google':
                 authentication.viaGoogle();
                 break;
+            case 'windows':
+                authentication.viaWindows();
+                break;
         }
     });
 
     var authentication = {
-        viaFacebook: function() {
+        viaFacebook: function () {
             hello('facebook').api('me', { fields: 'id,name,age_range' }).then(function (r) {
                 var ageRange = r.age_range;
                 if (!ageRange || !ageRange.min) {
@@ -52,35 +66,54 @@
             });
         },
         viaGoogle: function () {
-           hello('google').api('me').then(function (r) {
+            hello('google').api('me').then(function (r) {
                 if (!r.birthday) {
                     validateAge(-1, 'google');
                 } else {
                     var birthday = new Date(r.birthday);
-                    var ageDifMs = Date.now() - birthday.getTime();
-                    var ageDate = new Date(ageDifMs); // Milliseconds from epoch
-                    var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+                    var age = getAgeByBirthDate(birthday);
 
                     validateAge(age, 'google');
                 }
                 logout('google');
             });
+        },
+        viaWindows: function () {
+            hello('windows').api('me').then(function (r) {
+                if (!r.birth_year || !r.birth_month || !r.birth_day) {
+                    validateAge(-1, 'google');
+                } else {
+                    var birthDayPropertiesInDateFormat = r.birth_year + "-" + r.birth_month + '-' + r.birth_day;
+                    var birthday = new Date(birthDayPropertiesInDateFormat);
+                    var age = getAgeByBirthDate(birthday);
+
+                    validateAge(age, 'google');
+                }
+
+                logout('windows');
+            });
         }
     };
 
-    var socialButtons = function() {
-		var networkMarkUp = '';
-		for (var network in config.socialNetworks) {
-			networkMarkUp += '<button onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</button>';
-		}
-		return networkMarkUp;
-	};
+    var getAgeByBirthDate = function(birthday) {
+        var ageDifMs = Date.now() - birthday.getTime();
+        var ageDate = new Date(ageDifMs); // Milliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
 
-	var templateSocialNetworks = function () {
-		return '<div class="pwag-clearfix pwag-social"><p class="pwag-social__message">' + config.loginViaSocialMedia + '</p>' + socialButtons() + '</div>';
-	};
+    var socialButtons = function () {
+        var networkMarkUp = '';
+        for (var network in config.socialNetworks) {
+            networkMarkUp += '<button onclick="pwagSocialNetworks.login(\'' + network + '\')" class="pwag-social__button pwag-social__button--' + network + '">' + network + '</button>';
+        }
+        return networkMarkUp;
+    };
 
-    function injectMarkUp(){
+    var templateSocialNetworks = function () {
+        return '<div class="pwag-clearfix pwag-social"><p class="pwag-social__message">' + config.loginViaSocialMedia + '</p>' + socialButtons() + '</div>';
+    };
+
+    function injectMarkUp() {
         pwagHelpers.appendHTML(socialContainer, templateSocialNetworks());
     }
 
@@ -105,10 +138,10 @@
 
     function openGate() {
         var w = window,
-			d = document,
-			e = d.documentElement,
-			g = d.getElementsByTagName('body')[0],
-			windowHeight = w.innerHeight || e.clientHeight || g.clientHeight;
+            d = document,
+            e = d.documentElement,
+            g = d.getElementsByTagName('body')[0],
+            windowHeight = w.innerHeight || e.clientHeight || g.clientHeight;
 
         gateElem.style.transform = 'translate(0px, ' + (-windowHeight) + 'px)';
 
