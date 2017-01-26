@@ -18,11 +18,11 @@
 
     var login = function (network) {
         var options = getLoginOptionsByNetwork(network);
-
         hello(network).login(options);
     };
 
     var logout = function (network) {
+        
         hello(network).logout();
     };
 
@@ -50,6 +50,9 @@
             case 'windows':
                 authentication.viaWindows();
                 break;
+            // case 'twitter':
+            //     authentication.viaTwitter();
+            //     break;
         }
     });
 
@@ -78,16 +81,22 @@
                 logout('google');
             });
         },
+        // viaTwitter: function () {
+        //     hello('twitter').api('me').then(function (r) {
+        //         console.log(r);
+        //         logout('twitter');
+        //     });
+        // },
         viaWindows: function () {
             hello('windows').api('me').then(function (r) {
                 if (!r.birth_year || !r.birth_month || !r.birth_day) {
-                    validateAge(-1, 'google');
+                    validateAge(-1, 'windows');
                 } else {
                     var birthDayPropertiesInDateFormat = r.birth_year + "-" + r.birth_month + '-' + r.birth_day;
                     var birthday = new Date(birthDayPropertiesInDateFormat);
                     var age = getAgeByBirthDate(birthday);
 
-                    validateAge(age, 'google');
+                    validateAge(age, 'windows');
                 }
 
                 logout('windows');
