@@ -30,20 +30,21 @@ var pwagInit = (function(exports, d){
 				pwagBirthday.initGate();
 				if(window.addEventListener){
 					window.addEventListener('resize', pwagBirthday.windowResize);
-				}else{
+				} else {
 					window.attachEvent('resize', function(){
 						pwagBirthday.windowResize;
 					});
 				}
 
-				if (pwagTemplate.config.socialNetworks) {
-				    pwagSocialNetworks.init();
+				if (pwagTemplate.config.socialNetworks !== undefined) {
+					pwagSocialNetworks.init();
 				}
-			}else{
+				
+			} else {
 				pwagYesNo.initGate();
 				if(window.addEventListener){
 					window.addEventListener('resize', pwagYesNo.windowResize);
-				}else{
+				} else {
 					window.attachEvent('resize', function(){
 						pwagYesNo.windowResize;
 					});
