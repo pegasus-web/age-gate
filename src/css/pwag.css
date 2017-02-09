@@ -155,7 +155,12 @@ body.pwag-gate-enabled {
 	height: 170px;			/* Height of .pwag-date-box minus border */
 	line-height: 0 !important;
 	transform: scale(0);
+	-ms-transform: scale(0);
+	-webkit-transform: scale(0);
 	outline: none;
+}
+.pwag-date-box__input:focus { 
+	text-indent: -9999em;
 }
 .pwag-date-box__placeholder {
 	z-index: 2;
