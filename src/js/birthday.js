@@ -108,7 +108,15 @@ var pwagBirthday = (function(){
 	}
 	
 	function onDateBoxClick(e){
-		element = e.target.parentNode;
+
+		// Ensure correct element being clicked
+		var elemClass = e.target.getAttribute('class');
+		if(elemClass == 'pwag-date-box__value' || elemClass == 'pwag-date-box__placeholder' || elemClass == 'pwag-date-box__input'){
+			element = e.target.parentNode;
+		}else{
+			element = e.target;
+		}
+
 		var newGroupIndex = pwagHelpers.index(element.parentNode);
 		groupIndex = newGroupIndex;
 		editIndex = pwagHelpers.index(element) - 1;
