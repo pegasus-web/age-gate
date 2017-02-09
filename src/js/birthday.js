@@ -110,11 +110,10 @@ var pwagBirthday = (function(){
 	function onDateBoxClick(e){
 
 		// Ensure correct element being clicked
-		var elemClass = e.target.getAttribute('class');
+		element = e.target;
+		var elemClass = element.getAttribute('class');
 		if(elemClass == 'pwag-date-box__value' || elemClass == 'pwag-date-box__placeholder' || elemClass == 'pwag-date-box__input'){
-			element = e.target.parentNode;
-		}else{
-			element = e.target;
+			element = element.parentNode;
 		}
 
 		var newGroupIndex = pwagHelpers.index(element.parentNode);
@@ -308,10 +307,12 @@ var pwagBirthday = (function(){
 	}
 
 	function showError(messageId) {
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
 	}
 
 	function hideErrors() {
+		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
 	}
 
