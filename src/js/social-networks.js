@@ -37,7 +37,7 @@
             default:
                 return {};
         }
-    }
+    };
 
     hello.on('auth.login', function (auth) {
         switch (auth.network) {
@@ -108,7 +108,7 @@
         var ageDifMs = Date.now() - birthday.getTime();
         var ageDate = new Date(ageDifMs); // Milliseconds from epoch
         return Math.abs(ageDate.getUTCFullYear() - 1970);
-    }
+    };
 
     var socialButtons = function () {
         var networkMarkUp = '';
