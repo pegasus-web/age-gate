@@ -1,14 +1,14 @@
 var pwagHelpers = (function(){
 
 	// 'Private' variables
-    var s = '(\\s|^)';		// Space or start
-    var e = '(\\s|$)';		// Space or end
+	var s = '(\\s|^)';		// Space or start
+	var e = '(\\s|$)';		// Space or end
 	var enableLogging = true;
 
 	// 'Private' methods
-    var getRegex = function(className){
-        return new RegExp(s + className + e, 'g');
-    };
+	var getRegex = function(className){
+		return new RegExp(s + className + e, 'g');
+	};
 
 	var padString = function(string){
 		return ' ' + string + ' ';

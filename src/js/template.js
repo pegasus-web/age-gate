@@ -31,7 +31,7 @@ var pwagTemplate = (function () {
 		direction: ''
 	};
 
-    var configOverride = window.pwagConfig;
+	var configOverride = window.pwagConfig;
 
 	// 'Merge' custom config values into defaults
 	config = pwagHelpers.extendConfig(config, configOverride);
