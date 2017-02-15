@@ -1,4 +1,3 @@
-﻿
 var pwagSocialNetworks = (function() {
 
 	// 'Private' variables
