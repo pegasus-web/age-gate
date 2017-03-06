@@ -273,6 +273,7 @@ body.pwag-gate-enabled {
 	text-decoration: none;
 	background: none;
 	border: none;
+	cursor: pointer;
 }
 .pwag-social__button--facebook {
 	background-color: #3b5998;
