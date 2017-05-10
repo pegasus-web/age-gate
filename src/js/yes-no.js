@@ -85,4 +85,4 @@ var pwagYesNo = (function(){
 	return {
 		initGate: initGate
 	};
-})();
+});

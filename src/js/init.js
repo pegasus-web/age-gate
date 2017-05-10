@@ -1,6 +1,6 @@
 var pwagInit = (function(exports, d){
-	var config = pwagTemplate.config;
-	
+	var config;
+
 	if (document.addEventListener) {
 		document.addEventListener('DOMContentLoaded', function(){
 			document.removeEventListener('DOMContentLoaded', arguments.callee, false);
@@ -16,6 +16,13 @@ var pwagInit = (function(exports, d){
 	}	
 
 	function domReady(){
+		pwagHelpers = pwagHelpers();
+		pwagTemplate = pwagTemplate();
+		config = pwagTemplate.config;
+		pwagBirthday = pwagBirthday();
+		pwagYesNo = pwagYesNo();
+		pwagLinks = pwagLinks();
+		pwagSocialNetworks = pwagSocialNetworks();
 		activateGate();
 	}
 

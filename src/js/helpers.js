@@ -231,4 +231,4 @@ var pwagHelpers = (function(){
 		}
 	};
 
-})();
+});

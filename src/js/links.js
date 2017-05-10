@@ -119,4 +119,4 @@ var pwagLinks = (function(){
 		initLinks: initLinks,
 		windowResize: windowResize
 	};
-})();
+});

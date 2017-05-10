@@ -177,4 +177,4 @@ var pwagSocialNetworks = (function() {
 		init: init,
 		login: login
 	};
-})();
+});

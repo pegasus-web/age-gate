@@ -200,4 +200,4 @@ var pwagTemplate = (function () {
 	return {
 		config: config
 	};
-})();
+});

@@ -367,4 +367,4 @@ var pwagBirthday = (function(){
 		initGate: initGate,
 		windowResize: windowResize
 	};
-})();
+});
