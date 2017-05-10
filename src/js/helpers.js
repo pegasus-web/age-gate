@@ -102,14 +102,36 @@ var pwagHelpers = (function(){
 			}
 			return original;
 		},
+		hasClass: function(element, className){
+			if (element.classList){
+				var checkClass = false;
+				var classNames = className.split(' ');
+				for (var i = 0; i < classNames.length; i++){
+					var thisClassName = classNames[i].trim();
+					if(thisClassName){
+						if(element.classList.contains(thisClassName)){
+							checkClass = true;
+						}
+					}
+				}
+				return checkClass;
+			}else{
+				return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+			}
+		},
 		addClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
 			for (var i = 0; i < elements.length; i++) {
-				elements[i].className += padString(className);				
+				var thisEl = elements[i];
+				if(!pwagHelpers.hasClass(thisEl, thisEl.className)){
+					thisEl.className += padString(className);
+				}
 			}
 		},
 		addClassToElement: function(element, className){ // TODO: remove this function and refactor 'addClass' so it can accept single or multiple elements (get to bottom of weird typing issue)
-			element.className += padString(className);
+			if(!pwagHelpers.hasClass(element, className)){
+				element.className += padString(className);
+			}
 		},
 		removeClass: function(elements, className){
 			elements = this.nodeListToArray(elements);
