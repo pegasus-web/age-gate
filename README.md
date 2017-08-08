@@ -31,6 +31,12 @@ alcoholic nature of the Carlsberg Group websites.
 
 
 ## Installation
+- Clone repo
+- Use Node.js command prompt to change directory to cloned repo on local file system
+- Run `npm install`
+- Run `gulp` for minified production build or `gulp dev` for non-minified development build
+
+## Website Integration
 
 Place CSS file in html head:
 
@@ -41,7 +47,7 @@ Place CSS file in html head:
 </head>
 ```
 
-Place JS config and file before end of </body>.
+Place JS config and file before end of `</body>`.
 
 ```html
 <!-- Begin Pegasus Web Age Gate -->
