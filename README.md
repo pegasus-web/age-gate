@@ -23,7 +23,7 @@ alcoholic nature of the Carlsberg Group websites.
 - [x] Custom text
 - [x] Links to T&amp;Cs (overlay)
 - [x] Skinned or unstyled
-- [ ] Social Identity Verification (via [Hello.js](https://adodson.com/hello.js/))
+- [x] Social Identity Verification (via [Hello.js](https://adodson.com/hello.js/))
   - [x] Facebook
   - [x] Google+
   - [ ] Twitter (new - if added DoB to profile)

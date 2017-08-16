@@ -7,7 +7,6 @@
 .pwag-clearfix:after {
 	clear: both;
 }
-
 .pwag-gate {
   box-sizing: border-box;
   will-change: transform;
@@ -15,13 +14,13 @@
 .pwag-gate *, .pwag-gate *:before, .pwag-gate *:after {
   box-sizing: inherit;
 }
-
 .pwag-show {
     display: block !important;
+	width: 100%;
 }
-
 body.pwag-gate-enabled .pwag-gate {
 	display: block;
+	width: 100%;
 }
 body.pwag-gate-enabled {
 	overflow: hidden;
@@ -43,6 +42,11 @@ body.pwag-gate-enabled {
 }
 .pwag-gate p {
 	color: #fff;
+}
+.pwag-gate__inner,
+.pwag-gate__content,
+.pwag-birthday-groups {
+	width: 100%;
 }
 .pwag-gate__inner {
 	position: static;
@@ -202,7 +206,6 @@ body.pwag-gate-enabled {
 	padding: 0 20px;
 	text-align: center;
 }
-
 .pwag-yes-no {
 	max-width: 600px;
 	margin: 0 auto;
@@ -214,7 +217,6 @@ body.pwag-gate-enabled {
 	padding: 15px 30px;
 	cursor: pointer;
 }
-
 .pwag-modal {
 	display: none;
 	opacity: 0;
@@ -286,7 +288,6 @@ body.pwag-gate-enabled {
 }
 
 @media (max-width: 767px) {
-
 	.pwag-date-box {
 		border-width: 5px;
 		width: 57px;
