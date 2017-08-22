@@ -54,7 +54,7 @@ var pwagTemplate = (function () {
 	var templateBirthday = '\
 		<div class="pwag-clearfix pwag-birthday-groups">\
 			<div class="pwag-clearfix pwag-birthday-groups__inner">\
-				<div class="pwag-birthday-group">\
+				<div class="pwag-birthday-group pwag-birthday-group--y">\
 					<p class="pwag-birthday-group__instruction pwag-instruction">' + config.enterTextYear + '</p>\
 					<div class="pwag-date-box pwag-date-box--valid pwag-date-box--0">\
 						<span class="pwag-date-box__value">1</span>\
@@ -77,7 +77,7 @@ var pwagTemplate = (function () {
 						<input type="number" class="pwag-date-box__input" />\
 					</div>\
 				</div>\
-				<div class="pwag-birthday-group">\
+				<div class="pwag-birthday-group pwag-birthday-group--m">\
 					<p class="pwag-birthday-group__instruction pwag-instruction">' + config.enterTextMonth + '</p>\
 					<div class="pwag-date-box pwag-date-box--4">\
 						<span class="pwag-date-box__value"></span>\
@@ -90,7 +90,7 @@ var pwagTemplate = (function () {
 						<input type="number" class="pwag-date-box__input" />\
 					</div>\
 				</div>\
-				<div class="pwag-birthday-group">\
+				<div class="pwag-birthday-group pwag-birthday-group--d">\
 					<p class="pwag-birthday-group__instruction pwag-instruction">' + config.enterTextDay + '</p>\
 					<div class="pwag-date-box pwag-date-box--6">\
 						<span class="pwag-date-box__value"></span>\

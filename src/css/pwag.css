@@ -83,6 +83,10 @@ body.pwag-gate-enabled {
 	padding: 0 20px;
 	visibility: hidden;
 	text-align: center;
+	font-size: 0;
+}
+.pwag-birthday-group--y {
+	width: 588px;
 }
 .pwag-birthday-group--visible {
 	visibility: visible;
@@ -288,6 +292,9 @@ body.pwag-gate-enabled {
 }
 
 @media (max-width: 767px) {
+	.pwag-birthday-group--y {
+		width: 308px;
+	}
 	.pwag-date-box {
 		border-width: 5px;
 		width: 57px;
