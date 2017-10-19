@@ -9,9 +9,12 @@ var gulp 	= require('gulp'),
 
 var config = {
 	styles : {
-		src: './src/css/**.css',
+		src  : './src/css/**.css',
 		dest : './dist/css',
-		name : 'pwag.css'
+		name : {
+			dev  : 'pwag.css',
+			dist : 'pwag.min.css'
+		}
 	},
 	scripts : {
 		src : [
@@ -26,36 +29,45 @@ var config = {
 			'./src/js/init.js'
 		],
 		dest : './dist/js',
-		name : 'pwag.js'
+		name : {
+			dev  : 'pwag.js',
+			dist : 'pwag.min.js'
+		}
 	}
 }
 
-gulp.task('styles', function() {
+gulp.task('styles-dev', function() {
 	return gulp.src(config.styles.src)
-		.pipe(concat(config.styles.name))
-		.pipe(cssnano())
+		.pipe(concat(config.styles.name.dev))
 		.pipe(gulp.dest(config.styles.dest));
 });
 
-gulp.task('scripts', function(){
-	return gulp.src(config.scripts.src)
-		.pipe(concat(config.scripts.name))
-		.pipe(uglify().on('error', gutil.log))
-		.pipe(gulp.dest(config.scripts.dest));
+gulp.task('styles', function() {
+	return gulp.src(config.styles.src)
+		.pipe(concat(config.styles.name.dist))
+		.pipe(cssnano())
+		.pipe(gulp.dest(config.styles.dest));
 });
 
 gulp.task('scripts-dev', function(){
 	return gulp.src(config.scripts.src)
 		.pipe(jshint())
-		.pipe(concat(config.scripts.name))
+		.pipe(concat(config.scripts.name.dev))
 		.pipe(jshint.reporter(stylish))
 		.pipe(gulp.dest(config.scripts.dest));
 });
 
+gulp.task('scripts', function(){
+	return gulp.src(config.scripts.src)
+		.pipe(concat(config.scripts.name.dist))
+		.pipe(uglify().on('error', gutil.log))
+		.pipe(gulp.dest(config.scripts.dest));
+});
+
 gulp.task('default', ['scripts', 'styles']);
-gulp.task('dev', ['scripts-dev', 'styles', 'watch']);
+gulp.task('dev', ['scripts-dev', 'styles-dev', 'watch']);
 
 gulp.task('watch', function() {
-	gulp.watch(config.styles.src, ['styles']);
+	gulp.watch(config.styles.src, ['styles-dev']);
 	gulp.watch(config.scripts.src, ['scripts-dev']);
 });
