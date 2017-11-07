@@ -161,7 +161,6 @@ body.pwag-gate-enabled {
 	text-align: left;
 	font-size: 0;
 	height: 170px;			/* Height of .pwag-date-box minus border */
-	line-height: 0 !important;
 	transform: scale(0);
 	-ms-transform: scale(0);
 	-webkit-transform: scale(0);
