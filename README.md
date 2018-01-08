@@ -101,7 +101,7 @@ TODO: Provide details of default values and formatting of termsLinks option.
 
 ## License
 
-Copyright &copy; 2017 Umbrella Inc Ltd
+Copyright &copy; 2016 Umbrella Inc Ltd
 
 This project is licensed under [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 

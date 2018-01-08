@@ -10,7 +10,7 @@
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-	<link href="/dist/css/pwag.css?v=2" rel="stylesheet">
+	<link href="/dist/css/pwag.min.css?v=3" rel="stylesheet">
 	<title>Pegasus Web Age Gate</title>
 
 	<script>
@@ -57,9 +57,10 @@
 			var config = pwagTemplate.config;
 			var cookieName = config.cookieName || 'pwag';
 			document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			document.location.reload();
 		}
 	</script>
-	<script src="/dist/js/pwag.js?v=2"></script>
+	<script src="/dist/js/pwag.min.js?v=3"></script>
 
 </head>
 
