@@ -9,27 +9,6 @@ confirm that a website visitor is of the age required (by law) to view
 the website's contents. In the case of Pegasus Web this is due to the 
 alcoholic nature of the Carlsberg Group websites.
 
-
-### Potential Features
-
-- [x] Validate any age
-- [x] Custom Logo
-- [x] Custom Background
-- [x] Choose Age Gate prompt method
-  - [x] Date of Birth input
-  - [x] Yes/No
-- [x] Choose cookie expiry length
-- [ ] Choose location of underage redirect
-- [x] Custom text
-- [x] Links to T&amp;Cs (overlay)
-- [x] Skinned or unstyled
-- [x] Social Identity Verification (via [Hello.js](https://adodson.com/hello.js/))
-  - [x] Facebook
-  - [x] Google+
-  - [ ] Twitter (new - if added DoB to profile)
-- [ ] HTTPS/SSL Connection
-
-
 ## Installation
 - Clone repo
 - Use Node.js command prompt to change directory to cloned repo on local file system
