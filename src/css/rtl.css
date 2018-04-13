@@ -1,0 +1,14 @@
+html[dir="rtl"] .pwag-birthday-group,
+.pwag-gate--rtl .pwag-birthday-group {
+	float: right;
+	direction: ltr;
+}
+html[dir="rtl"] .pwag-modal__close,
+.pwag-modal--rtl .pwag-modal__close {
+	right: auto;
+	left: 10px;
+}
+html[dir="rtl"] .pwag-birthday-group__instruction,
+.pwag-modal--rtl .pwag-birthday-group__instruction {
+	direction: rtl;
+}

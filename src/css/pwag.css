@@ -1,0 +1,324 @@
+/* Helpers */
+.pwag-clearfix:before,
+.pwag-clearfix:after {
+	content: " ";
+	display: table;
+}
+.pwag-clearfix:after {
+	clear: both;
+}
+.pwag-gate {
+  box-sizing: border-box;
+  will-change: transform;
+}
+.pwag-gate *, .pwag-gate *:before, .pwag-gate *:after {
+  box-sizing: inherit;
+}
+.pwag-show {
+    display: block !important;
+	width: 100%;
+}
+body.pwag-gate-enabled .pwag-gate {
+	display: block;
+	width: 100%;
+}
+body.pwag-gate-enabled {
+	overflow: hidden;
+}
+.pwag-gate {
+	display: none;
+	position: fixed;
+	background: rgb(0,0,0);
+	background: rgba(0,0,0,0.9);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1035; /* Bootstrap nav has z-index of 1030, modal has z-index of 1040, so this value needs to fall between! */
+	-webkit-transition: all 450ms cubic-bezier(0.77, 0, 0.175, 1);
+	transition:         all 450ms cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
+}
+.pwag-gate p {
+	color: #fff;
+}
+.pwag-gate__inner,
+.pwag-gate__content,
+.pwag-birthday-groups {
+	width: 100%;
+}
+.pwag-gate__inner {
+	position: static;
+	overflow-y: scroll;
+	height: 100%;
+}
+.pwag-logo {
+	padding: 50px 20px 20px 20px;
+	text-align: center;
+}
+.pwag-logo__image {
+	width: 150px;
+}
+.pwag-instruction {
+	font-size: 30px;
+	margin: 30px 0;
+}
+.pwag-birthday-groups {
+	position: relative;
+	height: 300px;
+	overflow: hidden;
+}
+.pwag-birthday-groups__inner {
+	position: absolute;
+	z-index: 2;
+	height: 300px;
+	width: 2000px; /* Set large width to prevent wrapping on some mobiles */
+	-webkit-transition: left 450ms cubic-bezier(0.77, 0, 0.175, 1);
+	transition:         left 450ms cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
+}
+.pwag-birthday-group  {
+	float: left;
+	padding: 0 20px;
+	visibility: hidden;
+	text-align: center;
+	font-size: 0;
+}
+.pwag-birthday-group--y {
+	width: 588px;
+}
+.pwag-birthday-group--visible {
+	visibility: visible;
+}
+.pwag-birthday-group__instruction {
+	margin: 15px 0;
+	opacity: 0;
+	-webkit-transition: opacity 0.15s ease-in-out;
+	-moz-transition: opacity 0.15s ease-in-out;
+	-o-transition : opacity 0.15s ease-in-out;
+	transition: opacity 0.15s ease-in-out;
+}
+.pwag-current .pwag-birthday-group__instruction {
+	opacity: 1;
+}
+.pwag-date-box {
+	display: inline-block;
+	width: 127px;
+	height: 180px;
+	position: relative;
+	background: #fff;
+	margin: 0 5px;
+	border: 5px solid transparent;
+	-webkit-transition : border 150ms ease-in-out;
+	-moz-transition : border 150ms ease-in-out;
+	-o-transition : border 150ms ease-in-out;
+	transition : border 150ms ease-in-out;
+	zoom: 1;
+}
+.pwag-date-box--valid {
+	border-color: #0f0;
+}
+.pwag-invalid .pwag-date-box {
+	border-color: #f00 !important;
+}
+.pwag-success .pwag-date-box {
+	border-color: #00f !important;
+}
+.pwag-date-box--focus {
+	border-color: #ff0;
+}
+.pwag-date-box--valid .pwag-date-box__placeholder {
+	display: none;
+}
+.pwag-date-box__input,
+.pwag-date-box__value,
+.pwag-date-box__placeholder {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	width: 117px;			/* Width of .pwag-date-box minus border */
+	height: 170px;			/* Height of .pwag-date-box minus border */
+	line-height: 170px;		/* Height of .pwag-date-box minus border */
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
+}
+.pwag-date-box__value,
+.pwag-date-box__placeholder {
+	font-size: 100px;
+	font-weight: bold;
+}
+.pwag-date-box__input {
+	opacity: 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	border: none;
+	z-index: 3;
+	background: transparent !important;
+	color: transparent !important;
+	cursor: none;
+	text-align: left;
+	font-size: 0;
+	height: 170px;			/* Height of .pwag-date-box minus border */
+	transform: scale(0);
+	-ms-transform: scale(0);
+	-webkit-transform: scale(0);
+	outline: none;
+}
+.pwag-date-box__input:focus { 
+	text-indent: -9999em;
+}
+.pwag-date-box__placeholder {
+	z-index: 2;
+}
+.pwag-feedback {
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	opacity: 0;
+	-webkit-transition: opacity 0.15s ease-in-out;
+	-moz-transition: 	opacity 0.15s ease-in-out;
+	-o-transition : 	opacity 0.15s ease-in-out;
+	transition: 		opacity 0.15s ease-in-out;
+}
+.pwag-feedback.pwag-show {
+	opacity: 1;
+}
+.pwag-feedback__message {
+	display: none;
+}
+.pwag-feedback__message.pwag-show {
+	display: block;
+	opacity: 1;
+}
+.pwag-ie8-true .pwag-feedback__message {
+	visibility: hidden;
+}
+.pwag-ie8-true .pwag-feedback__message.pwag-show {
+	visibility: visible;
+}
+.pwag-feedback--relative {
+	position: relative;
+	margin: 20px 0 0 0;
+}
+.pwag-terms {
+	padding: 0 20px;
+	text-align: center;
+}
+.pwag-yes-no {
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+}
+.pwag-yes-no__option {
+	font-size: 16px;
+	padding: 15px 30px;
+	cursor: pointer;
+}
+.pwag-modal {
+	display: none;
+	opacity: 0;
+	position: fixed;
+	background: rgb(0,0,0);
+	background: rgba(0,0,0,0.9);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1034; /* Needs to be lower than .pwag-gate */	
+	-webkit-transition: opacity 0.15s ease-in-out;
+	-moz-transition: 	opacity 0.15s ease-in-out;
+	-o-transition : 	opacity 0.15s ease-in-out;
+	transition: 		opacity 0.15s ease-in-out;
+}
+.pwag-gate-enabled .pwag-modal {
+	display: table;
+}
+.pwag-modal--visible {
+	opacity: 1;
+	z-index: 1036; /* Needs to be higher than .pwag-gate */	
+}
+.pwag-modal__outer {
+	vertical-align: middle;
+    display: table-cell;
+	padding: 0 15px;
+}
+.pwag-modal__inner {
+	position: relative;
+	max-width: 600px;
+	padding: 30px;
+	background-color: #fff;
+	margin: 0 auto;
+	text-align: left;
+}
+.pwag-modal__content {
+	overflow-y: auto;
+}
+.pwag-modal__close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	-webkit-transform: translate3d(0, 0, 0); /* Fix for Android 4.x on 'some' devices to overcome non-selection of gate content */
+}
+.pwag-social {
+	text-align: center;
+}
+.pwag-social__button {
+	display: inline-block;
+	padding: 10px;
+	margin: 0 5px;
+	color: #fff;
+	text-decoration: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+.pwag-social__button--facebook {
+	background-color: #3b5998;
+}
+.pwag-social__button--google {
+	background-color: #d34836;
+}
+.pwag-social__button--windows {
+	background-color: #0078D7;
+}
+
+@media (max-width: 767px) {
+	.pwag-birthday-group--y {
+		width: 308px;
+	}
+	.pwag-date-box {
+		border-width: 5px;
+		width: 57px;
+		height: 81px;
+	}
+	.pwag-date-box__input,
+	.pwag-date-box__value,
+	.pwag-date-box__placeholder {
+		width: 47px;
+		height: 71px;
+		line-height: 71px;
+	}
+	.pwag-date-box__input {
+		font-size: 1px;
+	}
+	.pwag-date-box__value,
+	.pwag-date-box__placeholder {
+		font-size: 30px;
+		font-weight: bold;
+	}
+	.pwag-birthday-groups {
+		height: 180px;
+	}
+	.pwag-instruction {
+		font-size: 20px;
+		margin: 20px 0;
+	}
+}
