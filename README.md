@@ -55,6 +55,7 @@ Place JS config and file before end of `</body>`.
 		termsLinks: [],
 		cookieName: 'pwag',
 		cookieExpiry: 365,
+		domain: '',
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
 		// Only used in Birthday Age Gate

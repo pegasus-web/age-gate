@@ -28,7 +28,8 @@ var pwagTemplate = (function () {
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
-		direction: ''
+		direction: '',
+		domain: pwagHelpers.getDomain()
 	};
 
     var configOverride = window.pwagConfig;

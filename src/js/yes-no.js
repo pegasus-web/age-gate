@@ -57,7 +57,7 @@ var pwagYesNo = (function(){
 
 
 	function initOpenGate() {
-		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		pwagHelpers.addClass(options, 'pwag-yes-no--success');
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
