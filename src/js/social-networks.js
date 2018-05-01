@@ -154,7 +154,7 @@ var pwagSocialNetworks = (function() {
 	}
 
 	function initOpenGate() {
-		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
 

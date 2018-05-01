@@ -31,7 +31,7 @@ Place JS config and file before end of `</body>`.
 ```html
 <!-- Begin Pegasus Web Age Gate -->
 <script>
-  var config = {
+	window.pwagConfig = {
 		logoURL: '',
 		type: 'birthday',
 		age: 18,
@@ -45,8 +45,8 @@ Place JS config and file before end of `</body>`.
 		errorInvalidMonth: 'The month you entered is invalid',
 		errorInvalidDay: 'The day you entered is invalid',
 		errorNotOldEnough: 'You are not old enough to enter this site',
-		loginViaSocialMedia: 'Log in with'
-		unableToGetSocialData: ''
+		loginViaSocialMedia: 'Log in with',
+		unableToGetSocialData: '',
 		yesNoQuestion: 'Are you old enough to enter this site?',
 		yes: 'Yes',
 		no: 'No',
@@ -55,6 +55,7 @@ Place JS config and file before end of `</body>`.
 		termsLinks: [],
 		cookieName: 'pwag',
 		cookieExpiry: 365,
+		domain: '',
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
 		// Only used in Birthday Age Gate

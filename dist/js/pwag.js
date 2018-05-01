@@ -191,10 +191,10 @@ var pwagHelpers = (function(){
 			var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 			return v ? v[2] : null;
 		},
-		setCookie: function(name, value, days) {
+		setCookie: function(name, value, days, domain) {
 			var d = new Date();
 			d.setTime(d.getTime() + 24*60*60*1000*days);
-			document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+			document.cookie = name + "=" + value + ";path=/;domain=." + domain + ";expires=" + d.toGMTString();
 		},
 		getWindowDims: function(){
 			var w = window,
@@ -228,7 +228,16 @@ var pwagHelpers = (function(){
 		dispose: function(){
 			removeDOMElements();
 			removeListeners();
-		}
+		},
+		getDomain: function(){
+			var i = 0, domain = document.domain, p = domain.split('.'), s = '_gd'+(new Date()).getTime();
+			while(i<(p.length-1) && document.cookie.indexOf(s+'='+s)==-1){
+				domain = p.slice(-1-(++i)).join('.');
+				document.cookie = s+"="+s+";domain="+domain+";";
+			}
+			document.cookie = s+"=;expires=Thu, 01 Jan 1970 00:00:01 GMT;domain="+domain+";";
+			return domain;
+		 }
 	};
 
 });
@@ -262,7 +271,8 @@ var pwagTemplate = (function () {
 		cookieExpiry: 365,
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
-		direction: ''
+		direction: '',
+		domain: pwagHelpers.getDomain()
 	};
 
     var configOverride = window.pwagConfig;
@@ -755,7 +765,7 @@ var pwagBirthday = (function(){
 	}
 
 	function initOpenGate() {
-		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		pwagHelpers.addClassToElement(gateElem, 'pwag-success');
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
@@ -865,7 +875,7 @@ var pwagYesNo = (function(){
 
 
 	function initOpenGate() {
-		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		pwagHelpers.addClass(options, 'pwag-yes-no--success');
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
@@ -1175,7 +1185,7 @@ var pwagSocialNetworks = (function() {
 	}
 
 	function initOpenGate() {
-		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
 

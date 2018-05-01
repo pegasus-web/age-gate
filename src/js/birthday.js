@@ -317,7 +317,7 @@ var pwagBirthday = (function(){
 	}
 
 	function initOpenGate() {
-		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry);
+		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		pwagHelpers.addClassToElement(gateElem, 'pwag-success');
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
