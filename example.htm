@@ -43,7 +43,19 @@
 				name: 'facebook',
 				clientId: '571096756427695'
 			}],
-			focusBoxIndex: 0
+			focusBoxIndex: 0,
+			beforeRender: function(){
+				console.log('beforeRender');
+			},
+			afterRender: function(){
+				console.log('afterRender');
+			},
+			beforeSuccess: function(){
+				console.log('beforeSuccess');
+			},
+			afterSuccess: function(){
+				console.log('afterSuccess');
+			}
 		};
 
 		/* Delete cookie - not required in production */

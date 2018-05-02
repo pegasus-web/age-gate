@@ -274,7 +274,11 @@ var pwagTemplate = (function () {
 		direction: '',
 		domain: pwagHelpers.getDomain(),
 		focusGroupIndex: 0,
-		focusBoxIndex: 2
+		focusBoxIndex: 2,
+		beforeRender: function(){},
+		afterRender: function(){},
+		beforeSuccess: function(){},
+		afterSuccess: function(){}
 	};
 
     var configOverride = window.pwagConfig;
@@ -767,6 +771,7 @@ var pwagBirthday = (function(){
 	}
 
 	function initOpenGate() {
+		config.beforeSuccess();
 		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		pwagHelpers.addClassToElement(gateElem, 'pwag-success');
 		setTimeout(openGate, config.delayBeforeOpenGate);
@@ -784,6 +789,7 @@ var pwagBirthday = (function(){
 		setTimeout(function () {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			pwagHelpers.dispose();
+			config.afterSuccess();
 		}, 450);
 	}
 
@@ -877,6 +883,7 @@ var pwagYesNo = (function(){
 
 
 	function initOpenGate() {
+		config.beforeSuccess();
 		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		pwagHelpers.addClass(options, 'pwag-yes-no--success');
 		setTimeout(openGate, config.delayBeforeOpenGate);
@@ -894,6 +901,7 @@ var pwagYesNo = (function(){
 		setTimeout(function () {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			pwagHelpers.dispose();
+			config.afterSuccess();
 		}, 450);
 	}
 
@@ -1187,6 +1195,7 @@ var pwagSocialNetworks = (function() {
 	}
 
 	function initOpenGate() {
+		config.beforeSuccess();
 		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
@@ -1203,6 +1212,7 @@ var pwagSocialNetworks = (function() {
 		setTimeout(function() {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			pwagHelpers.dispose();
+			config.afterSuccess();
 		}, 450);
 	}
 
@@ -1244,6 +1254,7 @@ var pwagInit = (function(exports, d){
 		if(pwagHelpers.getCookie(config.cookieName)){
 			return;
 		}else{
+			config.beforeRender();
 			// Set body class to show age gate in UI and add IE8 class if necessary
 			pwagHelpers.addClassToElement(document.body, 'pwag-gate-enabled pwag-ie8-' + pwagHelpers.isIE8());
 
@@ -1271,6 +1282,7 @@ var pwagInit = (function(exports, d){
 				}
 			}
 			pwagLinks.initLinks();
+			config.afterRender();
 		}
 	}
 

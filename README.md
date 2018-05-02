@@ -67,7 +67,11 @@ Place JS config and file before end of `</body>`.
 			}
 		],
 		focusGroupIndex: 0,
-		focusBoxIndex: 2
+		focusBoxIndex: 2,
+		beforeRender: function(){},
+		afterRender: function(){},
+		beforeSuccess: function(){},
+		afterSuccess: function(){}
 	};
 </script>
 
