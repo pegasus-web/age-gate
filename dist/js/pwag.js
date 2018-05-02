@@ -272,7 +272,9 @@ var pwagTemplate = (function () {
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
 		direction: '',
-		domain: pwagHelpers.getDomain()
+		domain: pwagHelpers.getDomain(),
+		focusGroupIndex: 0,
+		focusBoxIndex: 2
 	};
 
     var configOverride = window.pwagConfig;
@@ -463,8 +465,8 @@ var pwagBirthday = (function(){
 	var birthdayGroupsInner = document.querySelector('.pwag-birthday-groups__inner');	// NodeList of birthday groups positioner TODO: redo this comment
 	var validDateAsString = getValidDateAsString(); 									// Date of minimum valid age to be allowed access, as string (yyyymmdd)
 	var numberReg = new RegExp('^[0-9]+$'); 											// Regular expression to validate digits only
-	var editIndex = 2; 																	// Input index to focus on when page loads (zero-based)
-	var groupIndex = 0; 																// Input group index to focus on when page loads (zero-based)
+	var editIndex = config.focusBoxIndex;												// Input index to focus on when page loads (zero-based)
+	var groupIndex = config.focusGroupIndex;											// Input group index to focus on when page loads (zero-based)
 	var today = new Date(); 															// Current date
 	var yyyy = today.getFullYear(); 													// Current year
 	var dateGroup = [[0, 3], [4, 5], [6, 7]]; 											// Array to group year/month/day inputs
