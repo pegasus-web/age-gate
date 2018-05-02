@@ -23,7 +23,9 @@ var pwagInit = (function(exports, d){
 		pwagYesNo = pwagYesNo();
 		pwagLinks = pwagLinks();
 		pwagSocialNetworks = pwagSocialNetworks();
+		config.beforeRender();
 		activateGate();
+		config.beforeRender();
 	}
 
 	function activateGate(){

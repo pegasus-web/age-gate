@@ -154,6 +154,7 @@ var pwagSocialNetworks = (function() {
 	}
 
 	function initOpenGate() {
+		config.beforeSuccess();
 		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
 		setTimeout(openGate, config.delayBeforeOpenGate);
 	}
@@ -170,6 +171,7 @@ var pwagSocialNetworks = (function() {
 		setTimeout(function() {
 			pwagHelpers.removeClassFromElement(document.querySelector('body'), 'pwag-gate-enabled');
 			pwagHelpers.dispose();
+			config.afterSuccess();
 		}, 450);
 	}
 

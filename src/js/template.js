@@ -31,7 +31,11 @@ var pwagTemplate = (function () {
 		direction: '',
 		domain: pwagHelpers.getDomain(),
 		focusGroupIndex: 0,
-		focusBoxIndex: 2
+		focusBoxIndex: 2,
+		beforeRender: function(){},
+		afterRender: function(){},
+		beforeSuccess: function(){},
+		afterSuccess: function(){}
 	};
 
     var configOverride = window.pwagConfig;
