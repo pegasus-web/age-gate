@@ -23,15 +23,14 @@ var pwagInit = (function(exports, d){
 		pwagYesNo = pwagYesNo();
 		pwagLinks = pwagLinks();
 		pwagSocialNetworks = pwagSocialNetworks();
-		config.beforeRender();
 		activateGate();
-		config.beforeRender();
 	}
 
 	function activateGate(){
 		if(pwagHelpers.getCookie(config.cookieName)){
 			return;
 		}else{
+			config.beforeRender();
 			// Set body class to show age gate in UI and add IE8 class if necessary
 			pwagHelpers.addClassToElement(document.body, 'pwag-gate-enabled pwag-ie8-' + pwagHelpers.isIE8());
 
@@ -59,6 +58,7 @@ var pwagInit = (function(exports, d){
 				}
 			}
 			pwagLinks.initLinks();
+			config.afterRender();
 		}
 	}
 
