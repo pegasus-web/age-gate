@@ -29,7 +29,9 @@ var pwagTemplate = (function () {
 		windowResizeThreshold: 100,
 		delayBeforeOpenGate: 750,
 		direction: '',
-		domain: pwagHelpers.getDomain()
+		domain: pwagHelpers.getDomain(),
+		focusGroupIndex: 0,
+		focusBoxIndex: 2
 	};
 
     var configOverride = window.pwagConfig;

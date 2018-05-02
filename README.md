@@ -65,7 +65,9 @@ Place JS config and file before end of `</body>`.
 				name: 'facebook|google|windows',
 				clientId: 'clientID'
 			}
-		]
+		],
+		focusGroupIndex: 0,
+		focusBoxIndex: 2
 	};
 </script>
 
