@@ -278,7 +278,8 @@ var pwagTemplate = (function () {
 		beforeRender: function(){},
 		afterRender: function(){},
 		beforeSuccess: function(){},
-		afterSuccess: function(){}
+		afterSuccess: function(){},
+		afterBypass: function(){}
 	};
 
     var configOverride = window.pwagConfig;
@@ -1252,6 +1253,7 @@ var pwagInit = (function(exports, d){
 
 	function activateGate(){
 		if(pwagHelpers.getCookie(config.cookieName)){
+			config.afterBypass();
 			return;
 		}else{
 			config.beforeRender();
