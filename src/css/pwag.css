@@ -71,8 +71,15 @@ body.pwag-gate-enabled {
 	font-family: inherit;
 	font-size: inherit;
 	color: inherit;
-	background: inherit;
 	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+}
+.pwag-markets__select::-ms-expand { 
+	display: none; /* Remove default arrow on IE10/11 */
 }
 .pwag-markets__option {
 	background: #fff;
