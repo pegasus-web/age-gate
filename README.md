@@ -68,10 +68,11 @@ Place JS config and file before end of `</body>`.
 		],
 		focusGroupIndex: 0,
 		focusBoxIndex: 2,
-		beforeRender: function(){},
-		afterRender: function(){},
-		beforeSuccess: function(){},
-		afterSuccess: function(){}
+		beforeRender: function(){},		// Called when the age gate is activated but before it renders anything
+		afterRender: function(){},		// Called when the age gate is activated and after the mark-up is rendered 
+		beforeSuccess: function(){},	// Called upon successful age gate submission before the gate is removed
+		afterSuccess: function(){},		// Called upon successful age gate submission after the gate is removed
+		afterBypass: function(){}		// Called when the age gate is bypassed i.e. the cookie is already set
 	};
 </script>
 

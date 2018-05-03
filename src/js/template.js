@@ -35,7 +35,8 @@ var pwagTemplate = (function () {
 		beforeRender: function(){},
 		afterRender: function(){},
 		beforeSuccess: function(){},
-		afterSuccess: function(){}
+		afterSuccess: function(){},
+		afterBypass: function(){}
 	};
 
     var configOverride = window.pwagConfig;

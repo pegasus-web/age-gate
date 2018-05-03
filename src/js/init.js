@@ -28,6 +28,7 @@ var pwagInit = (function(exports, d){
 
 	function activateGate(){
 		if(pwagHelpers.getCookie(config.cookieName)){
+			config.afterBypass();
 			return;
 		}else{
 			config.beforeRender();
