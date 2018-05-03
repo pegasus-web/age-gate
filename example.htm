@@ -10,7 +10,7 @@
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-	<link href="/dist/css/pwag.min.css?v=3" rel="stylesheet">
+	<link href="/dist/css/pwag.min.css?v=4" rel="stylesheet">
 	<title>Pegasus Web Age Gate</title>
 
 	<script>
@@ -32,6 +32,29 @@
 			type: 'birthday',
 			age: 18,
 			logoURL: 'http://via.placeholder.com/160x64?text=LOGO',
+			welcomeText: 'Welcome to the age gate market',
+			marketText: 'market',
+			marketAliasSelected: 'fr-fr',
+			markets: [
+				{
+					label: 'Global — EN',
+					alias: 'xz-en',
+					link: 'http://www.example.com?global',
+					icon: 'http://via.placeholder.com/36x27/ff0000?text=%20'
+				},
+				{
+					label: 'Denmark — DA',
+					alias: 'dk-da',
+					link: 'http://www.example.com?danish',
+					icon: 'http://via.placeholder.com/36x27/00ff00?text=%20'
+				},
+				{
+					label: 'France — FR',
+					alias: 'fr-fr',
+					link: 'http://www.example.com?french',
+					icon: 'http://via.placeholder.com/36x27/0000ff?text=%20'
+				}
+			],
 			termsText: 'By submitting this form, you agree to the Cookie and Privacy Policy',
 			termsLinks: [
 				{ text: "Cookie", url: "example-cookie-policy.htm" },
@@ -45,16 +68,19 @@
 			}],
 			focusBoxIndex: 0,
 			beforeRender: function(){
-				console.log('beforeRender');
+				//console.log('beforeRender');
 			},
 			afterRender: function(){
-				console.log('afterRender');
+				//console.log('afterRender');
 			},
 			beforeSuccess: function(){
-				console.log('beforeSuccess');
+				//console.log('beforeSuccess');
 			},
 			afterSuccess: function(){
-				console.log('afterSuccess');
+				//console.log('afterSuccess');
+			},
+			afterBypass: function(){
+				//console.log('afterBypass');
 			}
 		};
 

@@ -51,6 +51,29 @@ Place JS config and file before end of `</body>`.
 		yes: 'Yes',
 		no: 'No',
 		errorYesNo: 'Please confirm that you are old enough to enter this site',
+		welcomeText: 'Welcome to the age gate market',				// Text which appears beneath the logo, above the gate inputs
+		marketText: 'market',										// Part of the text from the `welcomeText` variable which should be replaced with the market selector drop-down
+		marketAliasSelected: 'xz-en',								// Alias of the market which should be selected by default
+		markets: [													// Array of objects representing the items in the markets drop-down
+			{
+				label: 'Global — EN',								// Name of the option displayed in the UI
+				alias: 'xz-en',										// Value of the option, used to set a default (via `marketAliasSelected` variable)
+				link: 'http://www.example.com?global',				// URL to redirect to upon selection of this option
+				icon: 'http://via.placeholder.com/36x27?text=%20'	// URL of icon e.g. flag. This won't be shown due to poor support for images within `<option>` tags but will be rendered as a data attribute in case the select element is replaced by a custom renderer
+			},
+			{
+				label: 'Denmark — DA',
+				alias: 'dk-da',
+				link: 'http://www.example.com?danish',
+				icon: 'http://via.placeholder.com/36x27?text=%20'
+			},
+			{
+				label: 'France — FR',
+				alias: 'fr-fr',
+				link: 'http://www.example.com?french',
+				icon: 'http://via.placeholder.com/36x27?text=%20'
+			}
+		],
 		termsText: '',
 		termsLinks: [],
 		cookieName: 'pwag',

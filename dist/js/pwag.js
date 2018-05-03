@@ -265,6 +265,10 @@ var pwagTemplate = (function () {
 		yes: 'Yes',
 		no: 'No',
 		errorYesNo: 'Please confirm that you are old enough to enter this site',
+		welcomeText: '',
+		marketText: '',
+		marketAliasSelected: '',
+		markets: [],
 		termsText: '',
 		termsLinks: [],
 		cookieName: 'pwag',
@@ -405,6 +409,19 @@ var pwagTemplate = (function () {
 		return rtn;
 	};
 
+	var templateMarketSelector = function(){
+		var welcomeText = config.welcomeText;
+
+		if(!welcomeText){
+			return;
+		}
+
+		var marketText = config.marketText;
+		var marketAliasSelected = config.marketAliasSelected;
+		var markets = config.markets;
+		var rtn = '<div class="pwag-welcome">' + parseSelect(welcomeText, marketText, markets, marketAliasSelected) + '</div>';
+	}
+
 	var templateModal = function () {
 		var rtn = '\
 			<div class="pwag-modal pwag-modal--' + direction + '" dir="' + direction + '">\
@@ -426,12 +443,45 @@ var pwagTemplate = (function () {
 		return orig;
 	}
 
+	function parseSelect(orig, text, options, selected) {
+
+		if(!text || !options){
+			return orig;
+		}
+
+		var selectList = document.createElement('select');
+		
+		for (i = 0; i < options.length; i++) {
+
+			var _option = options[i];
+			var label = _option.label;
+
+			if(!label){
+				return;
+			}
+
+			var alias = _option.alias;
+			var option = document.createElement('option');
+			option.text = label;
+			option.value = alias;
+
+			if (alias == selected) {
+				option.selectedIndex = i;
+			}
+
+			selectList.add(option);
+		}
+
+		return pwagHelpers.replaceAll(orig, text, selectList.innerHTML);
+	}
+
 	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
 
 	var templateMaster = '\
 		<div class="pwag-gate pwag-gate--' + direction + '" dir="' + direction + '">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
+					' + templateMarketSelector() + '\
 					' + templateLogo() + '\
 					' + templateType + '\
 					' + templateSocial() + '\

@@ -64,6 +64,27 @@ body.pwag-gate-enabled {
 	font-size: 30px;
 	margin: 30px 0;
 }
+.pwag-markets {
+	padding: 15px 0 0 0;
+}
+.pwag-markets__select {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: inherit;
+	border: none;
+}
+.pwag-markets__option {
+	background: #fff;
+	color: #000;
+}
+.pwag-markets__text {
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+}
 .pwag-birthday-groups {
 	position: relative;
 	height: 300px;
@@ -321,18 +342,7 @@ body.pwag-gate-enabled {
 		font-size: 20px;
 		margin: 20px 0;
 	}
-}
-html[dir="rtl"] .pwag-birthday-group,
-.pwag-gate--rtl .pwag-birthday-group {
-	float: right;
-	direction: ltr;
-}
-html[dir="rtl"] .pwag-modal__close,
-.pwag-modal--rtl .pwag-modal__close {
-	right: auto;
-	left: 10px;
-}
-html[dir="rtl"] .pwag-birthday-group__instruction,
-.pwag-modal--rtl .pwag-birthday-group__instruction {
-	direction: rtl;
+	.pwag-markets__text {
+		font-size: 20px;
+	}
 }

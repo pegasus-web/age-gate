@@ -22,6 +22,10 @@ var pwagTemplate = (function () {
 		yes: 'Yes',
 		no: 'No',
 		errorYesNo: 'Please confirm that you are old enough to enter this site',
+		welcomeText: '',
+		marketText: '',
+		marketAliasSelected: '',
+		markets: [],
 		termsText: '',
 		termsLinks: [],
 		cookieName: 'pwag',
@@ -162,6 +166,21 @@ var pwagTemplate = (function () {
 		return rtn;
 	};
 
+	var templateMarketSelector = function(){
+		var welcomeText = config.welcomeText;
+
+		if(!welcomeText){
+			return;
+		}
+
+		var marketText = config.marketText;
+		var marketAliasSelected = config.marketAliasSelected;
+		var markets = config.markets;
+		var dropdown = parseSelect(welcomeText, marketText, markets, marketAliasSelected);
+		var rtn = '<div class="pwag-markets"><p class="pwag-markets__text">' + dropdown + '</p></div>';
+		return rtn;
+	}
+
 	var templateModal = function () {
 		var rtn = '\
 			<div class="pwag-modal pwag-modal--' + direction + '" dir="' + direction + '">\
@@ -183,6 +202,64 @@ var pwagTemplate = (function () {
 		return orig;
 	}
 
+	function parseSelect(orig, text, options, selected) {
+
+		if(!text || !options){
+			return orig;
+		}
+
+		var selectList = document.createElement('select');
+		
+		for (i = 0; i < options.length; i++) {
+
+			var _option = options[i];
+			var label = _option.label;
+
+			if(!label){
+				return;
+			}
+
+			var alias = _option.alias;
+			var icon = _option.icon;
+			var link = _option.link;
+			var option = document.createElement('option');
+			var selectedItem = 0;
+			option.text = label;
+			option.value = alias;
+
+			if (alias == selected) {
+				option.defaultSelected = i;
+			}
+
+			if(icon){
+				option.setAttribute('data-pwag-market-icon', icon);
+			}
+
+			if(link){
+				option.setAttribute('data-pwag-market-link', link);
+			}
+
+			pwagHelpers.addClassToElement(option, 'pwag-markets__option');
+			selectList.add(option);
+		}
+		pwagHelpers.addClassToElement(selectList, 'pwag-markets__select');
+		selectList.id = 'pwag-marketselector';
+		return pwagHelpers.replaceAll(orig, text, selectList.outerHTML);
+	}
+
+	function bindMarketSelectorEvents(){
+		// Bind change handler to markets dropdown
+		var marketSelector = document.getElementById('pwag-marketselector');
+		if(marketSelector){
+			pwagHelpers.addEventHandler(marketSelector, 'change', function(){
+				var link = marketSelector.options[marketSelector.selectedIndex].getAttribute('data-pwag-market-link');
+				if(link){
+					window.location = link;
+				}
+			});	
+		}
+	}
+
 	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
 
 	var templateMaster = '\
@@ -190,6 +267,7 @@ var pwagTemplate = (function () {
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
 					' + templateLogo() + '\
+					' + templateMarketSelector() + '\
 					' + templateType + '\
 					' + templateSocial() + '\
 					' + templateTerms() + '\
@@ -202,6 +280,7 @@ var pwagTemplate = (function () {
 	if (!pwagHelpers.getCookie(config.cookieName)) {
 		// Render HTML to page before any selectors are instantiated
 		pwagHelpers.appendHTML(document.body, templateMaster);
+		bindMarketSelectorEvents();
 	}
 
 	// 'Public' methods

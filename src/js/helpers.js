@@ -237,7 +237,15 @@ var pwagHelpers = (function(){
 			}
 			document.cookie = s+"=;expires=Thu, 01 Jan 1970 00:00:01 GMT;domain="+domain+";";
 			return domain;
-		 }
+		 },
+		 addEventHandler: function(el, eventType, handler) {
+			if (el.addEventListener) {
+				el.addEventListener (eventType, handler, false);
+			}
+			else if (el.attachEvent) {
+				el.attachEvent ('on' + eventType, handler); 
+			}
+		}
 	};
 
 });
