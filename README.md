@@ -6,12 +6,10 @@ Age Gate as a Service
 
 An Age Gate, also known as an Adult Verification System, is a policy to 
 confirm that a website visitor is of the age required (by law) to view 
-the website's contents. In the case of Pegasus Web this is due to the 
-alcoholic nature of the Carlsberg Group websites.
+the website's contents.
 
 ## Installation
 - Clone repo
-- Use Node.js command prompt to change directory to cloned repo on local file system
 - Run `npm install`
 - Run `gulp` for minified production build or `gulp dev` for non-minified development build
 
@@ -116,3 +114,9 @@ Copyright &copy; 2016 Umbrella Inc Ltd
 This project is licensed under [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Please see [LICENSE](LICENSE.md) for further details.
+
+## Testing
+
+We use and endorse BrowserStack for testing:
+
+[![Browserstack logo](/assets/browserstack-logo-250x54.png)](https://www.browserstack.com)

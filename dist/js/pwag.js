@@ -14,6 +14,10 @@ var pwagHelpers = (function(){
 		return ' ' + string + ' ';
 	};
 
+	function escapeRegExp(string) {
+		return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+	}
+
 	function removeDOMElements(){
 		var gateElem = document.querySelector('.pwag-gate');	// Gate element
 		var modalElem = document.querySelector('.pwag-modal');	// Modal element
@@ -223,7 +227,7 @@ var pwagHelpers = (function(){
 			}
 		},
 		replaceAll: function(str, find, replace){
-			return str.replace(new RegExp(find, 'g'), replace);
+			return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 		},
 		dispose: function(){
 			removeDOMElements();
@@ -237,7 +241,15 @@ var pwagHelpers = (function(){
 			}
 			document.cookie = s+"=;expires=Thu, 01 Jan 1970 00:00:01 GMT;domain="+domain+";";
 			return domain;
-		 }
+		 },
+		 addEventHandler: function(el, eventType, handler) {
+			if (el.addEventListener) {
+				el.addEventListener (eventType, handler, false);
+			}
+			else if (el.attachEvent) {
+				el.attachEvent ('on' + eventType, handler); 
+			}
+		}
 	};
 
 });
@@ -419,7 +431,9 @@ var pwagTemplate = (function () {
 		var marketText = config.marketText;
 		var marketAliasSelected = config.marketAliasSelected;
 		var markets = config.markets;
-		var rtn = '<div class="pwag-welcome">' + parseSelect(welcomeText, marketText, markets, marketAliasSelected) + '</div>';
+		var dropdown = parseSelect(welcomeText, marketText, markets, marketAliasSelected);
+		var rtn = '<div class="pwag-markets"><p class="pwag-markets__text">' + dropdown + '</p></div>';
+		return rtn;
 	}
 
 	var templateModal = function () {
@@ -461,18 +475,44 @@ var pwagTemplate = (function () {
 			}
 
 			var alias = _option.alias;
+			var icon = _option.icon;
+			var link = _option.link;
 			var option = document.createElement('option');
+			var selectedItem = 0;
 			option.text = label;
 			option.value = alias;
 
 			if (alias == selected) {
-				option.selectedIndex = i;
+				option.defaultSelected = i;
 			}
 
+			if(icon){
+				option.setAttribute('data-pwag-market-icon', icon);
+			}
+
+			if(link){
+				option.setAttribute('data-pwag-market-link', link);
+			}
+
+			pwagHelpers.addClassToElement(option, 'pwag-markets__option');
 			selectList.add(option);
 		}
+		pwagHelpers.addClassToElement(selectList, 'pwag-markets__select');
+		selectList.id = 'pwag-marketselector';
+		return pwagHelpers.replaceAll(orig, text, selectList.outerHTML);
+	}
 
-		return pwagHelpers.replaceAll(orig, text, selectList.innerHTML);
+	function bindMarketSelectorEvents(){
+		// Bind change handler to markets dropdown
+		var marketSelector = document.getElementById('pwag-marketselector');
+		if(marketSelector){
+			pwagHelpers.addEventHandler(marketSelector, 'change', function(){
+				var link = marketSelector.options[marketSelector.selectedIndex].getAttribute('data-pwag-market-link');
+				if(link){
+					window.location = link;
+				}
+			});	
+		}
 	}
 
 	var templateType = config.type == 'birthday' ? templateBirthday : templateYesNo;
@@ -481,8 +521,8 @@ var pwagTemplate = (function () {
 		<div class="pwag-gate pwag-gate--' + direction + '" dir="' + direction + '">\
 			<div class="pwag-gate__inner">\
 				<div class="pwag-gate__content">\
-					' + templateMarketSelector() + '\
 					' + templateLogo() + '\
+					' + templateMarketSelector() + '\
 					' + templateType + '\
 					' + templateSocial() + '\
 					' + templateTerms() + '\
@@ -495,6 +535,7 @@ var pwagTemplate = (function () {
 	if (!pwagHelpers.getCookie(config.cookieName)) {
 		// Render HTML to page before any selectors are instantiated
 		pwagHelpers.appendHTML(document.body, templateMaster);
+		bindMarketSelectorEvents();
 	}
 
 	// 'Public' methods

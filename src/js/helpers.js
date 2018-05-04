@@ -14,6 +14,10 @@ var pwagHelpers = (function(){
 		return ' ' + string + ' ';
 	};
 
+	function escapeRegExp(string) {
+		return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+	}
+
 	function removeDOMElements(){
 		var gateElem = document.querySelector('.pwag-gate');	// Gate element
 		var modalElem = document.querySelector('.pwag-modal');	// Modal element
@@ -223,7 +227,7 @@ var pwagHelpers = (function(){
 			}
 		},
 		replaceAll: function(str, find, replace){
-			return str.replace(new RegExp(find, 'g'), replace);
+			return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 		},
 		dispose: function(){
 			removeDOMElements();
