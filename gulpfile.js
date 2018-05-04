@@ -66,6 +66,7 @@ gulp.task('scripts', function(){
 
 gulp.task('default', ['scripts', 'styles']);
 gulp.task('dev', ['scripts-dev', 'styles-dev', 'watch']);
+gulp.task('all', ['scripts', 'scripts-dev', 'styles', 'styles-dev']);
 
 gulp.task('watch', function() {
 	gulp.watch(config.styles.src, ['styles-dev']);
