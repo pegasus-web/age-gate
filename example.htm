@@ -84,6 +84,12 @@
 			}
 		};
 
+		/* Events can be set outside of the original config in case they can't be generated dynamically via CMS, like so: */
+		//pwagConfig.beforeRender = function(){
+		//	console.log('beforeRender extension');
+		//}
+
+
 		/* Delete cookie - not required in production */
 		function deleteCookie() {
 			var config = pwagTemplate.config;

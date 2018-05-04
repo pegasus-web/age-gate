@@ -116,3 +116,9 @@ Copyright &copy; 2016 Umbrella Inc Ltd
 This project is licensed under [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Please see [LICENSE](LICENSE.md) for further details.
+
+## Testing
+
+We use and endorse BrowserStack for testing:
+
+[![Browserstack logo](/assets/browserstack-logo-250x54.png)](https://www.browserstack.com)
