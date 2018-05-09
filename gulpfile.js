@@ -14,6 +14,9 @@ var config = {
 		name : {
 			dev  : 'pwag.css',
 			dist : 'pwag.min.css'
+		},
+		opts : {
+			zindex: false
 		}
 	},
 	scripts : {
@@ -45,7 +48,7 @@ gulp.task('styles-dev', function() {
 gulp.task('styles', function() {
 	return gulp.src(config.styles.src)
 		.pipe(concat(config.styles.name.dist))
-		.pipe(cssnano())
+		.pipe(cssnano(config.styles.opts))
 		.pipe(gulp.dest(config.styles.dest));
 });
 
