@@ -14,6 +14,9 @@ var config = {
 		name : {
 			dev  : 'pwag.css',
 			dist : 'pwag.min.css'
+		},
+		opts : {
+			zindex: false
 		}
 	},
 	scripts : {
@@ -45,7 +48,7 @@ gulp.task('styles-dev', function() {
 gulp.task('styles', function() {
 	return gulp.src(config.styles.src)
 		.pipe(concat(config.styles.name.dist))
-		.pipe(cssnano())
+		.pipe(cssnano(config.styles.opts))
 		.pipe(gulp.dest(config.styles.dest));
 });
 
@@ -66,6 +69,7 @@ gulp.task('scripts', function(){
 
 gulp.task('default', ['scripts', 'styles']);
 gulp.task('dev', ['scripts-dev', 'styles-dev', 'watch']);
+gulp.task('all', ['scripts', 'scripts-dev', 'styles', 'styles-dev']);
 
 gulp.task('watch', function() {
 	gulp.watch(config.styles.src, ['styles-dev']);
