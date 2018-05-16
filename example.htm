@@ -94,8 +94,8 @@
 		function deleteCookie() {
 			var config = pwagTemplate.config;
 			var cookieName = config.cookieName || 'pwag';
-			var cookieDomain = config.domain;
-			document.cookie = cookieName + '=; domain=.' + cookieDomain + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			var cookieDomain = config.domain === "localhost" ? "" : ";domain=." + config.domain;
+			document.cookie = cookieName + '=' + cookieDomain + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 			document.location.reload();
 		}
 	</script>
