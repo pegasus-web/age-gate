@@ -144,6 +144,9 @@ body.pwag-gate-enabled {
 	transition : border 150ms ease-in-out;
 	zoom: 1;
 }
+.pwag-date-box--focus {
+	border-color: #ff0;
+}
 .pwag-date-box--valid {
 	border-color: #0f0;
 }
@@ -152,9 +155,6 @@ body.pwag-gate-enabled {
 }
 .pwag-success .pwag-date-box {
 	border-color: #00f !important;
-}
-.pwag-date-box--focus {
-	border-color: #ff0;
 }
 .pwag-date-box--valid .pwag-date-box__placeholder {
 	display: none;
@@ -247,6 +247,46 @@ body.pwag-gate-enabled {
 	font-size: 16px;
 	padding: 15px 30px;
 	cursor: pointer;
+}
+.pwag-checkbox__input {
+	display: none;
+}
+.pwag-checkbox {
+	text-align: center;
+	margin-top: 1em;
+	padding: 0 20px;
+}
+.pwag-checkbox__label {
+	cursor: pointer;
+}
+.pwag-checkbox__faux {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid transparent;
+	background: #fff;
+	border-radius: 2px;
+	margin: 5px 10px;
+	vertical-align: middle;
+}
+.pwag-checkbox__text {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	line-height: 1.2;
+	vertical-align: middle;
+}
+.pwag-checkbox__input:checked + .pwag-checkbox__faux {
+	/* Not using short-hand so it's simple to override individual properties in theme */
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABB0lEQVQ4T6XTvytFcRzG8ddNmCT5kTJYJBGLUgqLDLIYjMpqILt/wGZQBn+CycJgQBFGs0lGg8EgktCnvrdu3+7lHPdsp/N83n0+z/OciiafShPzK1j9D6AFu9jEcllAN44wiw3slwH04gZD2MNWnF8U0I8LjOAWc/gsCpjEMQLyjDE8Vc2PDQZxiDXcZ6nM4wTt+MYCzmo1AYi7pvGCxbRiaJaSYa1pYAfbeewBGMYV+vAR0eANp2hLA3eYqt6dbxDvYU5s0oUvvKIjCd8xiod6patNYRzn6MmE6zho1Ng8xglcojMNXGPmt7rX60HEFp7EtzjtsSwg9GHkQFT1r5+taBMbcn4AGzMoD1hiO0MAAAAASUVORK5CYII=);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.pwag-checkbox--invalid .pwag-checkbox__input:not(:checked) ~ .pwag-checkbox__text {
+	color: #f00;
+}
+.pwag-checkbox--invalid .pwag-checkbox__input:not(:checked) + .pwag-checkbox__faux {
+	border-color: #f00;
 }
 .pwag-modal {
 	display: none;

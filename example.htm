@@ -10,22 +10,22 @@
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-	<link href="/dist/css/pwag.min.css?v=4" rel="stylesheet">
+	<link href="/dist/css/pwag.css" rel="stylesheet">
 	<title>Pegasus Web Age Gate</title>
 
 	<script>
 		/* Example Yes/No config */
-		/*
-		window.pwagConfig = {
+		/*window.pwagConfig = {
 			type: 'yes-no',
 			logoURL: 'http://via.placeholder.com/160x64?text=LOGO',
+			errorYesNo: 'Please accept the terms and confirm that you are old enough to enter',
+			checkboxText: 'Please check to ensure that you accept our terms and conditions',
 			termsText: 'By submitting this form, you agree to the Cookie and Privacy Policy',
 			termsLinks: [
 				{ text: "Cookie", url: "example-cookie-policy.htm" },
 				{ text: "Privacy Policy", url: "example-privacy-policy.htm" }
 			]
-		};
-		*/
+		};*/
 		
 		/* Example birthday config */
 		window.pwagConfig = {
@@ -55,6 +55,7 @@
 					icon: 'http://via.placeholder.com/36x27/0000ff?text=%20'
 				}
 			],
+			checkboxText: 'Please check to ensure that you accept our terms and conditions',
 			termsText: 'By submitting this form, you agree to the Cookie and Privacy Policy',
 			termsLinks: [
 				{ text: "Cookie", url: "example-cookie-policy.htm" },
@@ -85,9 +86,9 @@
 		};
 
 		/* Events can be set outside of the original config in case they can't be generated dynamically via CMS, like so: */
-		//pwagConfig.beforeRender = function(){
-		//	console.log('beforeRender extension');
-		//}
+		// pwagConfig.beforeRender = function(){
+		// 	console.log('beforeRender extension');
+		// }
 
 
 		/* Delete cookie - not required in production */
@@ -99,7 +100,7 @@
 			document.location.reload();
 		}
 	</script>
-	<script src="/dist/js/pwag.min.js?v=3"></script>
+	<script src="/dist/js/pwag.js"></script>
 
 </head>
 

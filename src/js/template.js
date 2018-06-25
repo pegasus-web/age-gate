@@ -26,6 +26,7 @@ var pwagTemplate = (function () {
 		marketText: '',
 		marketAliasSelected: '',
 		markets: [],
+		checkboxText: '',
 		termsText: '',
 		termsLinks: [],
 		cookieName: 'pwag',
@@ -141,6 +142,28 @@ var pwagTemplate = (function () {
 
 	var templateSocial = function(){
 		return '<div class="pwag-social-container"></div>';
+	};
+	
+	var templateCheckbox = function () {
+		var checkboxText = config.checkboxText;
+		var rtn = '';
+
+		if (checkboxText) {
+			rtn = checkboxText;
+		}
+
+		if (rtn) {
+			rtn = '\
+				<div class="pwag-clearfix pwag-checkbox">\
+					<label class="pwag-checkbox__label">\
+  						<input type="checkbox" class="pwag-checkbox__input"></input>\
+						<div class="pwag-checkbox__faux"></div>\
+						<p class="pwag-checkbox__text">' + rtn + '</p>\
+					</label>\
+				</div>\
+			';
+		}
+		return rtn;
 	};
 
 	var templateTerms = function () {
@@ -270,6 +293,7 @@ var pwagTemplate = (function () {
 					' + templateMarketSelector() + '\
 					' + templateType + '\
 					' + templateSocial() + '\
+					' + templateCheckbox() + '\
 					' + templateTerms() + '\
 				</div>\
 			</div>\

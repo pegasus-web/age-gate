@@ -196,9 +196,10 @@ var pwagHelpers = (function(){
 			return v ? v[2] : null;
 		},
 		setCookie: function(name, value, days, domain) {
+			var setDomain = domain === "localhost" ? "" : ";domain=." + domain;
 			var d = new Date();
 			d.setTime(d.getTime() + 24*60*60*1000*days);
-			document.cookie = name + "=" + value + ";path=/;domain=." + domain + ";expires=" + d.toGMTString();
+			document.cookie = name + "=" + value + ";path=/" + setDomain + ";expires=" + d.toGMTString();
 		},
 		getWindowDims: function(){
 			var w = window,
@@ -281,6 +282,7 @@ var pwagTemplate = (function () {
 		marketText: '',
 		marketAliasSelected: '',
 		markets: [],
+		checkboxText: '',
 		termsText: '',
 		termsLinks: [],
 		cookieName: 'pwag',
@@ -396,6 +398,28 @@ var pwagTemplate = (function () {
 
 	var templateSocial = function(){
 		return '<div class="pwag-social-container"></div>';
+	};
+	
+	var templateCheckbox = function () {
+		var checkboxText = config.checkboxText;
+		var rtn = '';
+
+		if (checkboxText) {
+			rtn = checkboxText;
+		}
+
+		if (rtn) {
+			rtn = '\
+				<div class="pwag-clearfix pwag-checkbox">\
+					<label class="pwag-checkbox__label">\
+  						<input type="checkbox" class="pwag-checkbox__input"></input>\
+						<div class="pwag-checkbox__faux"></div>\
+						<p class="pwag-checkbox__text">' + rtn + '</p>\
+					</label>\
+				</div>\
+			';
+		}
+		return rtn;
 	};
 
 	var templateTerms = function () {
@@ -525,6 +549,7 @@ var pwagTemplate = (function () {
 					' + templateMarketSelector() + '\
 					' + templateType + '\
 					' + templateSocial() + '\
+					' + templateCheckbox() + '\
 					' + templateTerms() + '\
 				</div>\
 			</div>\
@@ -573,6 +598,7 @@ var pwagBirthday = (function(){
 	var _initGateBirthday = function() {
 		bindDateBoxClick();
 		bindKeyUp();
+		bindClickCheckbox();
 		setGroupFocus(groupIndex);
 		setBoxFocus(false);
 		setInputFocus();
@@ -685,6 +711,10 @@ var pwagBirthday = (function(){
 		}else{
 			document.querySelector('.pwag-date-box--' + editIndex + ' .pwag-date-box__value').textContent = number;			
 		}
+		validateAge();
+	}
+
+	function validateAge(){
 		var groupComplete = isGroupComplete(groupIndex);
 
 		if (groupComplete === true) {
@@ -704,7 +734,7 @@ var pwagBirthday = (function(){
 						setGroupFocus(groupIndex);
 						break;
 					case 3: // Old enough
-						initOpenGate();
+						verify();
 						break;
 				}
 			} else {
@@ -715,6 +745,38 @@ var pwagBirthday = (function(){
 			editIndex++;
 			setBoxFocus(false);
 		}
+	}
+
+	function bindClickCheckbox(){
+		if(config.checkboxText){
+			var checkbox = document.querySelector('.pwag-checkbox__label');
+			if(checkbox.addEventListener){
+				checkbox.addEventListener('click', function() { 
+					validateAge();
+				}, false);
+			}else{
+				checkbox.onclick = function() { 
+					validateAge();
+				};
+			}
+
+		}
+	}
+
+	function verify(){
+		if(validateCheckbox()){
+			initOpenGate();	
+		}else{
+			removeInputFocus(); // Need to blur inputs so iOS will handle checkbox correctly.
+			showCheckboxError();
+		}
+	}
+
+	function validateCheckbox() {
+		if(config.checkboxText && !document.querySelector('.pwag-checkbox__input').checked){
+			return false;
+		}
+		return true;
 	}
 
 	function evalKey(e) {
@@ -857,11 +919,18 @@ var pwagBirthday = (function(){
 		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
 	}
 
+	function showCheckboxError(){
+		var checkbox = document.querySelector('.pwag-checkbox');
+		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+		checkbox.scrollIntoView();
+	}
+
 	function hideErrors() {
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
+		pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
 	}
-
+	
 	function initOpenGate() {
 		config.beforeSuccess();
 		pwagHelpers.setCookie(config.cookieName, true, config.cookieExpiry, config.domain);
@@ -942,14 +1011,21 @@ var pwagYesNo = (function(){
 	function bindClickYes(){
 		if(optionYes.addEventListener){
 			optionYes.addEventListener('click', function() { 
-				hideErrors();
-				initOpenGate();
+				verify();
 			}, false);
 		}else{
 			optionYes.onclick = function() { 
-				hideErrors();
-				initOpenGate();
+				verify();
 			};
+		}
+	}
+
+	function verify(){
+		if(validateCheckbox()){
+			hideErrors();
+			initOpenGate();	
+		}else{
+			showCheckboxError();
 		}
 	}
 
@@ -965,14 +1041,29 @@ var pwagYesNo = (function(){
 		}
 	}
 
+	function validateCheckbox() {
+		if(config.checkboxText && !document.querySelector('.pwag-checkbox__input').checked){
+			return false;
+		}
+		return true;
+	}
+
 	function showError(messageId) {
-		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback'), 'pwag-show');
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message'), 'pwag-show');
+	}
+
+	function showCheckboxError(){
+		var checkbox = document.querySelector('.pwag-checkbox');
+		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+		checkbox.scrollIntoView();
 	}
 
 	function hideErrors() {
+		pwagHelpers.removeClass(document.querySelector('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
+		pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
 	}
-
 
 	function initOpenGate() {
 		config.beforeSuccess();
@@ -1272,9 +1363,20 @@ var pwagSocialNetworks = (function() {
 		pwagHelpers.appendHTML(socialContainer, templateSocialNetworks());
 	}
 
+	function validateCheckbox() {
+		if(config.checkboxText && !document.querySelector('.pwag-checkbox__input').checked){
+			return false;
+		}
+		return true;
+	}
+
 	var validateAge = function(age) {
 		if (age >= config.age) {
-			initOpenGate();
+			if(validateCheckbox()){
+				initOpenGate();
+			}else{
+				showCheckboxError();
+			}
 		} else if (age == -1) {
 			showError('unableToGetSocialData');
 		} else {
@@ -1284,6 +1386,12 @@ var pwagSocialNetworks = (function() {
 
 	function showError(messageId) {
 		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
+	}
+
+	function showCheckboxError(){
+		var checkbox = document.querySelector('.pwag-checkbox');
+		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+		checkbox.scrollIntoView();
 	}
 
 	function initOpenGate() {

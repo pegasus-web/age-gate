@@ -72,6 +72,7 @@ Place JS config and file before end of `</body>`.
 				icon: 'http://via.placeholder.com/36x27?text=%20'
 			}
 		],
+		checkboxText: '', // Populating this field will force a mandatory checkbox which must be checked in order to successfully pass the age gate
 		termsText: '',
 		termsLinks: [],
 		cookieName: 'pwag',
