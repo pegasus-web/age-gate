@@ -139,9 +139,20 @@ var pwagSocialNetworks = (function() {
 		pwagHelpers.appendHTML(socialContainer, templateSocialNetworks());
 	}
 
+	function validateCheckbox() {
+		if(config.checkboxText && !document.querySelector('.pwag-checkbox__input').checked){
+			return false;
+		}
+		return true;
+	}
+
 	var validateAge = function(age) {
 		if (age >= config.age) {
-			initOpenGate();
+			if(validateCheckbox()){
+				initOpenGate();
+			}else{
+				showCheckboxError();
+			}
 		} else if (age == -1) {
 			showError('unableToGetSocialData');
 		} else {
@@ -151,6 +162,12 @@ var pwagSocialNetworks = (function() {
 
 	function showError(messageId) {
 		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
+	}
+
+	function showCheckboxError(){
+		var checkbox = document.querySelector('.pwag-checkbox');
+		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+		checkbox.scrollIntoView();
 	}
 
 	function initOpenGate() {

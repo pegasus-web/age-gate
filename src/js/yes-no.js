@@ -24,14 +24,21 @@ var pwagYesNo = (function(){
 	function bindClickYes(){
 		if(optionYes.addEventListener){
 			optionYes.addEventListener('click', function() { 
-				hideErrors();
-				initOpenGate();
+				verify();
 			}, false);
 		}else{
 			optionYes.onclick = function() { 
-				hideErrors();
-				initOpenGate();
+				verify();
 			};
+		}
+	}
+
+	function verify(){
+		if(validateCheckbox()){
+			hideErrors();
+			initOpenGate();	
+		}else{
+			showCheckboxError();
 		}
 	}
 
@@ -47,14 +54,29 @@ var pwagYesNo = (function(){
 		}
 	}
 
+	function validateCheckbox() {
+		if(config.checkboxText && !document.querySelector('.pwag-checkbox__input').checked){
+			return false;
+		}
+		return true;
+	}
+
 	function showError(messageId) {
-		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message--' + messageId), 'pwag-show');
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback'), 'pwag-show');
+		pwagHelpers.addClassToElement(document.querySelector('.pwag-feedback__message'), 'pwag-show');
+	}
+
+	function showCheckboxError(){
+		var checkbox = document.querySelector('.pwag-checkbox');
+		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+		checkbox.scrollIntoView();
 	}
 
 	function hideErrors() {
+		pwagHelpers.removeClass(document.querySelector('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
+		pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
 	}
-
 
 	function initOpenGate() {
 		config.beforeSuccess();

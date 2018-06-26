@@ -196,9 +196,10 @@ var pwagHelpers = (function(){
 			return v ? v[2] : null;
 		},
 		setCookie: function(name, value, days, domain) {
+			var setDomain = domain === "localhost" ? "" : ";domain=." + domain;
 			var d = new Date();
 			d.setTime(d.getTime() + 24*60*60*1000*days);
-			document.cookie = name + "=" + value + ";path=/;domain=." + domain + ";expires=" + d.toGMTString();
+			document.cookie = name + "=" + value + ";path=/" + setDomain + ";expires=" + d.toGMTString();
 		},
 		getWindowDims: function(){
 			var w = window,
