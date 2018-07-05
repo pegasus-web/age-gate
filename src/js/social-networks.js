@@ -165,9 +165,11 @@ var pwagSocialNetworks = (function() {
 	}
 
 	function showCheckboxError(){
-		var checkbox = document.querySelector('.pwag-checkbox');
-		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
-		checkbox.scrollIntoView();
+		if(config.checkboxText){
+			var checkbox = document.querySelector('.pwag-checkbox');
+			pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+			checkbox.scrollIntoView();
+		}
 	}
 
 	function initOpenGate() {

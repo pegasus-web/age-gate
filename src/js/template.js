@@ -202,7 +202,7 @@ var pwagTemplate = (function () {
 		var dropdown = parseSelect(welcomeText, marketText, markets, marketAliasSelected);
 		var rtn = '<div class="pwag-markets"><p class="pwag-markets__text">' + dropdown + '</p></div>';
 		return rtn;
-	}
+	};
 
 	var templateModal = function () {
 		var rtn = '\

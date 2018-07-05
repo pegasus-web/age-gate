@@ -143,7 +143,8 @@ var pwagBirthday = (function(){
 		validateAge();
 	}
 
-	function validateAge(){
+	function validateAge(bypassIndexIncrement){
+		bypassIndexIncrement = typeof bypassIndexIncrement !== 'undefined' ? bypassIndexIncrement : false;
 		var groupComplete = isGroupComplete(groupIndex);
 
 		if (groupComplete === true) {
@@ -171,8 +172,10 @@ var pwagBirthday = (function(){
 				showError(groupKeys[groupIndex]);
 			}
 		} else {
-			editIndex++;
-			setBoxFocus(false);
+			if(!bypassIndexIncrement){
+				editIndex++;
+				setBoxFocus(false);
+			}
 		}
 	}
 
@@ -181,11 +184,11 @@ var pwagBirthday = (function(){
 			var checkbox = document.querySelector('.pwag-checkbox__label');
 			if(checkbox.addEventListener){
 				checkbox.addEventListener('click', function() { 
-					validateAge();
+					validateAge(true);
 				}, false);
 			}else{
 				checkbox.onclick = function() { 
-					validateAge();
+					validateAge(true);
 				};
 			}
 
@@ -349,15 +352,19 @@ var pwagBirthday = (function(){
 	}
 
 	function showCheckboxError(){
-		var checkbox = document.querySelector('.pwag-checkbox');
-		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
-		checkbox.scrollIntoView();
+		if(config.checkboxText){
+			var checkbox = document.querySelector('.pwag-checkbox');
+			pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+			checkbox.scrollIntoView();	
+		}
 	}
 
 	function hideErrors() {
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
-		pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
+		if(config.checkboxText){
+			pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
+		}
 	}
 	
 	function initOpenGate() {
