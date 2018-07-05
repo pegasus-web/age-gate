@@ -67,15 +67,19 @@ var pwagYesNo = (function(){
 	}
 
 	function showCheckboxError(){
-		var checkbox = document.querySelector('.pwag-checkbox');
-		pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
-		checkbox.scrollIntoView();
+		if(config.checkboxText){
+			var checkbox = document.querySelector('.pwag-checkbox');
+			pwagHelpers.addClassToElement(checkbox, 'pwag-checkbox--invalid');
+			checkbox.scrollIntoView();
+		}
 	}
 
 	function hideErrors() {
 		pwagHelpers.removeClass(document.querySelector('.pwag-feedback'), 'pwag-show');
 		pwagHelpers.removeClass(document.querySelectorAll('.pwag-feedback__message'), 'pwag-show');
-		pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
+		if(config.checkboxText){
+			pwagHelpers.removeClass(document.querySelector('.pwag-checkbox'), 'pwag-checkbox--invalid');
+		}
 	}
 
 	function initOpenGate() {
