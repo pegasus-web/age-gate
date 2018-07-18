@@ -1112,7 +1112,8 @@ var pwagLinks = (function(){
 
 	// 'Private' variables
 	var config = pwagTemplate.config;									// Config data from global variable
-	var links = document.querySelectorAll('.pwag-terms__link');			// NodeList of links
+	var modalLinkClass = 'pwag-terms__link';							// CSS class of links which should open modal
+	var links = document.querySelectorAll('.' + modalLinkClass);		// NodeList of links
 	var linksArray = pwagHelpers.nodeListToArray(links);				// Array of links
 	var modal = document.querySelector('.pwag-modal');					// Modal element
 	var modalInner = document.querySelector('.pwag-modal__inner');		// Element within modal which contains content
@@ -1129,7 +1130,18 @@ var pwagLinks = (function(){
 		for (var i = 0; i < linksArray.length; i++) {
 			_thisItem = linksArray[i];
 			if (_thisItem.addEventListener) {
-				_thisItem.addEventListener('click', onLinkClick, false);
+				// Perform 'live' check on clicked element in case it was added to DOM after age gate init
+				document.addEventListener('click', function (event) {
+					// Only open age gate modal if gate is still in DOM
+					var body = document.getElementsByTagName('body')[0];
+					if(pwagHelpers.hasClass(body, 'pwag-gate-enabled')){
+						var el = event.target;
+						var isModalLink = pwagHelpers.hasClass(el, modalLinkClass);
+						if(isModalLink){
+							onLinkClick(event);
+						}
+					}
+				}, false);
 			}
 			else {
 				_thisItem.onclick = function(){
