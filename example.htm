@@ -13,6 +13,34 @@
 	<link href="/dist/css/pwag.css" rel="stylesheet">
 	<title>Pegasus Web Age Gate</title>
 
+
+	<!-- Testing integration with cookie consent -->
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+	<script>
+		window.addEventListener("load", function(){
+			window.cookieconsent.initialise({
+				"palette": {
+					"popup": {
+						"background": "#000"
+					},
+					"button": {
+					"background": "#f1d600"
+					}
+				},
+				content: {
+					href: 'example-cookie-policy.htm'
+				},
+				elements: {
+					messagelink: '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link pwag-terms__link" href="{{href}}" target="_blank">{{link}}</a></span>',
+				}
+			});
+		});
+	</script>
+	<!-- /Testing integration with cookie consent -->
+
+
+
 	<script>
 		/* Example Yes/No config */
 		/*window.pwagConfig = {
